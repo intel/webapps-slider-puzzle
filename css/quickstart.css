@@ -1,0 +1,347 @@
+/*
+ * Copyright (c) 2012, Intel Corporation.
+ *
+ * This program is licensed under the terms and conditions of the 
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ */
+
+#quickStartPage {
+	 background-position: left top;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-orient: vertical;
+    box-shadow: 5px 5px 20px black;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+	 -moz-transform: translate(-50%, -50%);
+    overflow: hidden;
+    cursor: default;
+    width: 1024px;
+    height: 600px;
+	 
+	 visibility: hidden;
+}
+
+@font-face {
+    font-family: "MolotCustom";
+    src: local("Molot"), url("../fonts/Molot.otf");	 
+}
+
+div#puzzlePauseBackground {
+  position: absolute;    
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  /*background-image: url("../images/active-puzzle/active-puzzle-easy-bg.png");*/
+  background-color: transparent;  
+  background-repeat: no-repeat;  
+}
+
+div#puzzlePauseFullImage {
+  position: absolute;    
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+div#puzzleContainer {
+  position: absolute; 
+  background-color: transparent;  
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+div#qsInfo {
+  position: absolute;    
+  left: 975px;
+  top: 400px;
+  width: 55px;
+  height: 153px;
+  background-image: url("../images/active-puzzle/new-nav-slider-button.png");
+  background-repeat: no-repeat;
+  background-position:center; 
+  cursor: pointer;
+  display: block;
+}
+
+div#newPopout {
+  position: absolute;    
+  left: 985px;
+  top: 400px;
+  width: 986px;
+  height: 163px;
+  background-image: url("../images/new-screen/new-popout-base-right.png");
+  background-repeat: no-repeat;
+  display: block;  
+  visibility: hidden;
+}
+
+div#qsNpTitle {
+  position: absolute;
+  left: 250px;
+  top: 40px;
+  width: auto;
+  height: auto;
+  /*background-image: url("../images/new-screen/choose-level-header.png");
+  background-repeat: no-repeat;*/
+  display: block;
+}
+
+span#qsNpTitleS {  
+  font-size: 32px;
+  font-family: "MolotCustom";
+  color: #252525;
+}
+
+hr#qsNpTitleLine {
+  position: absolute;
+  left: 90px;
+  top: 70px;
+  background-color: #dddddd;
+  border: 0;
+  height: 1px;
+  width: 520px;
+}
+
+div#qsDifficultiesTable {
+  position: absolute;
+  left: 70px;
+  top: 90px;
+  width: 600px;
+  height: auto;
+  display: table;
+}
+
+div#qsDifficultiesTableRow {
+  display:table-row;
+  width:auto;      
+}
+
+div.qsPopupScoresTableCell {  
+  float: left;
+  display: table-column;
+  width: 30%;
+  height: auto;
+  vertical-align: middle;
+  text-align: center;
+}
+
+div#qsPopupScoresTableCellEasy {    
+}
+div.qsPopupScoresTableCellEasyNotSelected {         
+  color: #cccccc;
+  cursor: pointer;
+}
+div.qsPopupScoresTableCellEasySelected {         
+  color: #00aeef;
+  cursor: pointer;
+}
+
+div#qsPopupScoresTableCellHard {           
+}
+div.qsPopupScoresTableCellHardNotSelected {         
+  color: #cccccc;
+  cursor: pointer;
+}
+div.qsPopupScoresTableCellHardSelected {         
+  color: #00aeef;
+  cursor: pointer;
+}
+
+div#qsPopupScoresTableCellBrutal {       
+}
+div.qsPopupScoresTableCellBrutalNotSelected {         
+  color: #cccccc;
+  cursor: pointer;
+}
+div.qsPopupScoresTableCellBrutalSelected {         
+  color: #00aeef;
+  cursor: pointer;
+}
+
+img#qsDifficultiesTableImgEasy {
+  vertical-align: middle;
+}
+
+img#qsDifficultiesTableImgHard {
+  vertical-align: middle;  
+}
+
+img#qsDifficultiesTableImgBrutal {
+  vertical-align: middle;
+}
+
+span#qsPopupScoresTableCellEasyS {
+  font-size: 32px;
+  font-family: "MolotCustom";  
+  vertical-align: middle;   
+}
+
+span#qsPopupScoresTableCellHardS {
+  font-size: 32px;
+  font-family: "MolotCustom";
+  vertical-align: middle;
+}
+
+span#qsPopupScoresTableCellBrutalS {
+  font-size: 32px;
+  font-family: "MolotCustom";
+  vertical-align: middle;
+}
+
+div#qsNpEasy {
+  position: absolute;
+  left: 90px;
+  top: 90px;
+  width: 143px;
+  height: 31px;  
+  background-repeat: no-repeat;
+  display: block;
+}
+
+div#qsNpEasy:hover 
+{ 
+  /*background-image: url("../images/new-screen/level-option-easy-active.png");*/
+  cursor: pointer;
+}
+
+div.qsNpEasyNotSelected {
+  background-image: url("../images/new-screen/level-option-easy.png");
+}
+
+div.qsNpEasySelected {
+  background-image: url("../images/new-screen/level-option-easy-active.png");
+}
+
+div#qsNpHard {
+  position: absolute;
+  left: 245px;
+  top: 90px;
+  width: 153px;
+  height: 31px;  
+  background-repeat: no-repeat;
+  display: block;
+}
+
+div#qsNpHard:hover 
+{ 
+  /*background-image: url("../images/new-screen/level-option-hard-active.png");*/
+  cursor: pointer;
+}
+
+div.qsNpHardNotSelected {
+  background-image: url("../images/new-screen/level-option-hard.png");
+}
+
+div.qsNpHardSelected {
+  background-image: url("../images/new-screen/level-option-hard-active.png");
+}
+
+div#qsNpBrutal {
+  position: absolute;
+  left: 415px;
+  top: 90px;
+  width: 187px;
+  height: 31px;  
+  background-repeat: no-repeat;
+  display: block;
+}
+
+div#qsNpBrutal:hover 
+{ 
+  /*background-image: url("../images/new-screen/level-option-brutal-active.png");*/
+  cursor: pointer;
+}
+
+div.qsNpBrutalNotSelected {
+  background-image: url("../images/new-screen/level-option-brutal.png");
+}
+
+div.qsNpBrutalSelected {
+  background-image: url("../images/new-screen/level-option-brutal-active.png");
+}
+
+div#qsNpPlayAgain {
+  position: absolute;
+  left: 650px;
+  top: 35px;
+  /*width: 99px;
+  height: 96px;
+  background-image: url("../images/new-screen/play-again-button.png");
+  background-repeat: no-repeat;*/
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+span#qsNpPlayAgainS {
+  font-size: 32px;
+  font-family: "MolotCustom";
+  color: #252525;  
+}
+
+span#qsNpPlayAgainS:hover {
+  color: #00aeef;
+  cursor: pointer;
+}
+
+div#qsNpNewPhoto {
+  position: absolute;
+  left: 790px;
+  top: 35px;
+  width: auto;
+  height: auto;
+  /*width: 99px;
+  height: 96px;
+  background-image: url("../images/new-screen/new-photo-button.png");
+  background-repeat: no-repeat;*/
+  text-align: center;
+  display: block;
+}
+
+span#qsNpNewPhotoS {
+  font-size: 32px;
+  font-family: "MolotCustom";
+  color: #252525;  
+}
+
+span#qsNpNewPhotoS:hover {
+  color: #00aeef;
+  cursor: pointer;
+}
+
+div#qsNpClose {
+  position: absolute;
+  left: 25px;
+  top: 75px;
+  width: 16px;
+  height: 15px;
+  background-image: url("../images/new-screen/close-popout-icon.png");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: block;
+}
+
+.newPopoutAnimClass {
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  -webkit-transform: translateX(-900px);
+}
+
+.closePopoutAnimClass {
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  -webkit-transform: translateX(0px);
+}
+
+.ui-loader {
+  visibility: hidden;
+}
