@@ -1,7 +1,7 @@
 
 Slider puzzle application is implemeneted in HTML5/JavaScript
 
-Author: Sirisha Muppavarapu <sirisha.muppavarapu@intel.com>
+Owner: Sirisha Muppavarapu <sirisha.muppavarapu@intel.com>
 
 Technical Deatils: This application is written using HTML5/css3/jquery javascript library and is
 distributed under Apache2.0 license.
