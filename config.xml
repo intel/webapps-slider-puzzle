@@ -4,4 +4,5 @@
     <content src="index.html"/>
 <name>slider-puzzle</name>
 <tizen:application id="QGZILHnh6o" required_version="1.0"/>
+<tizen:setting screen-orientation="landscape" contextmenu="enable"/>
 </widget>
