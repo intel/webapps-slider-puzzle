@@ -2,18 +2,20 @@
 <!--
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
 -->
 <html>
-<head>	 
+<head>
     <meta id="viewport_meta" name="viewport" content="" />
     <script type="text/javascript">
+      if (screen.orientation) {
         var viewport_meta = document.getElementById('viewport_meta');
         var w = (screen.orientation.indexOf("portrait") == 0)?screen.availWidth:screen.availHeight;
         viewport_meta.setAttribute('content','width='+w+', user-scalable=no');
+      }
     </script>
     <link rel="stylesheet" type="text/css" href="css/openscreen.css"/>
     <link rel="stylesheet" type="text/css" href="css/quickstart.css"/>
@@ -36,7 +38,7 @@
 	 <script type="text/javascript" src="js/pausebackground.js"></script>
 	 <script type="text/javascript" src="js/puzzlepausefullimage.js"></script>
     <script src="js/license.js"></script>
-    <script type="text/javascript" src="js/slider-puzzle.js"></script>	 
+    <script type="text/javascript" src="js/slider-puzzle.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/iscroll-lite.js" type="text/javascript"></script>
     <title>Slider Puzzle</title>
@@ -48,19 +50,19 @@
         <div id="licensetext"><div id="licensescroll"></div></div>
         <div id="licensebtnq" class="licensebtn">Back</div>
     </div>
-    <div id="mainPage"> 
+    <div id="mainPage">
 		  <div id="mpQuickStart"><span id="mpQuickStartS" onclick="SliderPuzzleApp.startRandomGame();">QUICK START</span></div>
 		  <div id="mpLeaderBoard"><span id="mpLeaderBoardS" onclick="SliderPuzzleApp.leaderBoard();">LEADERBOARD</span></div>
-		  <div id="mpChoosePhoto"><span id="mpChoosePhotoS" onclick="SliderPuzzleApp.photosPage();">CHOOSE PHOTO</span></div>		  		  
+		  <div id="mpChoosePhoto"><span id="mpChoosePhotoS" onclick="SliderPuzzleApp.photosPage();">CHOOSE PHOTO</span></div>
         <div id="helpButton" onclick="SliderPuzzleApp.helpClicked();"> ? </div>
         <div id="licensebtnl" style="top: 530px; left: 954px;"> i </div>
     </div>
 
 	 <!-- Quick start page -->
-	 <div id="quickStartPage"> 
-		  <div id="puzzlePauseBackground"></div>		  
+	 <div id="quickStartPage">
+		  <div id="puzzlePauseBackground"></div>
 		  <div id="puzzleContainer" onclick="SliderPuzzleApp.pausePopout();"></div>
-		  <div id="puzzlePauseFullImage"></div>		  
+		  <div id="puzzlePauseFullImage"></div>
 		  <div id="qsPause" onclick="SliderPuzzleApp.pausePopout();"></div>
 		  <div id="qsInfo" onclick="SliderPuzzleApp.newPopout();"></div>
 		  <div id="newPopout">
@@ -81,7 +83,7 @@
 					 <span id="qsPopupScoresTableCellBrutalS">BRUTAL</span>
 				  </div>
 				</div>
-			 </div>			 			 
+			 </div>
 			 <div id="qsNpPlayAgain" onclick="SliderPuzzleApp.playAgain();"><span id="qsNpPlayAgainS">PLAY<br/>AGAIN</span></div>
 			 <div id="qsNpNewPhoto" onclick="SliderPuzzleApp.newPhoto();"><span id="qsNpNewPhotoS">NEW<br/>PHOTO</span></div>
 			 <div id="qsNpClose" onclick="SliderPuzzleApp.closePopout();"></div>
@@ -96,7 +98,7 @@
 			 <div id="qsPpTime1"><img src="images/pause-screen/pause-place-no1.png"/><span id="qsPpTime1S">07:23</span></div>
 			 <div id="qsPpTime2"><img src="images/pause-screen/pause-place-no2.png"/><span id="qsPpTime2S">07:23</span></div>
 			 <div id="qsPpTime3"><img src="images/pause-screen/pause-place-no3.png"/><span id="qsPpTime3S">07:23</span></div>
-			 <div id="qsPpLeaderBoard" onclick="SliderPuzzleApp.leaderBoardPause();"><span id="qsPpLeaderBoardS">LEADER<br/>BOARD</span></div>			
+			 <div id="qsPpLeaderBoard" onclick="SliderPuzzleApp.leaderBoardPause();"><span id="qsPpLeaderBoardS">LEADER<br/>BOARD</span></div>
 			 <div id="qsPpCreditStr"><span id="qsPpCreditStrS"></span></div>
 		  </div>
 		  <div id="qsPaused"><span id="qsPausedS">PAUSED</span></div>
@@ -117,7 +119,7 @@
 		</div>
 
 	 <!-- Leaderboard page -->
-	 <div id="leaderboardPage"> 
+	 <div id="leaderboardPage">
 		  <div id="lbTitle">LEADERBOARD:</div>
 		  <div id="lbMoves" onclick="SliderPuzzleApp.leaderBoardPageObj.switchView();return false;"><span id="lbMovesS">MOVES</span></div>
 		  <div id="lbTimes" onclick="SliderPuzzleApp.leaderBoardPageObj.switchView();return false;"><span id="lbTimesS">TIME</span></div>
@@ -137,7 +139,7 @@
 				  </div>
 				</td>
 				<td id="lbscoresTableHard1">
-				  <div id="tableHard1Contents" class="tableLbScoreContents alternateBg2">					 
+				  <div id="tableHard1Contents" class="tableLbScoreContents alternateBg2">
 					 <span id="tableHard1ContentsText" class="tableLbScoreContentsText"></span>
 					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableHard1ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
 				  </div>
@@ -279,21 +281,21 @@
     </div> <!--leaderboardPage-->
 
 	 <!-- Photos page -->
-     <div id="photosPage"> 		  
+     <div id="photosPage">
 		  <div id="ppHeader">PHOTOS:</div>
 		  <div id="ppGame" onclick="SliderPuzzleApp.photosPageObj.switchView();return false;"><span id="ppGameS">FROM GAME</span></div>
 		  <!-- <div id="ppPC" onclick="SliderPuzzleApp.photosPageObj.switchView();return false;"><span id="ppPCS">FROM PC</span></div> -->
-		  
+
          <div id="ppGallery">
-          <div id="photosWrapper"><div id="photosScroller">   
+          <div id="photosWrapper"><div id="photosScroller">
              <div id="ppContent"></div>
              </div></div>
          </div>
-              
+
 		  <div id="ppScrollbarContainer">
 			 <div id="ppScrollbarHandle"></div>
-		  </div> 
-		  <div id="ppCloseButton" onclick="SliderPuzzleApp.closePhotosPage();"></div>		  
+		  </div>
+		  <div id="ppCloseButton" onclick="SliderPuzzleApp.closePhotosPage();"></div>
 		  <div id="ppLoading"></div>
 		  <div id="ppPopUpBase">
 			 <div id="ppPopUp">
@@ -321,7 +323,7 @@ After you finish a puzzle, if your time or move count qualifies for the Leader B
           </div>
         </div>
       </div>
-    
+
 
   </body>
 
