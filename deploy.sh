@@ -9,11 +9,13 @@ FILE_PREFIX=`basename $APP_ID`
 
 echo "APP_ID = $APP_ID; FILE_PREFIX = $FILE_PREFIX"
 
-WIDGET_PACKAGE=$FILE_PREFIX.wgt
-WIDGET_TMP_DIR=/tmp/$FILE_PREFIX-output
+# make the widget package
+grunt pkg
 
+# get the name of the widget package
+WIDGET_PACKAGE=`ls -t -1 build/*.wgt | head -n1`
+WIDGET_TMP_DIR=/tmp/$FILE_PREFIX-output
 SCRIPT=./tools/tizen-app-reinstall.sh
-WGT_PACKAGE_SCRIPT=./tools/make-wgt.sh
 REMOTE_DIR=/opt/home/developer
 SCRIPT_FILE=`basename $SCRIPT`
 REMOTE_SCRIPT=$REMOTE_DIR/$SCRIPT_FILE
@@ -25,11 +27,10 @@ if [ "x$HAS_SCRIPT" = "x" ] ; then
   sdb shell "chmod +x $REMOTE_SCRIPT"
 fi
 
-$WGT_PACKAGE_SCRIPT $WIDGET_PACKAGE
+echo "Copying file to device..."
+sdb push $WIDGET_PACKAGE $REMOTE_DIR
 
-sdb push ./$WIDGET_PACKAGE $REMOTE_DIR
-
-sdb shell "$REMOTE_SCRIPT $APP_ID $REMOTE_DIR/$WIDGET_PACKAGE" | tee $WIDGET_TMP_DIR
+sdb shell "$REMOTE_SCRIPT $APP_ID $REMOTE_DIR/`basename $WIDGET_PACKAGE`" | tee $WIDGET_TMP_DIR
 
 PORT=`cat $WIDGET_TMP_DIR | grep PORT | awk '{print $2}'`
 

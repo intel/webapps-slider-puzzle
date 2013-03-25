@@ -1,8 +1,9 @@
 module.exports = function (grunt) {
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadTasks('tools/grunt-tasks');
 
   grunt.initConfig({
     packageInfo: grunt.file.readJSON('package.json'),
@@ -12,7 +13,7 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          'build/all.js': [
+          'build/app/all.js': [
             'js/localizer.js',
             'js/sputil.js',
             'js/dbmanager.js',
@@ -27,20 +28,10 @@ module.exports = function (grunt) {
             'js/puzzlepausefullimage.js',
             'js/license.js',
             'js/slider-puzzle.js',
+            'js/ui-event-handlers.js',
             'js/main.js'
           ]
         }
-      }
-    },
-
-    concat: {
-      dist: {
-        src: [
-        ],
-
-        dest: 'build/dist/all.js',
-
-        separator: ';'
       }
     },
 
@@ -50,22 +41,33 @@ module.exports = function (grunt) {
     copy: {
       dist: {
         files: [
-          { expand: true, cwd: 'app/', src: ['index.html'], dest: 'build/dist/' },
-          { expand: true, cwd: 'app/', src: ['assets/**'], dest: 'build/dist/' }
+          // this will be minified
+          { expand: true, cwd: '.', src: ['css/**'], dest: 'build/app/' },
+
+          { expand: true, cwd: '.', src: ['audio/**'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['db/**'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['config.xml'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['fonts/**'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['images/**'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['index.html'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['lib/**'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['LICENSE'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['_locales/**'], dest: 'build/app/' }
         ],
         options: {
           // this rewrites the <script> tag in the index.html file
-          // to point at the minified/concated js file all.js;
-          // it also removes the extraneous data-main attribute
-          // on that script tag, used by full-blown require
+          // to point at the minified/concated js file all.js
           processContent: function (content) {
             if (content.match(/DOCTYPE/)) {
-              content = content.replace(/lib\/require\/require.*\.'js/, 'all.js');
-              content = content.replace(/data-main=".*" /, '');
+              content = content.replace(/js\/main.js/, 'all.js');
+              content = content.replace(/<script src="js\/.+?"><\/script>\n/g, '');
             }
 
             return content;
-          }
+          },
+
+          processContentExclude: ['images/**', 'icon_128.png', 'fonts/**', 'audio/**']
         }
       }
     },
@@ -73,14 +75,15 @@ module.exports = function (grunt) {
     package: {
       appName: '<%= packageInfo.name %>',
       version: '<%= packageInfo.version %>',
-      files: 'build/dist/**',
-      stripPrefix: 'build/dist/',
+      files: 'build/app/**',
+      stripPrefix: 'build/app/',
       outDir: 'build',
-      addGitCommitId: true
+      suffix: '.wgt',
+      addGitCommitId: false
     }
   });
 
-  grunt.registerTask('dist', ['uglify:dist', 'concat:dist', 'copy:dist']);
+  grunt.registerTask('dist', ['clean', 'uglify:dist', 'copy:dist']);
 
   grunt.registerTask('pkg', 'Create package; call with pkg:STR to append STR to package name', function (identifier) {
     grunt.task.run('dist');

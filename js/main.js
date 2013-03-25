@@ -244,8 +244,6 @@ SliderPuzzleApp = {};
 	* closePausePopout() function is used to close/hide the left popout (when game is resumed)
 	*/
   function closePausePopout() {
-
-
 	 $("#puzzlePauseFullImage").attr("onClick", null);
 	 $("#qsPausedS").attr("onClick", null);
 
