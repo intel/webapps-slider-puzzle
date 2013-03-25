@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <!--
  * Copyright (c) 2012, Intel Corporation.
- *
  * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
- *
 -->
-
 <html>
 <head>
   <meta id="viewport_meta" name="viewport" content="">
   <script type="text/javascript">
   if (screen.orientation) {
     var viewport_meta = document.getElementById('viewport_meta');
-    var w = (screen.orientation.indexOf("portrait") == 0)?screen.availWidth:screen.availHeight;
-    viewport_meta.setAttribute('content','width='+w+', user-scalable=no');
+    var w = (screen.orientation.indexOf("portrait") == 0) ? screen.availWidth : screen.availHeight;
+    viewport_meta.setAttribute('content','width=' + w + ', user-scalable=no');
   }
   </script>
   <link rel="stylesheet" href="css/openscreen.css">
@@ -25,7 +22,6 @@
   <link rel="stylesheet" href="css/photospage.css">
   <link rel="stylesheet" href="css/finishscreen.css">
   <link rel="stylesheet" href="css/license.css">
-  <title>Slider Puzzle</title>
 </head>
 
 <body>
@@ -43,32 +39,28 @@
   <!-- Main page -->
   <div id="mainPage">
     <div id="mpQuickStart">
-      <span id="mpQuickStartS" onclick="SliderPuzzleApp.startRandomGame();">QUICK START</span>
+      <span id="mpQuickStartS">QUICK START</span>
     </div>
 
     <div id="mpLeaderBoard">
-      <span id="mpLeaderBoardS" onclick="SliderPuzzleApp.leaderBoard();">LEADERBOARD</span>
+      <span id="mpLeaderBoardS">LEADERBOARD</span>
     </div>
 
     <div id="mpChoosePhoto">
-      <span id="mpChoosePhotoS" onclick="SliderPuzzleApp.photosPage();">CHOOSE PHOTO</span>
+      <span id="mpChoosePhotoS">CHOOSE PHOTO</span>
     </div>
 
-    <div id="helpButton" onclick="SliderPuzzleApp.helpClicked();">&nbsp;?&nbsp;</div>
+    <div id="helpButton">&nbsp;?&nbsp;</div>
     <div id="licensebtnl" style="top: 530px; left: 954px;">&nbsp;i&nbsp;</div>
   </div>
 
   <!-- Quick start page -->
   <div id="quickStartPage">
     <div id="puzzlePauseBackground"></div>
-
-    <div id="puzzleContainer" onclick="SliderPuzzleApp.pausePopout();"></div>
-
+    <div id="puzzleContainer"></div>
     <div id="puzzlePauseFullImage"></div>
-
-    <div id="qsPause" onclick="SliderPuzzleApp.pausePopout();"></div>
-
-    <div id="qsInfo" onclick="SliderPuzzleApp.newPopout();"></div>
+    <div id="qsPause"></div>
+    <div id="qsInfo"></div>
 
     <div id="newPopout">
       <div id="qsNpTitle">
@@ -80,37 +72,34 @@
       <div id="qsDifficultiesTable">
         <div id="qsDifficultiesTableRow">
           <div id="qsPopupScoresTableCellEasy"
-               class="qsPopupScoresTableCell qsPopupScoresTableCellEasyNotSelected"
-               onclick="SliderPuzzleApp.newPopoutObj.switchDifficulty('1');">
+               class="qsPopupScoresTableCell qsPopupScoresTableCellEasyNotSelected">
             <img id="qsDifficultiesTableImgEasy" src="images/new-screen/pointer-right-new.png">
             <span id="qsPopupScoresTableCellEasyS">EASY</span>
           </div>
 
           <div id="qsPopupScoresTableCellHard"
-               class="qsPopupScoresTableCell qsPopupScoresTableCellHardNotSelected"
-               onclick="SliderPuzzleApp.newPopoutObj.switchDifficulty('2');">
+               class="qsPopupScoresTableCell qsPopupScoresTableCellHardNotSelected">
             <img id="qsDifficultiesTableImgHard" src="images/new-screen/pointer-right-new.png">
             <span id="qsPopupScoresTableCellHardS">HARD</span>
           </div>
 
           <div id="qsPopupScoresTableCellBrutal"
-               class="qsPopupScoresTableCell qsPopupScoresTableCellBrutalNotSelected"
-               onclick="SliderPuzzleApp.newPopoutObj.switchDifficulty('3');">
+               class="qsPopupScoresTableCell qsPopupScoresTableCellBrutalNotSelected">
             <img id="qsDifficultiesTableImgBrutal" src="images/new-screen/pointer-right-new.png">
             <span id="qsPopupScoresTableCellBrutalS">BRUTAL</span>
           </div>
         </div>
       </div>
 
-      <div id="qsNpPlayAgain" onclick="SliderPuzzleApp.playAgain();">
+      <div id="qsNpPlayAgain">
         <span id="qsNpPlayAgainS">PLAY<br>AGAIN</span>
       </div>
 
-      <div id="qsNpNewPhoto" onclick="SliderPuzzleApp.newPhoto();">
+      <div id="qsNpNewPhoto">
         <span id="qsNpNewPhotoS">NEW<br>PHOTO</span>
       </div>
 
-      <div id="qsNpClose" onclick="SliderPuzzleApp.closePopout();">
+      <div id="qsNpClose">
       </div>
     </div>
 
@@ -123,7 +112,7 @@
         <span id="qsPpTimeTitleS">Time:</span> <span id="qsPpTimeS">07:23</span>
       </div>
 
-      <div id="qsPpClose" onclick="SliderPuzzleApp.closePausePopout();"></div>
+      <div id="qsPpClose"></div>
 
       <div id="qsPpMoves1">
         <img src="images/pause-screen/pause-place-no1.png">
@@ -155,7 +144,7 @@
         <span id="qsPpTime3S">07:23</span>
       </div>
 
-      <div id="qsPpLeaderBoard" onclick="SliderPuzzleApp.leaderBoardPause();">
+      <div id="qsPpLeaderBoard">
         <span id="qsPpLeaderBoardS">LEADER<br>BOARD</span>
       </div>
 
@@ -208,8 +197,8 @@
       </div>
 
       <div id="qsFpSaveResult">
-        <span id="qsFpSaveResultS" onclick="SliderPuzzleApp.saveResult();">SAVE</span>
-        <span id="qsFpCloseResultS" onclick="SliderPuzzleApp.closeFinishNoSave();">END</span>
+        <span id="qsFpSaveResultS">SAVE</span>
+        <span id="qsFpCloseResultS">END</span>
       </div>
 
       <div id="qsFpNameInput">
@@ -224,15 +213,13 @@
 
   <!-- Leaderboard page -->
   <div id="leaderboardPage">
-    <div id="lbTitle">
-      LEADERBOARD:
-    </div>
+    <div id="lbTitle">LEADERBOARD:</div>
 
-    <div id="lbMoves" onclick="SliderPuzzleApp.leaderBoardPageObj.switchView();return false;">
+    <div id="lbMoves">
       <span id="lbMovesS">MOVES</span>
     </div>
 
-    <div id="lbTimes" onclick="SliderPuzzleApp.leaderBoardPageObj.switchView();return false;">
+    <div id="lbTimes">
       <span id="lbTimesS">TIME</span>
     </div>
 
@@ -427,7 +414,7 @@
       </tr>
     </table>
 
-    <div id="lbCloseButton" onclick="SliderPuzzleApp.closeLeaderBoard();"></div>
+    <div id="lbCloseButton"></div>
 
     <div id="lbPopUpBase">
       <div id="lbPopUp">
@@ -469,22 +456,20 @@
           </div>
         </div>
 
-        <div id="lbPopUpPlayButton" onclick="SliderPuzzleApp.startGameLb();">
+        <div id="lbPopUpPlayButton">
           <span id="lbPopUpPlayButtonS">PLAY</span>
         </div>
 
-        <div id="lbPopUpCloseButton" onclick="SliderPuzzleApp.closeLeaderBoardPagePopup();"></div>
+        <div id="lbPopUpCloseButton"></div>
       </div>
     </div>
   </div><!-- end leaderboardPage -->
 
   <!-- Photos page -->
   <div id="photosPage">
-    <div id="ppHeader">
-      PHOTOS:
-    </div>
+    <div id="ppHeader">PHOTOS:</div>
 
-    <div id="ppGame" onclick="SliderPuzzleApp.photosPageObj.switchView();return false;">
+    <div id="ppGame">
       <span id="ppGameS">FROM GAME</span>
     </div>
 
@@ -500,8 +485,7 @@
       <div id="ppScrollbarHandle"></div>
     </div>
 
-    <div id="ppCloseButton" onclick="SliderPuzzleApp.closePhotosPage();"></div>
-
+    <div id="ppCloseButton"></div>
     <div id="ppLoading"></div>
 
     <div id="ppPopUpBase">
@@ -510,11 +494,11 @@
           <div id="ppPopUpImage"></div>
         </div>
 
-        <div id="ppPopUpPlayButton" onclick="SliderPuzzleApp.startGame(2);">
+        <div id="ppPopUpPlayButton">
           <span id="ppPopUpPlayButtonS">PLAY</span>
         </div>
 
-        <div id="ppPopUpCloseButton" onclick="SliderPuzzleApp.closePhotosPagePopup();"></div>
+        <div id="ppPopUpCloseButton"></div>
       </div>
     </div>
 
@@ -526,7 +510,7 @@
 
   <div id="helpDialog">
     <div class="helpBorder">
-      <div class="closeButton" onclick="SliderPuzzleApp.closeHelp()">&nbsp;X&nbsp;</div>
+      <div id="closeHelpButton" class="closeButton">X</div>
 
       <div class="helpDialogInstructions">
         <p>The Slider-Puzzle takes a picture from within the app, or
@@ -569,6 +553,7 @@
   <script src="js/puzzlepausefullimage.js"></script>
   <script src="js/license.js"></script>
   <script src="js/slider-puzzle.js"></script>
+  <script src="js/ui-event-handlers.js"></script>
   <script src="js/main.js"></script>
   <script src="js/iscroll-lite.js"></script>
 </body>
