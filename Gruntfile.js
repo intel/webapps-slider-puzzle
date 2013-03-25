@@ -80,6 +80,9 @@ module.exports = function (grunt) {
               content = content.replace(/css\/license.css/, 'all.css');
               content = content.replace(/<link rel="stylesheet" href="css\/.+?">\n/g, '');
               content = content.replace(/all\.css/, 'css/all.css');
+
+              content = content.replace(/[ ]{2,}/g, ' ');
+              content = content.replace(/\n{2,}/g, '\n');
             }
 
             return content;
