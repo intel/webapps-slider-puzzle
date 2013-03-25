@@ -7,324 +7,568 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
 -->
+
 <html>
 <head>
-    <meta id="viewport_meta" name="viewport" content="" />
-    <script type="text/javascript">
-      if (screen.orientation) {
-        var viewport_meta = document.getElementById('viewport_meta');
-        var w = (screen.orientation.indexOf("portrait") == 0)?screen.availWidth:screen.availHeight;
-        viewport_meta.setAttribute('content','width='+w+', user-scalable=no');
-      }
-    </script>
-    <link rel="stylesheet" type="text/css" href="css/openscreen.css"/>
-    <link rel="stylesheet" type="text/css" href="css/quickstart.css"/>
-    <link rel="stylesheet" type="text/css" href="css/pausescreen.css"/>
-    <link rel="stylesheet" type="text/css" href="css/leaderboardpage.css"/>
-    <link rel="stylesheet" type="text/css" href="css/photospage.css"/>
-    <link rel="stylesheet" type="text/css" href="css/finishscreen.css"/>
-    <link rel="stylesheet" type="text/css" href="css/license.css"></link>
-    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-	 <script type="text/javascript" src="js/localizer.js"></script>
-	 <script type="text/javascript" src="js/sputil.js"></script>
-	 <script type="text/javascript" src="js/dbmanager.js"></script>
-	 <script type="text/javascript" src="js/spscroller.js"></script>
-	 <script type="text/javascript" src="js/spscrollbar.js"></script>
-	 <script type="text/javascript" src="js/newpopout.js"></script>
-	 <script type="text/javascript" src="js/photospage.js"></script>
-	 <script type="text/javascript" src="js/finishpopout.js"></script>
-	 <script type="text/javascript" src="js/leaderboardpage.js"></script>
-	 <script type="text/javascript" src="js/pausepopout.js"></script>
-	 <script type="text/javascript" src="js/pausebackground.js"></script>
-	 <script type="text/javascript" src="js/puzzlepausefullimage.js"></script>
-    <script src="js/license.js"></script>
-    <script type="text/javascript" src="js/slider-puzzle.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/iscroll-lite.js" type="text/javascript"></script>
-    <title>Slider Puzzle</title>
-  </head>
-  <body>
+  <meta id="viewport_meta" name="viewport" content="">
+  <script type="text/javascript">
+  if (screen.orientation) {
+    var viewport_meta = document.getElementById('viewport_meta');
+    var w = (screen.orientation.indexOf("portrait") == 0)?screen.availWidth:screen.availHeight;
+    viewport_meta.setAttribute('content','width='+w+', user-scalable=no');
+  }
+  </script>
+  <link rel="stylesheet" href="css/openscreen.css">
+  <link rel="stylesheet" href="css/quickstart.css">
+  <link rel="stylesheet" href="css/pausescreen.css">
+  <link rel="stylesheet" href="css/leaderboardpage.css">
+  <link rel="stylesheet" href="css/photospage.css">
+  <link rel="stylesheet" href="css/finishscreen.css">
+  <link rel="stylesheet" href="css/license.css">
+  <script src="js/jquery-1.7.2.min.js"></script>
+  <script src="js/localizer.js"></script>
+  <script src="js/sputil.js"></script>
+  <script src="js/dbmanager.js"></script>
+  <script src="js/spscroller.js"></script>
+  <script src="js/spscrollbar.js"></script>
+  <script src="js/newpopout.js"></script>
+  <script src="js/photospage.js"></script>
+  <script src="js/finishpopout.js"></script>
+  <script src="js/leaderboardpage.js"></script>
+  <script src="js/pausepopout.js"></script>
+  <script src="js/pausebackground.js"></script>
+  <script src="js/puzzlepausefullimage.js"></script>
+  <script src="js/license.js"></script>
+  <script src="js/slider-puzzle.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/iscroll-lite.js"></script>
+  <title>Slider Puzzle</title>
+</head>
 
-    <!-- Intro page -->
-    <div id="licensepage" style="display: none">
-        <div id="licensetext"><div id="licensescroll"></div></div>
-        <div id="licensebtnq" class="licensebtn">Back</div>
-    </div>
-    <div id="mainPage">
-		  <div id="mpQuickStart"><span id="mpQuickStartS" onclick="SliderPuzzleApp.startRandomGame();">QUICK START</span></div>
-		  <div id="mpLeaderBoard"><span id="mpLeaderBoardS" onclick="SliderPuzzleApp.leaderBoard();">LEADERBOARD</span></div>
-		  <div id="mpChoosePhoto"><span id="mpChoosePhotoS" onclick="SliderPuzzleApp.photosPage();">CHOOSE PHOTO</span></div>
-        <div id="helpButton" onclick="SliderPuzzleApp.helpClicked();"> ? </div>
-        <div id="licensebtnl" style="top: 530px; left: 954px;"> i </div>
+<body>
+  <!-- Intro page -->
+  <div id="licensepage" style="display: none">
+    <div id="licensetext">
+      <div id="licensescroll"></div>
     </div>
 
-	 <!-- Quick start page -->
-	 <div id="quickStartPage">
-		  <div id="puzzlePauseBackground"></div>
-		  <div id="puzzleContainer" onclick="SliderPuzzleApp.pausePopout();"></div>
-		  <div id="puzzlePauseFullImage"></div>
-		  <div id="qsPause" onclick="SliderPuzzleApp.pausePopout();"></div>
-		  <div id="qsInfo" onclick="SliderPuzzleApp.newPopout();"></div>
-		  <div id="newPopout">
-			 <div id="qsNpTitle"><span id="qsNpTitleS">CHOOSE LEVEL</span></div>
-			 <hr id="qsNpTitleLine">
-			 <div id="qsDifficultiesTable">
-				<div id="qsDifficultiesTableRow">
-				  <div id="qsPopupScoresTableCellEasy" class="qsPopupScoresTableCell qsPopupScoresTableCellEasyNotSelected" onclick="SliderPuzzleApp.newPopoutObj.switchDifficulty('1');">
-					 <img id="qsDifficultiesTableImgEasy" src="images/new-screen/pointer-right-new.png" />
-					 <span id="qsPopupScoresTableCellEasyS">EASY</span>
-				  </div>
-				  <div id="qsPopupScoresTableCellHard" class="qsPopupScoresTableCell qsPopupScoresTableCellHardNotSelected" onclick="SliderPuzzleApp.newPopoutObj.switchDifficulty('2');">
-					 <img id="qsDifficultiesTableImgHard"  src="images/new-screen/pointer-right-new.png" />
-					 <span id="qsPopupScoresTableCellHardS">HARD</span>
-				  </div>
-				  <div id="qsPopupScoresTableCellBrutal" class="qsPopupScoresTableCell qsPopupScoresTableCellBrutalNotSelected" onclick="SliderPuzzleApp.newPopoutObj.switchDifficulty('3');">
-					 <img id="qsDifficultiesTableImgBrutal" src="images/new-screen/pointer-right-new.png" />
-					 <span id="qsPopupScoresTableCellBrutalS">BRUTAL</span>
-				  </div>
-				</div>
-			 </div>
-			 <div id="qsNpPlayAgain" onclick="SliderPuzzleApp.playAgain();"><span id="qsNpPlayAgainS">PLAY<br/>AGAIN</span></div>
-			 <div id="qsNpNewPhoto" onclick="SliderPuzzleApp.newPhoto();"><span id="qsNpNewPhotoS">NEW<br/>PHOTO</span></div>
-			 <div id="qsNpClose" onclick="SliderPuzzleApp.closePopout();"></div>
-		  </div>
-		  <div id="pausePopout">
-			 <div id="qsPpMoves"><span id="qsPpMovesTitleS">Moves: </span><span id="qsPpMovesS">23</span></div>
-			 <div id="qsPpTime"><span id="qsPpTimeTitleS">Time: </span><span id="qsPpTimeS">07:23</span></div>
-			 <div id="qsPpClose" onclick="SliderPuzzleApp.closePausePopout();"></div>
-			 <div id="qsPpMoves1"><img src="images/pause-screen/pause-place-no1.png"/><span id="qsPpMoves1S">23</span></div>
-			 <div id="qsPpMoves2"><img src="images/pause-screen/pause-place-no2.png"/><span id="qsPpMoves2S">23</span></div>
-			 <div id="qsPpMoves3"><img src="images/pause-screen/pause-place-no3.png"/><span id="qsPpMoves3S">23</span></div>
-			 <div id="qsPpTime1"><img src="images/pause-screen/pause-place-no1.png"/><span id="qsPpTime1S">07:23</span></div>
-			 <div id="qsPpTime2"><img src="images/pause-screen/pause-place-no2.png"/><span id="qsPpTime2S">07:23</span></div>
-			 <div id="qsPpTime3"><img src="images/pause-screen/pause-place-no3.png"/><span id="qsPpTime3S">07:23</span></div>
-			 <div id="qsPpLeaderBoard" onclick="SliderPuzzleApp.leaderBoardPause();"><span id="qsPpLeaderBoardS">LEADER<br/>BOARD</span></div>
-			 <div id="qsPpCreditStr"><span id="qsPpCreditStrS"></span></div>
-		  </div>
-		  <div id="qsPaused"><span id="qsPausedS">PAUSED</span></div>
+    <div id="licensebtnq" class="licensebtn">
+      Back
+    </div>
+  </div>
 
-		  <div id="finishScreenPopout">
-			 <div id="qsFpMoves"><span id="qsFpMovesTitleS">Moves: </span><span id="qsFpMovesS">23</span></div>
-			 <div id="qsFpTime"><span id="qsFpTimeTitleS">Time: </span><span id="qsFpTimeS">07:23</span></div>
-			 <div id="qsFpMoves1"><img src="images/pause-screen/pause-place-no1.png"/><span id="qsFpMoves1S">23</span></div>
-			 <div id="qsFpMoves2"><img src="images/pause-screen/pause-place-no2.png"/><span id="qsFpMoves2S">23</span></div>
-			 <div id="qsFpMoves3"><img src="images/pause-screen/pause-place-no3.png"/><span id="qsFpMoves3S">23</span></div>
-			 <div id="qsFpTime1"><img src="images/pause-screen/pause-place-no1.png"/><span id="qsFpTime1S">07:23</span></div>
-			 <div id="qsFpTime2"><img src="images/pause-screen/pause-place-no2.png"/><span id="qsFpTime2S">07:23</span></div>
-			 <div id="qsFpTime3"><img src="images/pause-screen/pause-place-no3.png"/><span id="qsFpTime3S">07:23</span></div>
-			 <div id="qsFpSaveResult"><span id="qsFpSaveResultS" onclick="SliderPuzzleApp.saveResult();">SAVE</span><span id="qsFpCloseResultS" onclick="SliderPuzzleApp.closeFinishNoSave();">END</span></div>
-			 <div id="qsFpNameInput"><input id = "usernameinput" class="valueentry" type="text" name="userNameHiScore" maxlength="10"/></div>
-		  </div>
-		  <div id="qsFinish"><span id="qsFinishS">FINISH</span></div>
-		</div>
+  <!-- Main page -->
+  <div id="mainPage">
+    <div id="mpQuickStart">
+      <span id="mpQuickStartS" onclick="SliderPuzzleApp.startRandomGame();">QUICK START</span>
+    </div>
 
-	 <!-- Leaderboard page -->
-	 <div id="leaderboardPage">
-		  <div id="lbTitle">LEADERBOARD:</div>
-		  <div id="lbMoves" onclick="SliderPuzzleApp.leaderBoardPageObj.switchView();return false;"><span id="lbMovesS">MOVES</span></div>
-		  <div id="lbTimes" onclick="SliderPuzzleApp.leaderBoardPageObj.switchView();return false;"><span id="lbTimesS">TIME</span></div>
-		  <table id="lbscoresTable">
-			 <tr id="lbscoresTableColumnsRow">
-				<th id="lbscoresTableRankCol"></th>
-				<th id="lbscoresTableEasyCol"><span id="lbscoresTableEasyColS">EASY</span></th>
-				<th id="lbscoresTableHardCol"><span id="lbscoresTableHardColS">HARD</span></th>
-				<th id="lbscoresTableBrutalCol"><span id="lbscoresTableBrutalColS">BRUTAL</span></th>
-			 </tr>
-			 <tr id="lbscoresTableRank1Row">
-				<td id="lbscoresTableRank1"></td>
-				<td id="lbscoresTableEasy1">
-				  <div id="tableEasy1Contents" class="tableLbScoreContents alternateBg1">
-					 <span id="tableEasy1ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableEasy1ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableHard1">
-				  <div id="tableHard1Contents" class="tableLbScoreContents alternateBg2">
-					 <span id="tableHard1ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableHard1ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableBrutal1">
-				  <div id="tableBrutal1Contents" class="tableLbScoreContents alternateBg1">
-					 <span id="tableBrutal1ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableBrutal1ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-			 </tr>
-			 <tr id="lbscoresTableRank2Row">
-				<td id="lbscoresTableRank2"></td>
-				<td id="lbscoresTableEasy2">
-				  <div id="tableEasy2Contents" class="tableLbScoreContents alternateBg2">
-					 <span id="tableEasy2ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableEasy2ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableHard2">
-				  <div id="tableHard2Contents" class="tableLbScoreContents alternateBg1">
-					 <span id="tableHard2ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableHard2ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableBrutal2">
-				  <div id="tableBrutal2Contents" class="tableLbScoreContents alternateBg2">
-					 <span id="tableBrutal2ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableBrutal2ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-			 </tr>
-			 <tr id="lbscoresTableRank3Row">
-				<td id="lbscoresTableRank3"></td>
-				<td id="lbscoresTableEasy3">
-				  <div id="tableEasy3Contents" class="tableLbScoreContents alternateBg1">
-					 <span id="tableEasy3ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableEasy3ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableHard3">
-				  <div id="tableHard3Contents" class="tableLbScoreContents alternateBg2">
-					 <span id="tableHard3ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableHard3ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableBrutal3">
-				  <div id="tableBrutal3Contents" class="tableLbScoreContents alternateBg1">
-					 <span id="tableBrutal3ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableBrutal3ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-			 </tr>
-			 <tr id="lbscoresTableRank4Row">
-				<td id="lbscoresTableRank4"></td>
-				<td id="lbscoresTableEasy4">
-				  <div id="tableEasy4Contents" class="tableLbScoreContents alternateBg2">
-					 <span id="tableEasy4ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableEasy4ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableHard4">
-				  <div id="tableHard4Contents" class="tableLbScoreContents alternateBg1">
-					 <span id="tableHard4ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableHard4ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableBrutal4">
-				  <div id="tableBrutal4Contents" class="tableLbScoreContents alternateBg2">
-					 <span id="tableBrutal4ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableBrutal4ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-			 </tr>
-			 <tr id="lbscoresTableRank5Row">
-				<td id="lbscoresTableRank5"></td>
-				<td id="lbscoresTableEasy5">
-				  <div id="tableEasy5Contents" class="tableLbScoreContents alternateBg1">
-					 <span id="tableEasy5ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableEasy5ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableHard5">
-				  <div id="tableHard5Contents" class="tableLbScoreContents alternateBg2">
-					 <span id="tableHard5ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableHard5ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableBrutal5">
-				  <div id="tableBrutal5Contents" class="tableLbScoreContents alternateBg1">
-					 <span id="tableBrutal5ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableBrutal5ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-			 </tr>
-			 <tr id="lbscoresTableRank6Row">
-				<td id="lbscoresTableRank6"></td>
-				<td id="lbscoresTableEasy6">
-				  <div id="tableEasy6Contents" class="tableLbScoreContents alternateBg2">
-					 <span id="tableEasy6ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableEasy6ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableHard6">
-				  <div id="tableHard6Contents" class="tableLbScoreContents alternateBg1">
-					 <span id="tableHard6ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableHard6ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-				<td id="lbscoresTableBrutal6">
-				  <div id="tableBrutal6Contents" class="tableLbScoreContents alternateBg2">
-					 <span id="tableBrutal6ContentsText" class="tableLbScoreContentsText"></span>
-					 <div class="tableLbScoreContentsCanvasC"><canvas id="tableBrutal6ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas></div>
-				  </div>
-				</td>
-			 </tr>
-		  </table>
-		  <div id="lbCloseButton" onclick="SliderPuzzleApp.closeLeaderBoard();"></div>
-		  <div id="lbPopUpBase">
-			 <div id="lbPopUp">
-				<div id="lbPopUpImageContainer"><div id="lbPopUpImage"></div></div>
-				<div id="lbPopUpLevel"><span id="lbPopUpLevelText">LEVEL: EASY</span></div>
-				<div id="lbPopupScoresTable">
-				  <div id="lbPopupScoresTableRow">
-					 <div class="lbPopupScoresTableCell"><div id="lbPopUpLevelNo1"></div></div>
-					 <div class="lbPopupScoresTableCell"><div id="lbPopUpLevelNo2"></div></div>
-					 <div class="lbPopupScoresTableCell"><div id="lbPopUpLevelNo3"></div></div>
-				  </div>
-				  <div id="lbPopupScoresTableRowRecords">
-					 <div class="lbPopupScoresTableCell"><span id="lbPopupScoresTableRowRecords1S"></span></div>
-					 <div class="lbPopupScoresTableCell"><span id="lbPopupScoresTableRowRecords2S"></span></div>
-					 <div class="lbPopupScoresTableCell"><span id="lbPopupScoresTableRowRecords3S"></span></div>
-				  </div>
-				</div>
-				<div id="lbPopUpPlayButton" onclick="SliderPuzzleApp.startGameLb();"><span id="lbPopUpPlayButtonS">PLAY</span></div>
-				<div id="lbPopUpCloseButton" onclick="SliderPuzzleApp.closeLeaderBoardPagePopup();"></div>
-			 </div>
-		  </div>
-    </div> <!--leaderboardPage-->
+    <div id="mpLeaderBoard">
+      <span id="mpLeaderBoardS" onclick="SliderPuzzleApp.leaderBoard();">LEADERBOARD</span>
+    </div>
 
-	 <!-- Photos page -->
-     <div id="photosPage">
-		  <div id="ppHeader">PHOTOS:</div>
-		  <div id="ppGame" onclick="SliderPuzzleApp.photosPageObj.switchView();return false;"><span id="ppGameS">FROM GAME</span></div>
-		  <!-- <div id="ppPC" onclick="SliderPuzzleApp.photosPageObj.switchView();return false;"><span id="ppPCS">FROM PC</span></div> -->
+    <div id="mpChoosePhoto">
+      <span id="mpChoosePhotoS" onclick="SliderPuzzleApp.photosPage();">CHOOSE PHOTO</span>
+    </div>
 
-         <div id="ppGallery">
-          <div id="photosWrapper"><div id="photosScroller">
-             <div id="ppContent"></div>
-             </div></div>
-         </div>
+    <div id="helpButton" onclick="SliderPuzzleApp.helpClicked();">&nbsp;?&nbsp;</div>
+    <div id="licensebtnl" style="top: 530px; left: 954px;">&nbsp;i&nbsp;</div>
+  </div>
 
-		  <div id="ppScrollbarContainer">
-			 <div id="ppScrollbarHandle"></div>
-		  </div>
-		  <div id="ppCloseButton" onclick="SliderPuzzleApp.closePhotosPage();"></div>
-		  <div id="ppLoading"></div>
-		  <div id="ppPopUpBase">
-			 <div id="ppPopUp">
-				<div id="ppPopUpImageContainer"><div id="ppPopUpImage"></div></div>
-				<div id="ppPopUpPlayButton" onclick="SliderPuzzleApp.startGame(2);"><span id="ppPopUpPlayButtonS">PLAY</span></div>
-				<div id="ppPopUpCloseButton" onclick="SliderPuzzleApp.closePhotosPagePopup();"></div>
-			 </div>
-		  </div>
-		  <div id="ppBlockInteraction"></div>
-	 </div><!--photosPage-->
+  <!-- Quick start page -->
+  <div id="quickStartPage">
+    <div id="puzzlePauseBackground"></div>
 
-    <!--help-->
-    <div id="smokeScreen"></div>
-      <div id="helpDialog">
-        <div class="helpBorder">
-          <div class="closeButton" onclick="SliderPuzzleApp.closeHelp()">X</div>
-          <div class="helpDialogInstructions">
-The Slider-Puzzle takes a picture from within the app, or from your own pictures, and jumbles it up into pieces. Reassemble the picture in the quickest time, or in as few moves as you can.
-<br><br>
-Click Quick Start to solve a picture from the app or Choose Photo to pick a specific picture. Click on the photo you want, then click Play to begin.
-<br><br>
-Once the puzzle appears, the clock starts ticking. Use the open space to slide the pieces near it around. To pause the game, click the open space, or the Pause button on the side of the screen. To play again, or change difficulty levels, click the + button. Choose your difficulty level (Easy, Hard, or Brutal) and click Play Again. Or, click New Photo to start a new puzzle at the same difficulty level.
-<br><br>
-After you finish a puzzle, if your time or move count qualifies for the Leader Board, you&rsquo;ll be asked to enter your name. Enter a short name (up to 10 characters), then click Save to put your achievement on the Leader Board.
+    <div id="puzzleContainer" onclick="SliderPuzzleApp.pausePopout();"></div>
+
+    <div id="puzzlePauseFullImage"></div>
+
+    <div id="qsPause" onclick="SliderPuzzleApp.pausePopout();"></div>
+
+    <div id="qsInfo" onclick="SliderPuzzleApp.newPopout();"></div>
+
+    <div id="newPopout">
+      <div id="qsNpTitle">
+        <span id="qsNpTitleS">CHOOSE LEVEL</span>
+      </div>
+
+      <hr id="qsNpTitleLine">
+
+      <div id="qsDifficultiesTable">
+        <div id="qsDifficultiesTableRow">
+          <div id="qsPopupScoresTableCellEasy"
+               class="qsPopupScoresTableCell qsPopupScoresTableCellEasyNotSelected"
+               onclick="SliderPuzzleApp.newPopoutObj.switchDifficulty('1');">
+            <img id="qsDifficultiesTableImgEasy" src="images/new-screen/pointer-right-new.png">
+            <span id="qsPopupScoresTableCellEasyS">EASY</span>
+          </div>
+
+          <div id="qsPopupScoresTableCellHard"
+               class="qsPopupScoresTableCell qsPopupScoresTableCellHardNotSelected"
+               onclick="SliderPuzzleApp.newPopoutObj.switchDifficulty('2');">
+            <img id="qsDifficultiesTableImgHard" src="images/new-screen/pointer-right-new.png">
+            <span id="qsPopupScoresTableCellHardS">HARD</span>
+          </div>
+
+          <div id="qsPopupScoresTableCellBrutal"
+               class="qsPopupScoresTableCell qsPopupScoresTableCellBrutalNotSelected"
+               onclick="SliderPuzzleApp.newPopoutObj.switchDifficulty('3');">
+            <img id="qsDifficultiesTableImgBrutal" src="images/new-screen/pointer-right-new.png">
+            <span id="qsPopupScoresTableCellBrutalS">BRUTAL</span>
           </div>
         </div>
       </div>
 
+      <div id="qsNpPlayAgain" onclick="SliderPuzzleApp.playAgain();">
+        <span id="qsNpPlayAgainS">PLAY<br>AGAIN</span>
+      </div>
 
-  </body>
+      <div id="qsNpNewPhoto" onclick="SliderPuzzleApp.newPhoto();">
+        <span id="qsNpNewPhotoS">NEW<br>PHOTO</span>
+      </div>
 
+      <div id="qsNpClose" onclick="SliderPuzzleApp.closePopout();">
+      </div>
+    </div>
+
+    <div id="pausePopout">
+      <div id="qsPpMoves">
+        <span id="qsPpMovesTitleS">Moves:</span> <span id="qsPpMovesS">23</span>
+      </div>
+
+      <div id="qsPpTime">
+        <span id="qsPpTimeTitleS">Time:</span> <span id="qsPpTimeS">07:23</span>
+      </div>
+
+      <div id="qsPpClose" onclick="SliderPuzzleApp.closePausePopout();"></div>
+
+      <div id="qsPpMoves1">
+        <img src="images/pause-screen/pause-place-no1.png">
+        <span id="qsPpMoves1S">23</span>
+      </div>
+
+      <div id="qsPpMoves2">
+        <img src="images/pause-screen/pause-place-no2.png">
+        <span id="qsPpMoves2S">23</span>
+      </div>
+
+      <div id="qsPpMoves3">
+        <img src="images/pause-screen/pause-place-no3.png">
+        <span id="qsPpMoves3S">23</span>
+      </div>
+
+      <div id="qsPpTime1">
+        <img src="images/pause-screen/pause-place-no1.png">
+        <span id="qsPpTime1S">07:23</span>
+      </div>
+
+      <div id="qsPpTime2">
+        <img src="images/pause-screen/pause-place-no2.png">
+        <span id="qsPpTime2S">07:23</span>
+      </div>
+
+      <div id="qsPpTime3">
+        <img src="images/pause-screen/pause-place-no3.png">
+        <span id="qsPpTime3S">07:23</span>
+      </div>
+
+      <div id="qsPpLeaderBoard" onclick="SliderPuzzleApp.leaderBoardPause();">
+        <span id="qsPpLeaderBoardS">LEADER<br>BOARD</span>
+      </div>
+
+      <div id="qsPpCreditStr">
+        <span id="qsPpCreditStrS"></span>
+      </div>
+    </div>
+
+    <div id="qsPaused">
+      <span id="qsPausedS">PAUSED</span>
+    </div>
+
+    <div id="finishScreenPopout">
+      <div id="qsFpMoves">
+        <span id="qsFpMovesTitleS">Moves:</span> <span id="qsFpMovesS">23</span>
+      </div>
+
+      <div id="qsFpTime">
+        <span id="qsFpTimeTitleS">Time:</span> <span id="qsFpTimeS">07:23</span>
+      </div>
+
+      <div id="qsFpMoves1">
+        <img src="images/pause-screen/pause-place-no1.png">
+        <span id="qsFpMoves1S">23</span>
+      </div>
+
+      <div id="qsFpMoves2">
+        <img src="images/pause-screen/pause-place-no2.png">
+        <span id="qsFpMoves2S">23</span>
+      </div>
+
+      <div id="qsFpMoves3">
+        <img src="images/pause-screen/pause-place-no3.png">
+        <span id="qsFpMoves3S">23</span>
+      </div>
+
+      <div id="qsFpTime1">
+        <img src="images/pause-screen/pause-place-no1.png">
+        <span id="qsFpTime1S">07:23</span>
+      </div>
+
+      <div id="qsFpTime2">
+        <img src="images/pause-screen/pause-place-no2.png">
+        <span id="qsFpTime2S">07:23</span>
+      </div>
+
+      <div id="qsFpTime3">
+        <img src="images/pause-screen/pause-place-no3.png">
+        <span id="qsFpTime3S">07:23</span>
+      </div>
+
+      <div id="qsFpSaveResult">
+        <span id="qsFpSaveResultS" onclick="SliderPuzzleApp.saveResult();">SAVE</span>
+        <span id="qsFpCloseResultS" onclick="SliderPuzzleApp.closeFinishNoSave();">END</span>
+      </div>
+
+      <div id="qsFpNameInput">
+        <input id="usernameinput" class="valueentry" type="text" name="userNameHiScore" maxlength="10">
+      </div>
+    </div>
+
+    <div id="qsFinish">
+      <span id="qsFinishS">FINISH</span>
+    </div>
+  </div>
+
+  <!-- Leaderboard page -->
+  <div id="leaderboardPage">
+    <div id="lbTitle">
+      LEADERBOARD:
+    </div>
+
+    <div id="lbMoves" onclick="SliderPuzzleApp.leaderBoardPageObj.switchView();return false;">
+      <span id="lbMovesS">MOVES</span>
+    </div>
+
+    <div id="lbTimes" onclick="SliderPuzzleApp.leaderBoardPageObj.switchView();return false;">
+      <span id="lbTimesS">TIME</span>
+    </div>
+
+    <table id="lbscoresTable">
+      <tr id="lbscoresTableColumnsRow">
+        <th id="lbscoresTableRankCol"></th>
+        <th id="lbscoresTableEasyCol"><span id="lbscoresTableEasyColS">EASY</span></th>
+        <th id="lbscoresTableHardCol"><span id="lbscoresTableHardColS">HARD</span></th>
+        <th id="lbscoresTableBrutalCol"><span id="lbscoresTableBrutalColS">BRUTAL</span></th>
+      </tr>
+
+      <tr id="lbscoresTableRank1Row">
+        <td id="lbscoresTableRank1"></td>
+        <td id="lbscoresTableEasy1">
+          <div id="tableEasy1Contents" class="tableLbScoreContents alternateBg1">
+            <span id="tableEasy1ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableEasy1ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableHard1">
+          <div id="tableHard1Contents" class="tableLbScoreContents alternateBg2">
+            <span id="tableHard1ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableHard1ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableBrutal1">
+          <div id="tableBrutal1Contents" class="tableLbScoreContents alternateBg1">
+            <span id="tableBrutal1ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableBrutal1ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="lbscoresTableRank2Row">
+        <td id="lbscoresTableRank2"></td>
+        <td id="lbscoresTableEasy2">
+          <div id="tableEasy2Contents" class="tableLbScoreContents alternateBg2">
+            <span id="tableEasy2ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableEasy2ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableHard2">
+          <div id="tableHard2Contents" class="tableLbScoreContents alternateBg1">
+            <span id="tableHard2ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableHard2ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableBrutal2">
+          <div id="tableBrutal2Contents" class="tableLbScoreContents alternateBg2">
+            <span id="tableBrutal2ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableBrutal2ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="lbscoresTableRank3Row">
+        <td id="lbscoresTableRank3"></td>
+
+        <td id="lbscoresTableEasy3">
+          <div id="tableEasy3Contents" class="tableLbScoreContents alternateBg1">
+            <span id="tableEasy3ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableEasy3ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableHard3">
+          <div id="tableHard3Contents" class="tableLbScoreContents alternateBg2">
+            <span id="tableHard3ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableHard3ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableBrutal3">
+          <div id="tableBrutal3Contents" class="tableLbScoreContents alternateBg1">
+            <span id="tableBrutal3ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableBrutal3ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="lbscoresTableRank4Row">
+        <td id="lbscoresTableRank4"></td>
+        <td id="lbscoresTableEasy4">
+          <div id="tableEasy4Contents" class="tableLbScoreContents alternateBg2">
+            <span id="tableEasy4ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableEasy4ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableHard4">
+          <div id="tableHard4Contents" class="tableLbScoreContents alternateBg1">
+            <span id="tableHard4ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableHard4ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableBrutal4">
+          <div id="tableBrutal4Contents" class="tableLbScoreContents alternateBg2">
+            <span id="tableBrutal4ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableBrutal4ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="lbscoresTableRank5Row">
+        <td id="lbscoresTableRank5"></td>
+
+        <td id="lbscoresTableEasy5">
+          <div id="tableEasy5Contents" class="tableLbScoreContents alternateBg1">
+            <span id="tableEasy5ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableEasy5ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableHard5">
+          <div id="tableHard5Contents" class="tableLbScoreContents alternateBg2">
+            <span id="tableHard5ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableHard5ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableBrutal5">
+          <div id="tableBrutal5Contents" class="tableLbScoreContents alternateBg1">
+            <span id="tableBrutal5ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableBrutal5ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr id="lbscoresTableRank6Row">
+        <td id="lbscoresTableRank6"></td>
+        <td id="lbscoresTableEasy6">
+          <div id="tableEasy6Contents" class="tableLbScoreContents alternateBg2">
+            <span id="tableEasy6ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableEasy6ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableHard6">
+          <div id="tableHard6Contents" class="tableLbScoreContents alternateBg1">
+            <span id="tableHard6ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableHard6ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+
+        <td id="lbscoresTableBrutal6">
+          <div id="tableBrutal6Contents" class="tableLbScoreContents alternateBg2">
+            <span id="tableBrutal6ContentsText" class="tableLbScoreContentsText"></span>
+            <div class="tableLbScoreContentsCanvasC">
+              <canvas id="tableBrutal6ContentsCanvas" class="tableLbScoreContentsCanvas"></canvas>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div id="lbCloseButton" onclick="SliderPuzzleApp.closeLeaderBoard();"></div>
+
+    <div id="lbPopUpBase">
+      <div id="lbPopUp">
+        <div id="lbPopUpImageContainer">
+          <div id="lbPopUpImage"></div>
+        </div>
+
+        <div id="lbPopUpLevel">
+          <span id="lbPopUpLevelText">LEVEL: EASY</span>
+        </div>
+
+        <div id="lbPopupScoresTable">
+          <div id="lbPopupScoresTableRow">
+            <div class="lbPopupScoresTableCell">
+              <div id="lbPopUpLevelNo1"></div>
+            </div>
+
+            <div class="lbPopupScoresTableCell">
+              <div id="lbPopUpLevelNo2"></div>
+            </div>
+
+            <div class="lbPopupScoresTableCell">
+              <div id="lbPopUpLevelNo3"></div>
+            </div>
+          </div>
+
+          <div id="lbPopupScoresTableRowRecords">
+            <div class="lbPopupScoresTableCell">
+              <span id="lbPopupScoresTableRowRecords1S"></span>
+            </div>
+
+            <div class="lbPopupScoresTableCell">
+              <span id="lbPopupScoresTableRowRecords2S"></span>
+            </div>
+
+            <div class="lbPopupScoresTableCell">
+              <span id="lbPopupScoresTableRowRecords3S"></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="lbPopUpPlayButton" onclick="SliderPuzzleApp.startGameLb();">
+          <span id="lbPopUpPlayButtonS">PLAY</span>
+        </div>
+
+        <div id="lbPopUpCloseButton" onclick="SliderPuzzleApp.closeLeaderBoardPagePopup();"></div>
+      </div>
+    </div>
+  </div><!-- end leaderboardPage -->
+
+  <!-- Photos page -->
+  <div id="photosPage">
+    <div id="ppHeader">
+      PHOTOS:
+    </div>
+
+    <div id="ppGame" onclick="SliderPuzzleApp.photosPageObj.switchView();return false;">
+      <span id="ppGameS">FROM GAME</span>
+    </div>
+
+    <div id="ppGallery">
+      <div id="photosWrapper">
+        <div id="photosScroller">
+          <div id="ppContent"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ppScrollbarContainer">
+      <div id="ppScrollbarHandle"></div>
+    </div>
+
+    <div id="ppCloseButton" onclick="SliderPuzzleApp.closePhotosPage();"></div>
+
+    <div id="ppLoading"></div>
+
+    <div id="ppPopUpBase">
+      <div id="ppPopUp">
+        <div id="ppPopUpImageContainer">
+          <div id="ppPopUpImage"></div>
+        </div>
+
+        <div id="ppPopUpPlayButton" onclick="SliderPuzzleApp.startGame(2);">
+          <span id="ppPopUpPlayButtonS">PLAY</span>
+        </div>
+
+        <div id="ppPopUpCloseButton" onclick="SliderPuzzleApp.closePhotosPagePopup();"></div>
+      </div>
+    </div>
+
+    <div id="ppBlockInteraction"></div>
+  </div><!--photosPage-->
+
+  <!--help-->
+  <div id="smokeScreen"></div>
+
+  <div id="helpDialog">
+    <div class="helpBorder">
+      <div class="closeButton" onclick="SliderPuzzleApp.closeHelp()">&nbsp;X&nbsp;</div>
+
+      <div class="helpDialogInstructions">
+        <p>The Slider-Puzzle takes a picture from within the app, or
+        from your own pictures, and jumbles it up into pieces.
+        Reassemble the picture in the quickest time, or in as few
+        moves as you can.</p>
+
+        <p>Click Quick Start to solve a picture from the app or Choose
+        Photo to pick a specific picture. Click on the photo you
+        want, then click Play to begin.</p>
+
+        <p>Once the puzzle appears, the clock starts ticking. Use the
+        open space to slide the pieces near it around. To pause the
+        game, click the open space, or the Pause button on the side
+        of the screen. To play again, or change difficulty levels,
+        click the + button. Choose your difficulty level (Easy,
+        Hard, or Brutal) and click Play Again. Or, click New Photo
+        to start a new puzzle at the same difficulty level.</p>
+
+        <p>After you finish a puzzle, if your time or move count
+        qualifies for the Leader Board, you'll be asked to enter
+        your name. Enter a short name (up to 10 characters), then
+        click Save to put your achievement on the Leader Board.</p>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
