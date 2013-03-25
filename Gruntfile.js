@@ -3,6 +3,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadTasks('tools/grunt-tasks');
 
   grunt.initConfig({
@@ -35,15 +36,28 @@ module.exports = function (grunt) {
       }
     },
 
+    cssmin: {
+      dist: {
+        files: {
+          'build/app/css/all.css': [
+            'css/openscreen.css',
+            'css/quickstart.css',
+            'css/pausescreen.css',
+            'css/leaderboardpage.css',
+            'css/photospage.css',
+            'css/finishscreen.css',
+            'css/license.css'
+          ]
+        }
+      }
+    },
+
     // copy assets and the index.html file to build/dist;
     // NB we rewrite index.html during copy to point at the
     // minified/concated dist js file all.js
     copy: {
       dist: {
         files: [
-          // this will be minified
-          { expand: true, cwd: '.', src: ['css/**'], dest: 'build/app/' },
-
           { expand: true, cwd: '.', src: ['audio/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['db/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['config.xml'], dest: 'build/app/' },
@@ -62,6 +76,10 @@ module.exports = function (grunt) {
             if (content.match(/DOCTYPE/)) {
               content = content.replace(/js\/main.js/, 'all.js');
               content = content.replace(/<script src="js\/.+?"><\/script>\n/g, '');
+
+              content = content.replace(/css\/license.css/, 'all.css');
+              content = content.replace(/<link rel="stylesheet" href="css\/.+?">\n/g, '');
+              content = content.replace(/all\.css/, 'css/all.css');
             }
 
             return content;
@@ -83,7 +101,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('dist', ['clean', 'uglify:dist', 'copy:dist']);
+  grunt.registerTask('dist', ['clean', 'cssmin:dist', 'uglify:dist', 'copy:dist']);
 
   grunt.registerTask('pkg', 'Create package; call with pkg:STR to append STR to package name', function (identifier) {
     grunt.task.run('dist');
