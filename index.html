@@ -7,13 +7,24 @@
 -->
 <html>
 <head>
-  <meta id="viewport_meta" name="viewport" content="">
-  <script type="text/javascript">
-  if (screen.orientation) {
-    var viewport_meta = document.getElementById('viewport_meta');
-    var w = (screen.orientation.indexOf("portrait") == 0) ? screen.availWidth : screen.availHeight;
-    viewport_meta.setAttribute('content','width=' + w + ', user-scalable=no');
-  }
+  <meta id="viewportMeta" name="viewport" content="">
+  <script>
+  // figure out the "real" device width (screen.width);
+  var deviceWidth = screen.width;
+
+  // figure out the layout viewport width (document.documentElement.clientWidth)
+  var layoutViewportWidth = document.documentElement.clientWidth;
+
+  // work out the ratio between them
+  var scale = layoutViewportWidth / deviceWidth;
+
+  // for the viewport tag, set width=<device width> and
+  // scale=<layout viewport width> / <device width>
+  var content = 'width=' + deviceWidth + ', initial-scale=' + scale +
+                ', maximum-scale=' + scale + ', minimum-scale=' + scale;
+
+  var viewportMeta = document.getElementById('viewportMeta');
+  viewportMeta.setAttribute('content', content);
   </script>
   <link rel="stylesheet" href="css/openscreen.css">
   <link rel="stylesheet" href="css/quickstart.css">
