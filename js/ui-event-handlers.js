@@ -50,8 +50,7 @@ $(document).ready(function () {
     };
 
     for (var id in clickListeners) {
-      document.getElementById(id)
-              .addEventListener('click', clickListeners[id]);
+      $(document).delegate('#' + id, 'click', clickListeners[id]);
     }
   };
 });

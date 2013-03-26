@@ -65,6 +65,7 @@ module.exports = function (grunt) {
           { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['images/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['index.html'], dest: 'build/app/' },
+          { expand: true, cwd: '.', src: ['pages.html'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['lib/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['LICENSE'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['_locales/**'], dest: 'build/app/' }
