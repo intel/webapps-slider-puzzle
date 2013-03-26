@@ -27,7 +27,7 @@ body {
 
 @font-face {
     font-family: "MolotCustom";
-    src: local("Molot"), url("../fonts/Molot.otf");	 
+    src: local("Molot"), url("../fonts/Molot.woff");	 
 }
 
 #mainPage {
