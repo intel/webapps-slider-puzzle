@@ -11,6 +11,7 @@ module.exports = function (grunt) {
 
     clean: ['build'],
 
+    // minify and concat JS
     uglify: {
       dist: {
         files: {
@@ -36,6 +37,7 @@ module.exports = function (grunt) {
       }
     },
 
+    // minify and concat CSS
     cssmin: {
       dist: {
         files: {
@@ -52,9 +54,10 @@ module.exports = function (grunt) {
       }
     },
 
-    // copy assets and the index.html file to build/dist;
+    // copy assets and the index.html file to build/app/;
     // NB we rewrite index.html during copy to point at the
-    // minified/concated dist js file all.js
+    // minified/concated js file all.js and minified/concated CSS file
+    // all.css
     copy: {
       dist: {
         files: [
@@ -72,16 +75,23 @@ module.exports = function (grunt) {
         ],
         options: {
           // this rewrites the <script> tag in the index.html file
-          // to point at the minified/concated js file all.js
+          // to point at the minified/concated js file all.js;
+          // and the stylesheet tags to point at all.css;
+          // it additionally strips out as much space and as many newlines
+          // as possible from text files (NB this may be dangerous if
+          // files are space-sensitive, but most JS, CSS and HTML shouldn't be)
           processContent: function (content) {
             if (content.match(/DOCTYPE/)) {
+              // JS
               content = content.replace(/js\/main.js/, 'all.js');
               content = content.replace(/<script src="js\/.+?"><\/script>\n/g, '');
 
+              // CSS
               content = content.replace(/css\/license.css/, 'all.css');
               content = content.replace(/<link rel="stylesheet" href="css\/.+?">\n/g, '');
               content = content.replace(/all\.css/, 'css/all.css');
 
+              // whitespace reduction
               content = content.replace(/[ ]{2,}/g, ' ');
               content = content.replace(/\n{2,}/g, '\n');
             }
@@ -94,6 +104,7 @@ module.exports = function (grunt) {
       }
     },
 
+    // make wgt package in build/ directory
     package: {
       appName: '<%= packageInfo.name %>',
       version: '<%= packageInfo.version %>',

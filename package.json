@@ -2,13 +2,13 @@
   "name": "webapps-slider-puzzle",
   "version": "1.0.0",
   "description": "01.org slider puzzle",
-  "main": "main.js",
+  "main": "js/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/townxelliot/webapps-slider-puzzle.git"
+    "url": "git://github.com/01org/webapps-slider-puzzle.git"
   },
   "author": "",
   "license": "APL",
