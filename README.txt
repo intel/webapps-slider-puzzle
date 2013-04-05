@@ -2,24 +2,11 @@ Slider puzzle application, implemented in HTML5/JavaScript
 
 Owner: Sirisha Muppavarapu <sirisha.muppavarapu@intel.com>
 
-Technical Deatils: This application is written using
+Technical details: This application is written using
 HTML5/CSS3/jQuery and is distributed under the Apache2.0 licence.
 
-# BUILD FOR TIZEN
-
-To build a deployable Tizen package, you will need Linux,
-node and grunt. Once these are installed, follow these steps:
-
-1. Install build-time dependencies with: <code>npm install .</code>
-2. Create the package by running: <code>grunt pkg</code>
-
-The package is built in the <em>build/</em> directory. You can deploy
-this package manually using <code>sdb</code>.
-
-Alternatively, use the deployment script <code>deploy.sh</code>
-to build the package and deploy it to an attached Tizen device.
-
-# PHOTOS
+----------------------------------------------------------------------
+PHOTOS
 
 Photos for the slider puzzle are taken from Flickr.
 Photo credits (all licensed under creative commons 2.0):
@@ -45,25 +32,30 @@ Photo credits (all licensed under creative commons 2.0):
 * Puerto_Rico_Vega_Baja_by_Ricardo_Mangual.jpg by Ricardo Mangual (RicymarFineArt)
 * Tso_Moriri_Lake_by_Prabhu_B_Doss.jpg by Prabhu B Doss (Prabhu B Doss)
 
-# SOUNDS
+----------------------------------------------------------------------
+SOUNDS
 
-These files were created by Intel Corp. and are licensed under the Creative Commons Attribution 3.0 license http://creativecommons.org/licenses/by/3.0/us/
-
-* ButtonClick_01_Start.ogg<br>
-  Source: http://www.freesound.org/people/Bram/sounds/7127/<br>
+* ButtonClick_01_Start.ogg
+  Source: http://www.freesound.org/people/Bram/sounds/7127/
   License: CC BY 3.0
-* ButtonClick_02_Settings.ogg<br>
-  Source: http://www.freesound.org/people/vitriolix/sounds/778/<br>
+* ButtonClick_02_Settings.ogg
+  Source: http://www.freesound.org/people/vitriolix/sounds/778/
   License: http://creativecommons.org/licenses/sampling+/1.0/
-* Shuffle.ogg<br>
-  Source: http://www.freesound.org/people/thereelfryboy/sounds/35022/<br>
+* Shuffle.ogg
+  Source: http://www.freesound.org/people/thereelfryboy/sounds/35022/
   License: http://creativecommons.org/licenses/sampling+/1.0/
+
+These files were created by Intel Corp. and are licensed under the
+Creative Commons Attribution 3.0 license
+http://creativecommons.org/licenses/by/3.0/us/
+
 * Intro.ogg
 * MovePiece.ogg
 * Win.ogg
 * cheer.ogg
 
-# IMAGES
+----------------------------------------------------------------------
+IMAGES
 
 All images in the images/ folder (excluding images/puzzle_photos/*) are
 created by Intel Corp. They are licensed under the Creative Commons
@@ -71,39 +63,40 @@ Attribution 3.0 license: http://creativecommons.org/licenses/by/3.0/us/
 
 These images are a part of jquery-ui:
 
-* images/ajax-loader-transparent.png<br>
-  Origin: http://jqueryui.com/<br>
+* images/ajax-loader-transparent.png
+  Origin: http://jqueryui.com/
   License: http://jquery.org/license/
 
-# FONTS
+----------------------------------------------------------------------
+FONTS
 
-* FugazOne-Regular.ttf<br>
-  License:  SIL Open Font License, 1.1<br>
-  License link: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL<br>
+* FugazOne-Regular.ttf
+  License: SIL Open Font License, 1.1
+  License link: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
   http://www.google.com/webfonts/specimen/Fugaz+One
 
-* Lato-LightItalic.ttf<br>
-  Copyright [c] 2010-2011 by tyPoland Lukasz Dziedzic with Reserved Font Name "Lato".<br>
-  License: Licensed under the SIL Open Font License, V<br>
+* Lato-LightItalic.ttf
+  Copyright [c] 2010-2011 by tyPoland Lukasz Dziedzic with Reserved Font Name "Lato".
+  License: Licensed under the SIL Open Font License, V
   http://www.ffonts.net/Lato-Light-Italic.font
 
-* Molot.woff (converted from original otf file)<br>
-  Author: Jovanny Lemonad<br>
-  License: Freeware Free<br>
+* Molot.woff (converted from original otf file)
+  Author: Jovanny Lemonad
+  License: Freeware Free
   http://www.fonts4free.net/molot-font.html
 
-# LIBRARIES
+----------------------------------------------------------------------
+LIBRARIES
 
-* jQuery library [MIT license]<br>
-  Origin: http://jquery.org/<br>
+* jQuery library [MIT license]
+  Origin: http://jquery.org/
   License: http://jquery.org/license/
-
-* iScroll Lite [MIT license]<br>
-  Origin: https://github.com/cubiq/iscroll/<br>
+* iScroll Lite [MIT license]
+  Origin: https://github.com/cubiq/iscroll/
   License: https://github.com/cubiq/iscroll/blob/master/license.txt
 
 At build time, the following node libraries are used
-(but not distributed with this application):
+(but not distributed with the application):
 
 * grunt
 * grunt-contrib-cssmin
@@ -113,4 +106,4 @@ At build time, the following node libraries are used
 * async
 * node-native-zip
 
-You can find out more about these libraries via <code>npm search</code>.
+You can find out more about these libraries via npm search.
