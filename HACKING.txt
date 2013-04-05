@@ -1,0 +1,14 @@
+----------------------------------------------------------------------
+BUILD FOR TIZEN
+
+To build a deployable Tizen package, you will need Linux,
+node and grunt. Once these are installed, follow these steps:
+
+1. Install build-time dependencies with: npm install .
+2. Create the package by running: grunt pkg
+
+The package is built in the build/ directory. You can deploy
+this package manually using sdb.
+
+Alternatively, use the deployment script deploy.sh
+to build the package and deploy it to an attached Tizen device.
