@@ -1,0 +1,25 @@
+{
+  "name": "webapps-slider-puzzle",
+  "version": "1.0.0",
+  "description": "01.org slider puzzle",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/01org/webapps-slider-puzzle.git"
+  },
+  "author": "",
+  "license": "APL",
+  "readmeFilename": "README.txt",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.5.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-copy": "~0.4.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "async": "~0.2.6",
+    "node-native-zip": "~1.1.0"
+  }
+}
