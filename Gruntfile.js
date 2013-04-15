@@ -107,24 +107,25 @@ module.exports = function (grunt) {
 
     // make wgt package in build/ directory
     package: {
-      appName: '<%= packageInfo.name %>',
-      version: '<%= packageInfo.version %>',
-      files: 'build/app/**',
-      stripPrefix: 'build/app/',
-      outDir: 'build',
-      suffix: '.wgt',
-      addGitCommitId: false
+      wgt: {
+        appName: '<%= packageInfo.name %>',
+        version: '<%= packageInfo.version %>',
+        files: 'build/app/**',
+        stripPrefix: 'build/app/',
+        outDir: 'build',
+        suffix: '.wgt',
+        addGitCommitId: false
+      }
     }
   });
 
-  grunt.registerTask('dist', ['clean', 'cssmin:dist', 'uglify:dist', 'copy:dist']);
+  grunt.registerTask('wgt', [
+    'clean',
+    'cssmin:dist',
+    'uglify:dist',
+    'copy:dist',
+    'package:wgt'
+  ]);
 
-  grunt.registerTask('pkg', 'Create package; call with pkg:STR to append STR to package name', function (identifier) {
-    grunt.task.run('dist');
-
-    var packageTask = (identifier ? 'package:' + identifier : 'package');
-    grunt.task.run(packageTask);
-  });
-
-  grunt.registerTask('default', 'dist');
+  grunt.registerTask('default', 'wgt');
 };
