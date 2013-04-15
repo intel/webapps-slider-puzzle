@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          'build/app/all.js': [
+          'build/app/js/all.js': [
             'js/localizer.js',
             'js/sputil.js',
             'js/dbmanager.js',
@@ -59,7 +59,7 @@ module.exports = function (grunt) {
     // minified/concated js file all.js and minified/concated CSS file
     // all.css
     copy: {
-      dist: {
+      common: {
         files: [
           { expand: true, cwd: '.', src: ['audio/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['db/**'], dest: 'build/app/' },
@@ -67,12 +67,29 @@ module.exports = function (grunt) {
           { expand: true, cwd: '.', src: ['fonts/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['images/**'], dest: 'build/app/' },
-          { expand: true, cwd: '.', src: ['index.html'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['pages.html'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['lib/**'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['LICENSE'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['README.txt'], dest: 'build/app/' },
           { expand: true, cwd: '.', src: ['_locales/**'], dest: 'build/app/' }
+        ]
+      },
+      sdk: {
+        files: [
+          { src: 'index.html', dest: 'build/sdk/index.html' },
+          { expand: true, cwd: 'build/app', src: '**', dest: 'build/sdk/' },
+          { expand: true, cwd: 'js', src: ['**'], dest: 'build/sdk/js/' },
+          { expand: true, cwd: 'css', src: ['**'], dest: 'build/sdk/css/' }
+        ]
+      },
+      wgt: {
+        files: [
+          { expand: true, cwd: 'build/app', src: '**', dest: 'build/wgt/' }
+        ]
+      },
+      condensedIndex: {
+        files: [
+          { expand: true, cwd: '.', src: ['index.html'], dest: 'build/wgt/' }
         ],
         options: {
           // this rewrites the <script> tag in the index.html file
@@ -86,6 +103,7 @@ module.exports = function (grunt) {
               // JS
               content = content.replace(/js\/main.js/, 'all.js');
               content = content.replace(/<script src="js\/.+?"><\/script>\n/g, '');
+              content = content.replace(/all\.js/, 'js/all.js');
 
               // CSS
               content = content.replace(/css\/license.css/, 'all.css');
@@ -98,9 +116,7 @@ module.exports = function (grunt) {
             }
 
             return content;
-          },
-
-          processContentExclude: ['images/**', 'icon_128.png', 'fonts/**', 'audio/**']
+          }
         }
       }
     },
@@ -110,8 +126,17 @@ module.exports = function (grunt) {
       wgt: {
         appName: '<%= packageInfo.name %>',
         version: '<%= packageInfo.version %>',
-        files: 'build/app/**',
-        stripPrefix: 'build/app/',
+        files: 'build/wgt/**',
+        stripPrefix: 'build/wgt/',
+        outDir: 'build',
+        suffix: '.wgt',
+        addGitCommitId: false
+      },
+      sdk: {
+        appName: '<%= packageInfo.name %>',
+        version: '<%= packageInfo.version %>',
+        files: 'build/sdk/**',
+        stripPrefix: 'build/sdk/',
         outDir: 'build',
         suffix: '.wgt',
         addGitCommitId: false
@@ -123,8 +148,17 @@ module.exports = function (grunt) {
     'clean',
     'cssmin:dist',
     'uglify:dist',
-    'copy:dist',
+    'copy:common',
+    'copy:condensedIndex',
+    'copy:wgt',
     'package:wgt'
+  ]);
+
+  grunt.registerTask('sdk', [
+    'clean',
+    'copy:common',
+    'copy:sdk',
+    'package:sdk'
   ]);
 
   grunt.registerTask('default', 'wgt');

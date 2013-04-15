@@ -1,7 +1,15 @@
 # build widget and deploy to handset;
 # if the handset doesn't have the tizen-app-reinstall.sh
 # script, this script will first copy it to /opt/home/tizen/;
+# pass the type of package (sdk or wgt) to generate that
+# type of package and deploy it (default: wgt)
 reset
+
+PACKAGE_TYPE=wgt
+
+if [ "x$1" != "x" ] ; then
+  PACKAGE_TYPE=$1
+fi
 
 # get the app URL from config.xml
 APP_ID=`grep xmlns:tizen config.xml | tr ' ' '\n' | awk -F= '/id=/ {print $2}' | tr -d '"'`
@@ -10,7 +18,7 @@ FILE_PREFIX=`basename $APP_ID`
 echo "APP_ID = $APP_ID; FILE_PREFIX = $FILE_PREFIX"
 
 # make the widget package
-grunt pkg
+grunt $PACKAGE_TYPE 
 
 # get the name of the widget package
 WIDGET_PACKAGE=`ls -t -1 build/*.wgt | head -n1`
