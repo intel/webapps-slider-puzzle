@@ -7,12 +7,13 @@ node and grunt. Once these are installed, follow these steps:
 1. Install build-time dependencies with: npm install .
 2. Create the package by running: grunt wgt (optimised package
    with minified js and css) or grunt sdk (unminified)
+3. Install the package with: grunt install.
 
-The package is built in the build/ directory. You can deploy
-this package manually using sdb.
+Alternatively, you can use these shortcuts to install the wgt or sdk
+packages respectively:
 
-Alternatively, use the deployment script deploy.sh
-to build the package and deploy it to an attached Tizen device.
+  grunt wgt-install
+  grunt sdk-install
 
 ----------------------------------------------------------------------
 BUILD FOR SDK

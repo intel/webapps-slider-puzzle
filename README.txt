@@ -104,6 +104,8 @@ At build time, the following node libraries are used
 * grunt-contrib-copy
 * grunt-contrib-clean
 * async
+* lodash
+* xml2js
 * node-native-zip
 
 You can find out more about these libraries via npm search.

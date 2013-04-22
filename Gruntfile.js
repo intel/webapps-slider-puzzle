@@ -141,6 +141,56 @@ module.exports = function (grunt) {
         suffix: '.wgt',
         addGitCommitId: false
       }
+    },
+
+    sdb: {
+      prepare: {
+        action: 'push',
+        localFiles: './tools/grunt-tasks/tizen-app.sh',
+        remoteDestDir: '/home/developer/',
+        chmod: '+x',
+        overwrite: true
+      },
+
+      pushwgt: {
+        action: 'push',
+        localFiles: {
+          pattern: 'build/*.wgt',
+          filter: 'latest'
+        },
+        remoteDestDir: '/home/developer/'
+      },
+
+      stop: {
+        action: 'stop',
+        remoteScript: '/home/developer/tizen-app.sh'
+      },
+
+      uninstall: {
+        action: 'uninstall',
+        remoteScript: '/home/developer/tizen-app.sh'
+      },
+
+      install: {
+        action: 'install',
+        remoteFiles: {
+          pattern: '/home/developer/*.wgt',
+          filter: 'latest'
+        },
+        remoteScript: '/home/developer/tizen-app.sh'
+      },
+
+      debug: {
+        action: 'debug',
+        remoteScript: '/home/developer/tizen-app.sh',
+        localPort: '8888',
+        openBrowser: 'google-chrome %URL%'
+      },
+
+      start: {
+        action: 'start',
+        remoteScript: '/home/developer/tizen-app.sh'
+      }
     }
   });
 
@@ -160,6 +210,20 @@ module.exports = function (grunt) {
     'copy:sdk',
     'package:sdk'
   ]);
+
+  grunt.registerTask('install', [
+    'sdb:prepare',
+    'sdb:pushwgt',
+    'sdb:stop',
+    'sdb:uninstall',
+    'sdb:install',
+    'sdb:start'
+  ]);
+
+  grunt.registerTask('restart', ['sdb:stop', 'sdb:start']);
+
+  grunt.registerTask('wgt-install', ['wgt', 'install']);
+  grunt.registerTask('sdk-install', ['sdk', 'install']);
 
   grunt.registerTask('default', 'wgt');
 };
