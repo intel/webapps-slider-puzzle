@@ -1,0 +1,26 @@
+----------------------------------------------------------------------
+BUILD FOR TIZEN
+
+To build a deployable Tizen package, you will need Linux,
+node and grunt. Once these are installed, follow these steps:
+
+1. Install build-time dependencies with: npm install .
+2. Create the package by running: grunt wgt (optimised package
+   with minified js and css) or grunt sdk (unminified)
+3. Install the package with: grunt install.
+
+Alternatively, you can use these shortcuts to install the wgt or sdk
+packages respectively:
+
+  grunt wgt-install
+  grunt sdk-install
+
+----------------------------------------------------------------------
+BUILD FOR SDK
+
+To build a set of files suitable for use with the SDK, follow
+the build steps above then run the "grunt sdk" task.
+
+The SDK build is copied to the build/sdk directory. This contains
+just the files needed to provide an example application for use
+with the Tizen SDK.
