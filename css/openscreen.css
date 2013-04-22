@@ -27,12 +27,12 @@ body {
 
 @font-face {
     font-family: "MolotCustom";
-    src: local("Molot"), url("../fonts/Molot.otf");	 
+    src: local("Molot"), url("../fonts/Molot.woff");	 
 }
 
 #mainPage {
     background-position: left top;
-    background-image: url('../images/open-screen/SP_OpenScreen-base.png'); 
+    background-image: url('../images/open-screen/SP_OpenScreen-base.jpg'); 
     position: absolute;
     overflow: hidden;
     cursor: default;
