@@ -22,6 +22,7 @@
     "async": "~0.2.7",
     "node-native-zip": "~1.1.0",
     "xml2js": "~0.2.6",
-    "lodash": "~1.2.0"
+    "lodash": "~1.2.0",
+    "bower": "git://github.com/twitter/bower.git"
   }
 }
