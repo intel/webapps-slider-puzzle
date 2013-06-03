@@ -1,0 +1,5 @@
+<div class="game-info-line game-info-moves">{translations.moves}: {game.moves}</div>
+<div class="game-info-line game-info-time">{translations.time}: {game.time|dateFilter}</div>
+{?photoCredit}
+  <div class="game-info-line game-info-photo-credit">{translations.photo}: {photoCredit}</div>
+{/photoCredit}

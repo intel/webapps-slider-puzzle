@@ -1,0 +1,14 @@
+<div class="overlay puzzle-pause-overlay vbox box-pack-center-align-center" data-overlay-state="hidden">
+  <h1 class="overlay-text">{translations.paused}</h1>
+</div>
+
+<div class="puzzle-frame puzzle-tiled" data-rows="{rows}" data-columns="{columns}">
+  {#tiles}
+    <div class="puzzle-tile" data-row="{row}" data-column="{column}" data-empty="{empty}">
+    </div>
+  {/tiles}
+</div>
+
+<div class="puzzle-frame puzzle-solved" data-puzzle-frame-state="hidden"
+     style="background-image: url({photoUrl});">
+</div>

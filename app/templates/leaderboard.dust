@@ -1,0 +1,82 @@
+<div data-page="leaderboard" class="page-inactive" data-leaderboard-filter="time">
+  <div class="hbox-flex">
+    <div class="box-panel vbox box-pack-center-align-start">
+      <h1 class="page-heading">{translations.leaderboard}</h1>
+    </div>
+
+    <div class="box-panel hbox-flex">
+      <input type="button" class="text-only-btn choice-btn"
+             data-leaderboard-filter-control="time"
+             data-current="true" value="{translations.time}">
+      <input type="button" class="text-only-btn choice-btn"
+             data-leaderboard-filter-control="moves" data-current="false"
+             value="{translations.moves}">
+    </div>
+
+    <div class="box-panel hbox box-pack-end-align-center">
+      <button disabled="disabled" class="icon close-btn"
+              data-nav="home" data-icon="close">&nbsp;</button>
+    </div>
+  </div>
+
+
+  <div class="leaderboard-scores hbox-flex" data-leaderboard-by="time">
+    {#sortedScores}
+      <div class="leaderboard-scores-for-difficulty">
+        <h2 class="leaderboard-difficulty-heading">{difficultyLevelName}</h2>
+        {#scoresForLevel}
+          {#scoresByTime}
+            <div class="leaderboard-scores-container">
+              <div class="leaderboard-score-position">
+                {position}.&nbsp;
+              </div>
+              <div class="leaderboard-score-details">
+                {?who}
+                  {who}<br>{time|dateFilter}
+                {:else}
+                  ---
+                {/who}
+              </div>
+              <div class="leaderboard-thumb vbox box-pack-center-align-center">
+                {?photoThumb}
+                  <img src="{photoThumb}"
+                       data-nav="game/photoId:{photoId}/difficulty:{difficultyLevel}">
+                {/photoThumb}
+              </div>
+            </div>
+          {/scoresByTime}
+        {/scoresForLevel}
+      </div>
+    {/sortedScores}
+  </div>
+
+  <div class="leaderboard-scores hbox-flex" data-leaderboard-by="moves">
+    {#sortedScores}
+      <div class="leaderboard-scores-for-difficulty">
+        <h2 class="leaderboard-difficulty-heading">{difficultyLevelName}</h2>
+        {#scoresForLevel}
+          {#scoresByMoves}
+            <div class="leaderboard-scores-container">
+              <div class="leaderboard-score-position">
+                {position}.&nbsp;
+              </div>
+              <div class="leaderboard-score-details">
+                {?who}
+                  {who}<br>{moves}
+                {:else}
+                  ---
+                {/who}
+              </div>
+              <div class="leaderboard-thumb vbox box-pack-center-align-center">
+                {?photoThumb}
+                  <img src="{photoThumb}"
+                       data-nav="game/photoId:{photoId}/difficulty:{difficultyLevel}">
+                {/photoThumb}
+              </div>
+            </div>
+          {/scoresByMoves}
+        {/scoresForLevel}
+      </div>
+    {/sortedScores}
+  </div>
+</div>

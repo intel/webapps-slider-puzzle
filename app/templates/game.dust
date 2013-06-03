@@ -1,0 +1,33 @@
+<div data-page="game" class="page-inactive">
+  <div class="game-image-container hbox box-pack-center-align-center" data-widget="puzzle"></div>
+
+  <!-- left slide menu -->
+  <div class="slide-menu hbox" data-menu-side="left" data-menu-state="in">
+    <div class="slide-menu-panel vbox box-pack-start-align-start" data-widget="game-info"></div>
+    <div class="slide-menu-panel" data-widget="leaderboard-mini"></div>
+
+    <div class="slide-menu-panel slide-menu-btn-panel">
+      <div class="text-only-btn" data-nav="leaderboard"
+           disabled="disabled">{translations.leaderboard}</div>
+    </div>
+
+    <div class="slide-menu-control vbox box-pack-center-align-center icon round-icon" data-menu-action="open"></div>
+  </div>
+
+  <!-- right slide menu -->
+  <div class="slide-menu hbox" data-menu-side="right" data-menu-state="in">
+    <div class="slide-menu-control vbox box-pack-center-align-center icon round-icon" data-menu-action="open"></div>
+
+    <div class="slide-menu-panel" data-widget="game-level-select"></div>
+
+    <div class="slide-menu-panel slide-menu-play-again-panel">
+      <div class="text-only-btn"
+           data-menu-action="reset">{translations.playAgain}</div>
+    </div>
+
+    <div class="slide-menu-panel slide-menu-choose-photo-panel">
+      <div class="text-only-btn" data-nav="photopicker"
+           disabled="disabled">{translations.choosePhoto}</div>
+    </div>
+  </div>
+</div>

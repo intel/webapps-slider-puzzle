@@ -1,0 +1,712 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* fonts */
+@font-face {
+  font-family: Graduate;
+  font-style: normal;
+  font-weight: 900;
+  src: local('Graduate'), local('Graduate-Regular'), url("../lib/graduate/index.woff");
+}
+
+@font-face {
+  font-family: icons;
+  src: local(icons), url(../fonts/icons.woff);
+}
+
+body * {
+  font-family: Graduate;
+}
+
+/* page styling */
+.page-container {
+  width: 1024px;
+  height: 600px;
+  overflow: hidden;
+
+  /* NB this has to be 2px otherwise webkit makes a mess
+   * and the slider menus on the game page render with a transparent
+   * line down the middle (the border images aren't measured
+   * correctly)
+   */
+  border-right: 2px solid #ccc;
+  border-left: 2px solid #ccc;
+  box-sizing: border-box;
+}
+
+.page-inactive {
+  display: none !important;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.page-active {
+  visibility: visible;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* popups */
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: 500;
+  top: 0;
+  left: 0;
+}
+
+.overlay[data-overlay-state=hidden] {
+  display: none;
+}
+
+.overlay-opaque {
+  opacity: 0.9;
+  background-color: #666;
+}
+
+.overlay-text {
+  font-family: Graduate;
+  text-transform: uppercase;
+  font-size: 6em;
+  text-shadow: 5px 5px 20px #000;
+  color: white;
+}
+
+.popup {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  opacity: 1.0;
+}
+
+.popup-box {
+  position: relative;
+  background-color: white;
+}
+
+/* containers */
+.hbox {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+
+.hbox-flex {
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+}
+
+.vbox {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.box-panel {
+  -webkit-flex-grow: 1;
+}
+
+.box-pack-end-align-center {
+  -webkit-box-pack: end;
+  -webkit-box-align: center;
+}
+
+.box-pack-center-align-center {
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
+
+.box-pack-center-align-start {
+  -webkit-box-pack: center;
+  -webkit-box-align: start;
+}
+
+.box-pack-start-align-center {
+  -webkit-box-pack: start;
+  -webkit-box-align: center;
+}
+
+.box-pack-start-align-start {
+  -webkit-box-pack: start;
+  -webkit-box-align: start;
+}
+
+/* form elements */
+input[type=button], button {
+  border: none;
+}
+
+.text-only-btn {
+  font-size: 220%;
+  display: -webkit-flex;
+  background-color: rgba(0, 0, 0, 0.0);
+  font-family: Graduate;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  padding: 0 0.4em;
+}
+
+.text-only-btn:not(:disabled):hover {
+  color: #00aeef;
+}
+
+.text-entry {
+  outline-color: #999;
+  font-size: 190%%;
+  border: thin solid #999;
+}
+
+.close-btn {
+  background-color: white;
+  width: 2em;
+  height: 2em;
+  color: #00aeef;
+  font-size: 250%;
+}
+
+label {
+  font-size: 200%;
+}
+
+/* for buttons which have a data-current attribute, e.g.
+ * level select, filter select on leaderboard
+ */
+.choice-btn[data-current="true"] {
+  color: #00aeef;
+}
+
+.choice-btn[data-current="false"],
+.choice-btn[data-current="false"]:hover {
+  color: #999;
+}
+
+/* headings etc. */
+.page-heading {
+  font-family: Graduate;
+  font-size: 200%;
+}
+
+/* icons */
+.icon {
+  font-family: icons !important;
+  cursor: pointer;
+}
+
+.round-icon {
+  font-size: 1.1em;
+  height: 1.6em;
+  width: 1.2em;
+  padding: 0 0.2em;
+  line-height: 1.7em;
+  border-radius: 0.8em;
+}
+
+[data-icon=close]:before {
+  content: '\e04e'; /* X symbol */
+}
+
+[data-icon=plus]:before {
+  content: '\e05a'; /* + symbol */
+}
+
+[data-icon=pause]:before {
+  content: '\e06a'; /* pause symbol */
+}
+
+/* page-specific backgrounds and containers */
+[data-page=home] {
+  background-image: url(../images/home-screen-bg.jpg);
+  background-repeat: no-repeat;
+}
+
+.home-btn-panel {
+  height: 95%;
+}
+
+/* centre home page buttons under the title */
+[data-page=home] input[type=button] {
+  padding: 0.4em;
+  color: #bc7f18;
+}
+
+.home-btn-panel input[type=button] {
+  margin: 0 0 0 1.2em;
+}
+
+.home-help-btn-panel {
+  position: absolute;
+  bottom: 10%;
+  left: 1em;
+}
+
+/* help page */
+.help-popup {
+  width: 80%;
+  padding: 0.5em 0 2em 0;
+}
+
+.help-content-panel {
+  padding: 0 2em;
+}
+
+.help-content-panel * {
+  font-family: "sans-serif";
+}
+
+.help-content-panel p {
+  font-size: 120%;
+}
+
+.help-content-btn-bar {
+  width: 100%;
+}
+
+/* used on the finish page and the game page */
+.game-image-container {
+  width: 100%;
+  height: 100%;
+}
+
+.game-image {
+  display: -webkit-flex;
+  max-width: 95%;
+  max-height: 95%;
+}
+
+/* slide menu for game page */
+.slide-menu {
+  position: absolute;
+  bottom: 18%;
+  width: 90%;
+  height: 18%;
+  z-index: 750;
+
+  -webkit-box-align: center;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+
+  border-image-outset: 10 0;
+  border-image-repeat: stretch;
+  border-image-slice: 50% 33%;
+}
+
+.slide-menu[data-menu-side=left] {
+  right: 95.5%;
+  -webkit-box-pack: end;
+}
+
+.slide-menu[data-menu-side=right] {
+  left: 95.5%;
+  -webkit-box-pack: start;
+}
+
+/* docked slide menu */
+.slide-menu[data-menu-state=in] {
+  border-image-source: url(../images/slide-menu-border-in.png);
+  border-image-width: 100px 50px;
+}
+
+/* animating or expanded slide menu */
+.slide-menu:not([data-menu-state=in]) {
+  border-image-source: url(../images/slide-menu-border-out.png);
+}
+
+/* game page menu buttons */
+.slide-menu-control {
+  margin: 4% 1.2%;
+}
+
+/* icons on slide menu */
+.slide-menu[data-menu-side=left][data-menu-state=in] .icon:before {
+  content: '\e06a'; /* pause symbol */
+}
+
+.slide-menu[data-menu-side=right][data-menu-state=in] .icon:before {
+  content: '\e05a'; /* plus symbol */
+}
+
+.slide-menu:not([data-menu-state=in]) .icon:before {
+  content: '\e04e'; /* X symbol */
+}
+
+/* when menu is in, icon has a background */
+.slide-menu[data-menu-state=in] .icon {
+  background-color: #00aeef;
+  color: white;
+}
+
+/* when menu is not in, icon is blue with no background */
+.slide-menu:not([data-menu-state=in]) .icon {
+  color: #00aeef;
+}
+
+/* left-hand side menu is out => don't show left border */
+.slide-menu[data-menu-side=left]:not([data-menu-state=in]) {
+  border-image-width: 100px 50px 100px 0;
+}
+
+/* right-hand side menu is out => don't show right border */
+.slide-menu[data-menu-side=right]:not([data-menu-state=in]) {
+  border-image-width: 100px 0 100px 50px;
+}
+
+.slide-menu-panel {
+  margin: 0 1% 0 1%;
+  overflow: hidden;
+}
+
+.slide-menu-panel .game-info-line {
+  width: 100%;
+}
+
+/* right-hand menu panels */
+.slide-menu-play-again-panel {
+  width: 19%;
+}
+
+.slide-menu-choose-photo-panel {
+  width: 20%;
+}
+
+/* game page menu animations */
+@-webkit-keyframes slide-menu-left-out {
+  0% {
+    right: 95.5%;
+  }
+  100% {
+    right: 10%;
+  }
+}
+
+@-webkit-keyframes slide-menu-left-in {
+  0% {
+    right: 10%;
+  }
+  100% {
+    right: 95.5%;
+  }
+}
+
+@-webkit-keyframes slide-menu-right-out {
+  0% {
+    left: 95.5%;
+  }
+  100% {
+    left: 10%;
+  }
+}
+
+@-webkit-keyframes slide-menu-right-in {
+  0% {
+    left: 10%;
+  }
+  100% {
+    left: 95.5%;
+  }
+}
+
+/* game information panel */
+[data-widget=game-info] {
+  max-width: 28%;
+  margin-right: 3em;
+}
+
+.game-info-moves, .game-info-time {
+  font-size: 250%;
+  font-family: Graduate;
+}
+
+.game-info-photo-credit {
+  font-size: 90%;
+}
+
+.game-info-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* full leaderboard */
+.leaderboard-scores {
+  height: 90%;
+}
+
+.leaderboard-scores-for-difficulty {
+  -webkit-flex-grow: 1;
+  -webkit-flex-basis: 0;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  height: 100%;
+}
+
+.leaderboard-scores-container {
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  width: 90%;
+  -webkit-flex-grow: 1;
+  height: 15%;
+}
+
+.leaderboard-difficulty-heading {
+  font-size: 150%;
+  font-family: Graduate;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  margin-top: 0;
+}
+
+.leaderboard-score-position,
+.leaderboard-score-details,
+.leaderboard-thumb {
+  -webkit-flex-basis: 0;
+  border: thin solid white;
+  background-color: #e3f4fb;
+  border-collapse: collapse;
+}
+
+.leaderboard-score-position,
+.leaderboard-score-details {
+  font-size: 150%;
+  padding: 0.2em;
+}
+
+.leaderboard-score-position {
+  -webkit-flex-grow: 1;
+}
+
+.leaderboard-score-details {
+  -webkit-flex-grow: 2;
+}
+
+.leaderboard-thumb {
+  -webkit-flex-grow: 3;
+  padding: 0.1em;
+}
+
+.leaderboard-thumb img {
+  max-width: 70%;
+  max-height: 90%;
+  display: block;
+}
+
+[data-leaderboard-filter-control] {
+  -webkit-flex-grow: 1;
+}
+
+[data-leaderboard-filter=time] [data-leaderboard-by=moves] {
+  display: none;
+}
+
+[data-leaderboard-filter=moves] [data-leaderboard-by=time] {
+  display: none;
+}
+
+/* mini leaderboard on game page */
+[data-widget=leaderboard-mini] {
+  width: 34%;
+  margin-left: 1em;
+}
+
+[data-widget=leaderboard-mini] p {
+  font-size: 120%;
+  margin: 0 0 0.2em 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mini-heading {
+  font-family: Graduate;
+  font-size: 150%;
+  width: 100%;
+  margin: 0;
+  font-weight: normal;
+  text-align: left;
+}
+
+.leaderboard-mini-moves {
+  margin-right: 1em;
+  width: 48%;
+}
+
+.leaderboard-mini-times {
+  width: 52%;
+}
+
+.leaderboard-mini-position {
+  font-weight: bold;
+}
+
+.leaderboard-current-game {
+  color: #00aeef;
+}
+
+/* nav link to leaderboard, left-hand slide menu */
+.slide-menu[data-menu-side=left] .slide-menu-btn-panel {
+  max-width: 19%;
+  word-break: break-all;
+}
+
+/* game level select panel */
+[data-widget=game-level-select] {
+  width: 50%;
+}
+
+.level-select-mini-heading {
+  margin-left: 0.65em;
+  margin-top: 0.4em;
+}
+
+.level-select-btn {
+  margin: 0;
+  padding: 0.4em;
+}
+
+/* photopicker gallery, frame, image */
+.photopicker-gallery {
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -webkit-justify-content: center;
+  overflow-y: scroll;
+  height: 80%;
+}
+
+.photopicker-frame {
+  height: 33%;
+  width: 19%;
+  padding-right: 1%;
+}
+
+.photopicker-image {
+  cursor: pointer;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+/* photopopup */
+.photopopup-box {
+  max-width: 75%;
+  max-height: 75%;
+  padding: 2em;
+}
+
+.photopopup-image {
+  display: block;
+  cursor: pointer;
+  max-height: 85%;
+  max-width: 80%;
+}
+
+.photopopup-box-close {
+  position: absolute;
+  right: 0;
+  top: 0.4em;
+}
+
+.photopopup-btn-panel {
+  padding-top: 0.6em;
+}
+
+/* puzzle */
+.puzzle-pause-overlay {
+  background-color: rgba(0, 0, 0, 0.0);
+}
+
+.puzzle-frame {
+  position: relative;
+  height: 90%;
+  width: 90%;
+  background-size: 100% 100%;
+}
+
+.puzzle-frame[data-puzzle-frame-state=hidden] {
+  display: none;
+}
+
+.puzzle-tiled {
+  background-color: #ccc; /* same as empty tile */
+}
+
+.puzzle-tile {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  border: thin solid #ccc;
+}
+
+/* finish */
+[data-page=finish] .puzzle-frame {
+  background-size: 100% 100%;
+}
+
+.finish-ribbon {
+  position: absolute;
+  height: 18%;
+  bottom: -25%;
+  left: 0;
+  width: 100%;
+  z-index: 750;
+
+  border-image-outset: 10 0;
+  border-image-repeat: stretch;
+  border-image-slice: 50% 33%;
+  background-color: white;
+  border-image-width: 100px 0 100px 0;
+  border-image-source: url(../images/slide-menu-border-out.png);
+
+  -webkit-animation-name: finish-ribbon-slide-up;
+  -webkit-animation-delay: 2s;
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.finish-ribbon .text-only-btn {
+  padding: 0.4em;
+}
+
+.finish-ribbon-panel .game-info-moves {
+  margin-right: 1.5em;
+}
+
+.finish-save-btn {
+  text-align: left;
+  width: 7.5em;
+}
+
+.finish-score-no-good {
+  font-size: 150%;
+  color: #999;
+}
+
+@-webkit-keyframes finish-ribbon-slide-up {
+  0% {
+    bottom: -25%;
+  }
+  100% {
+    bottom: 18%;
+  }
+}

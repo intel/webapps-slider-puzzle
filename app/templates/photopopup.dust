@@ -1,0 +1,16 @@
+<div data-page="photopopup" class="page-inactive">
+  <div class="overlay overlay-opaque vbox box-pack-center-align-center"></div>
+
+  <div class="popup vbox box-pack-center-align-center">
+    <div class="popup-box photopopup-box vbox box-pack-start-align-center">
+      <button disabled="disabled" class="icon photopopup-box-close close-btn"
+              data-nav="photopicker" data-icon="close">&nbsp;</button>
+      <img class="photopopup-image" src="{photo.full}">
+      <div class="photopopup-btn-panel">
+        <input type="button" class="text-only-btn"
+               data-nav="game/photoId:{photo.id}" disabled="disabled"
+               value="{translations.play}">
+      </div>
+    </div>
+  </div>
+</div>

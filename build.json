@@ -1,0 +1,60 @@
+{
+  "amd": {
+    "baseUrl": "./app/js",
+    "mainConfigFile": "./app/js/amd-config.js",
+    "include": [
+      "main",
+      "pages/*"
+    ]
+  },
+
+  "html": [
+    { "cwd": "app", "src": ["*.html"] },
+    { "cwd": "app", "src": ["templates/**/*.html"] }
+  ],
+
+  "templates": [
+    { "cwd": "app", "src": ["templates/**/*.dust"] }
+  ],
+
+  "css": [
+    { "cwd": "app", "src": ["css/**"] }
+  ],
+
+  "js": [
+    { "cwd": "app", "src": ["js/**"] }
+  ],
+
+  "images": [
+    { "cwd": "app", "src": ["images/**"] }
+  ],
+
+  "common": [
+    { "cwd": ".", "src": ["LICENCE"] },
+    { "cwd": "app", "src": ["audio/**"] },
+    { "cwd": "app", "src": ["fonts/**"] },
+    { "cwd": "app", "src": ["data/**"] },
+    { "cwd": "app", "src": ["nls/**"] },
+    { "cwd": "app", "src": ["lib/graduate/index.woff"] }
+  ],
+
+  "libs-COMMENT": "bower can display a list of files required for installed components, but only if the project has been configured correctly; because the projects used here aren't, we instead have to rely on manually enumerating them; this list is used for the unminified copy only: requirejs automatically traces dependencies for the minified JS.",
+  "libs": [
+    { "cwd": "app", "src": ["lib/requirejs/require.js"] },
+    { "cwd": "app", "src": ["lib/lodash/dist/lodash.underscore.js"] },
+    { "cwd": "app", "src": ["lib/requirejs-domready/domReady.js"] },
+    { "cwd": "app", "src": ["lib/requirejs-text/text.js"] },
+    { "cwd": "app", "src": ["lib/requirejs-i18n/i18n.js"] },
+    { "cwd": "app", "src": ["lib/q/q.js"] },
+    { "cwd": "app", "src": ["lib/stapes/stapes.js"] },
+    { "cwd": "app", "src": ["lib/rye/dist/rye-base-0.1.0.js"] },
+    { "cwd": "app", "src": ["lib/hammerjs/dist/hammer.js"] },
+    { "cwd": "app", "src": ["lib/dustjs-linkedin/dist/dust-core-1.2.2.js"] },
+    { "cwd": "app", "src": ["lib/dustjs-linkedin/dist/dust-full-1.2.2.js"] },
+    { "cwd": "app", "src": ["lib/fastclick/lib/fastclick.js"] }
+  ],
+
+  "wgtRemoteDir": "/home/developer",
+  "wgtConfig": "platforms/wgt/config.xml",
+  "serverPort": 30303
+}
