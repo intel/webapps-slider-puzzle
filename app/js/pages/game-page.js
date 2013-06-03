@@ -117,6 +117,7 @@ function (
         var levelWidgetSelector = '[data-widget=game-level-select]';
         var levelSelectElt = self.rightMenu.elt.find(levelWidgetSelector);
         self.levelSelect = GameLevelSelectWidget(levelSelectElt, game);
+        self.levelSelect.watch(game, ['update:difficulty']);
         self.levelSelect.update();
 
         self.levelSelect.on('select', function (newDifficultyLevel) {
