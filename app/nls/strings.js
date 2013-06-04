@@ -29,7 +29,10 @@ define({
     'notQualifying': 'Your score does not qualify',
     'photo': 'Photo',
     'takePhoto': 'Take a photo',
-    'touchToTakePhoto': 'Touch the video to take a snapshot'
+    'touchToTakePhoto': 'Touch the video to take a snapshot',
+    'keepPhoto': 'Do you want to keep this snapshot?',
+    'no': 'No',
+    'yes': 'Yes'
   },
   'fi': true
 });

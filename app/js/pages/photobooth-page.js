@@ -20,10 +20,18 @@ function (Q, $, render, Page, Camera, translations) {
 
     snapshot: null,
 
+    title: null,
+
     showWebcam: function () {
       if (this.webcam && this.snapshot) {
         this.webcam.attr('data-photobooth-webcam-on', 'true');
         this.snapshot.attr('data-photobooth-snapshot-on', 'false');
+
+        this.title.find('span[data-photobooth-snapshot-on]')
+                  .attr('data-photobooth-snapshot-on', 'false');
+
+        this.title.find('span[data-photobooth-webcam-on]')
+                  .attr('data-photobooth-webcam-on', 'true');
       }
     },
 
@@ -31,6 +39,12 @@ function (Q, $, render, Page, Camera, translations) {
       if (this.webcam && this.snapshot) {
         this.webcam.attr('data-photobooth-webcam-on', 'false');
         this.snapshot.attr('data-photobooth-snapshot-on', 'true');
+
+        this.title.find('span[data-photobooth-snapshot-on]')
+                  .attr('data-photobooth-snapshot-on', 'true');
+
+        this.title.find('span[data-photobooth-webcam-on]')
+                  .attr('data-photobooth-webcam-on', 'false');
       }
     },
 
@@ -62,29 +76,15 @@ function (Q, $, render, Page, Camera, translations) {
         // build page UI
         self.enableNavButtons();
 
-        // elements holding the video and the canvas
+        // elements holding the video, canvas and title
         self.webcam = self.elt.find('.photobooth-webcam');
         self.snapshot = self.elt.find('.photobooth-snapshot');
+        self.title = self.elt.find('h1');
 
         // get the camera ready
         camera.init()
         .then(
           function () {
-            // size the canvas to the video
-            if (typeof tizen !== 'undefined') {
-              // HACK on Tizen, rotate the video element
-              video.addClass('photobooth-rotate');
-
-              // the video is rotated, so we use the opposing
-              // axes to set height and width
-              canvasElt.height = videoElt.offsetWidth;
-              canvasElt.width = videoElt.offsetHeight;
-            }
-            else {
-              canvasElt.width = videoElt.offsetWidth;
-              canvasElt.height = videoElt.offsetHeight;
-            }
-
             // add tap listener to the webcam
             self.webcam.on('click', function () {
               // take a snapshot, hide the video element, show the

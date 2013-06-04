@@ -28,5 +28,8 @@ define({
   'notQualifying': 'Pisteet ei täytä',
   'photo': 'Kuva',
   'takePhoto': '$$$',
-  'touchToTakePhoto': '$$$'
+  'touchToTakePhoto': '$$$',
+  'keepPhoto': '$$$',
+  'no': '$$$',
+  'yes': '$$$'
 });
