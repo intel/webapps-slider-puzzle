@@ -7,12 +7,14 @@
  *
  */
 define(
-['Q', 'rye', 'dust-render', 'page', 'camera', 'i18n!../../nls/strings'],
-function (Q, $, render, Page, Camera, translations) {
+['Q', 'rye', 'dust-render', 'page', 'camera', 'filer', 'i18n!../../nls/strings'],
+function (Q, $, render, Page, Camera, Filer, translations) {
   'use strict';
 
   return Page({
     elt: null,
+
+    filer: new Filer(10, 'slider-puzzle'),
 
     templateName: 'photobooth',
 
@@ -52,9 +54,40 @@ function (Q, $, render, Page, Camera, translations) {
     showSnapshotError: function () {
     },
 
-    init: function (eltIn) {
-      var dfd = Q.defer();
+    buildUi: function (camera) {
       var self = this;
+
+      // add tap listener to the webcam
+      this.webcam.on('click', function () {
+        // take a snapshot, hide the video element, show the
+        // snapshot in the canvas element
+        camera.snapshot().then(
+          self.showSnapshot.bind(self),
+          self.showSnapshotError.bind(self)
+        );
+      });
+
+      // keep photo buttons: yes/no
+      var yesBtn = self.elt.find('[data-photobooth-keep="yes"]');
+      yesBtn.on('click', function () {
+        var blob = camera.getBlob();
+
+        // save blob to filesystem
+        self.filer.saveBlob(blob).then(function (photo) {
+          console.log(JSON.stringify(photo));
+        });
+
+        self.showWebcam();
+      });
+
+      var noBtn = self.elt.find('[data-photobooth-keep="no"]');
+      noBtn.on('click', self.showWebcam.bind(self));
+    },
+
+    init: function (eltIn) {
+      var self = this;
+
+      var dfd = Q.defer();
 
       this.parentElt = $(eltIn);
 
@@ -66,57 +99,36 @@ function (Q, $, render, Page, Camera, translations) {
         self.parentElt.append(html);
         self.elt = self.parentElt.find('[data-page=photobooth]');
 
+        // initialise the filer alongside the page
+        var filerReady = self.filer.init();
+        filerReady.fail(dfd.reject);
+
         // set up the camera
         var video = self.elt.find('video');
         var videoElt = video.get(0);
         var canvas = self.elt.find('canvas');
         var canvasElt = canvas.get(0);
         var camera = new Camera(videoElt, canvasElt);
-
-        // build page UI
-        self.enableNavButtons();
+        var cameraReady = camera.init();
 
         // elements holding the video, canvas and title
         self.webcam = self.elt.find('.photobooth-webcam');
         self.snapshot = self.elt.find('.photobooth-snapshot');
         self.title = self.elt.find('h1');
 
-        // get the camera ready
-        camera.init()
-        .then(
+        // when the camera and filer are ready, build UI and page is ready
+        Q.allResolved([cameraReady, filerReady]).then(
           function () {
-            // add tap listener to the webcam
-            self.webcam.on('click', function () {
-              // take a snapshot, hide the video element, show the
-              // snapshot in the canvas element
-              camera.snapshot().then(
-                self.showSnapshot.bind(self),
-                self.showSnapshotError.bind(self)
-              );
-            });
+            self.buildUi(camera);
 
-            // keep photo buttons: yes/no
-            var yesBtn = self.elt.find('[data-photobooth-keep="yes"]');
-            yesBtn.on('click', function () {
-              var blob = camera.getBlob();
-              console.log(blob);
+            self.enableNavButtons();
 
-              // TODO save blob
-
-              self.showWebcam();
-            });
-
-            var noBtn = self.elt.find('[data-photobooth-keep="no"]');
-            noBtn.on('click', self.showWebcam.bind(self));
-
-            dfd.resolve(self);
+            setTimeout(function () {
+              dfd.resolve(self);
+            }, 0);
           },
-          function (e) {
-            console.error(e);
-            dfd.reject(e);
-          }
-        )
-        .done();
+          dfd.reject
+        );
       });
 
       return dfd.promise;

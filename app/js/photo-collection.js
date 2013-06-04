@@ -11,7 +11,10 @@ define(
 function (Stapes, _, photosJson) {
   'use strict';
 
+  // a photo collection which includes photos from the game
+  // as well as photos added from snapshots via the camera
   var PhotoCollection = Stapes.subclass();
+
   var photoCollection = new PhotoCollection();
 
   var photos = JSON.parse(photosJson);
