@@ -2,7 +2,7 @@
 
   <div class="hbox-flex photobooth-header">
     <div class="box-panel hbox box-pack-start-align-center">
-      <h1 class="page-heading">{translations.takePhoto}</h1>
+      <h1 class="page-heading">{translations.touchToTakePhoto}</h1>
     </div>
 
     <div class="box-panel hbox box-pack-end-align-center">
@@ -13,8 +13,13 @@
 
   <div class="vbox box-pack-start-align-center">
     <div class="photobooth-photo-view">
-      <video class="photobooth-webcam" data-photobooth-webcam-on="true" autoplay="autoplay"></video>
-      <canvas class="photobooth-snapshot" data-photobooth-snapshot="false"></canvas>
+      <div class="photobooth-webcam" data-photobooth-webcam-on="true">
+        <video autoplay="autoplay"></video>
+      </div>
+
+      <div class="photobooth-snapshot" data-photobooth-snapshot-on="false">
+        <canvas></canvas>
+      </div>
     </div>
   </div>
 </div>

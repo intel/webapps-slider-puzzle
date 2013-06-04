@@ -836,11 +836,11 @@ label {
   max-height: 80%;
 }
 
-[data-photobooth-snapshot="true"] {
+[data-photobooth-snapshot-on="true"] {
   display: block;
 }
 
-[data-photobooth-snapshot="false"] {
+[data-photobooth-snapshot-on="false"] {
   display: none;
 }
 
@@ -852,15 +852,21 @@ label {
   display: none;
 }
 
-.photobooth-webcam {
-  height: 100%;
+.photobooth-webcam video {
+  min-height: 100%;
 }
 
-.photobooth-snapshot {
-  height: 100%;
+.photobooth-snapshot canvas {
+  min-height: 100%;
+}
+
+/* TEMPORARY FOR DEBUGGING */
+.photobooth-snapshot canvas {
+  background-color: #444;
 }
 
 /* HACK on Tizen, video element needs to be rotated */
 .photobooth-rotate {
+  -webkit-transform-origin: 50% 50%;
   -webkit-transform: rotateZ(90deg);
 }

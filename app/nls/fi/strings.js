@@ -27,5 +27,6 @@ define({
   'highScores': 'Parhaat tulokset',
   'notQualifying': 'Pisteet ei täytä',
   'photo': 'Kuva',
-  'takePhoto': '$$$'
+  'takePhoto': '$$$',
+  'touchToTakePhoto': '$$$'
 });

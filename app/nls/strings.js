@@ -28,7 +28,8 @@ define({
     'highScores': 'High scores',
     'notQualifying': 'Your score does not qualify',
     'photo': 'Photo',
-    'takePhoto': 'Take a photo'
+    'takePhoto': 'Take a photo',
+    'touchToTakePhoto': 'Touch the video to take a snapshot'
   },
   'fi': true
 });

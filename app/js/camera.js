@@ -14,8 +14,9 @@ define(['Q'], function (Q) {
                            navigator.webkitGetUserMedia;
 
   // HTML5 camera integration
-  var Camera = function (videoElt) {
+  var Camera = function (videoElt, canvasElt) {
     this.videoElt = videoElt;
+    this.canvasElt = canvasElt;
   };
 
   Camera.prototype.init = function () {
@@ -40,6 +41,15 @@ define(['Q'], function (Q) {
         dfd.reject(e);
       }
     );
+
+    return dfd.promise;
+  };
+
+  // save the video onto the canvas
+  Camera.prototype.snapshot = function () {
+    var dfd = Q.defer();
+
+    dfd.resolve();
 
     return dfd.promise;
   };
