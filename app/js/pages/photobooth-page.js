@@ -119,7 +119,8 @@ function (Q, $, render, Page, Camera, Filer, translations) {
         self.title = self.elt.find('h1');
 
         // when the camera and filer are ready, build UI and page is ready
-        Q.allResolved([cameraReady, filerReady]).then(
+        Q.allResolved([cameraReady, filerReady])
+        .then(
           function () {
             self.buildUi(camera);
 
@@ -130,7 +131,8 @@ function (Q, $, render, Page, Camera, Filer, translations) {
             }, 0);
           },
           dfd.reject
-        );
+        )
+        .done();
       });
 
       return dfd.promise;

@@ -66,15 +66,14 @@ define(['Q'], function (Q) {
 
         var elt = document.querySelector(selector);
 
-        page.init(elt).then(
+        page.init(elt)
+        .then(
           function (page) {
             pages[pageName].object = page;
             pages[pageName].isLoading = false;
             done.resolve(page);
           },
-          function (e) {
-            done.reject(e);
-          }
+          done.reject
         )
         .done();
       });

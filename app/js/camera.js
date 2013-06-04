@@ -59,10 +59,7 @@ define(['Q', 'lodash'], function (Q, _) {
         videoElt.src = URL.createObjectURL(stream);
       },
 
-      function (e) {
-        console.error(e);
-        dfd.reject(e);
-      }
+      dfd.reject
     );
 
     return dfd.promise;
