@@ -1,3 +1,20 @@
 <div data-page="photobooth">
-<p>photo booth page</p>
+
+  <div class="hbox-flex photobooth-header">
+    <div class="box-panel hbox box-pack-start-align-center">
+      <h1 class="page-heading">{translations.takePhoto}</h1>
+    </div>
+
+    <div class="box-panel hbox box-pack-end-align-center">
+      <button disabled="disabled" class="icon close-btn"
+              data-nav="home" data-icon="close">&nbsp;</button>
+    </div>
+  </div>
+
+  <div class="vbox box-pack-start-align-center">
+    <div class="photobooth-photo-view">
+      <video class="photobooth-webcam" data-photobooth-webcam-on="true" autoplay="autoplay"></video>
+      <canvas class="photobooth-snapshot" data-photobooth-snapshot="false"></canvas>
+    </div>
+  </div>
 </div>

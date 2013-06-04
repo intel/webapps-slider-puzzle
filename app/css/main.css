@@ -183,13 +183,13 @@ input[type=button], button {
   background-color: rgba(0, 0, 0, 0.0);
   font-family: Graduate;
   text-transform: uppercase;
-  cursor: pointer;
   text-align: center;
   padding: 0 0.4em;
 }
 
 .text-only-btn:not(:disabled):hover {
   color: #00aeef;
+  cursor: pointer;
 }
 
 .text-entry {
@@ -269,6 +269,13 @@ label {
 /* centre home page buttons under the title */
 [data-page=home] input[type=button] {
   padding: 0.4em;
+}
+
+[data-page=home] input[type=button][disabled=disabled] {
+  color: #666;
+}
+
+[data-page=home] input[type=button] {
   color: #bc7f18;
 }
 
@@ -818,4 +825,42 @@ label {
   100% {
     bottom: 14%;
   }
+}
+
+/* photo booth */
+.photobooth-header {
+  height: 15%;
+}
+
+.photobooth-photo-view {
+  max-height: 80%;
+}
+
+[data-photobooth-snapshot="true"] {
+  display: block;
+}
+
+[data-photobooth-snapshot="false"] {
+  display: none;
+}
+
+[data-photobooth-webcam-on="true"] {
+  display: block;
+}
+
+[data-photobooth-webcam-on="false"] {
+  display: none;
+}
+
+.photobooth-webcam {
+  height: 100%;
+}
+
+.photobooth-snapshot {
+  height: 100%;
+}
+
+/* HACK on Tizen, video element needs to be rotated */
+.photobooth-rotate {
+  -webkit-transform: rotateZ(90deg);
 }
