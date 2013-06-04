@@ -26,5 +26,6 @@ define({
   'yourName': 'Nimesi',
   'highScores': 'Parhaat tulokset',
   'notQualifying': 'Pisteet ei täytä',
-  'photo': 'Kuva'
+  'photo': 'Kuva',
+  'takePhoto': '$$$'
 });

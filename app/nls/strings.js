@@ -27,7 +27,8 @@ define({
     'yourName': 'Name',
     'highScores': 'High scores',
     'notQualifying': 'Your score does not qualify',
-    'photo': 'Photo'
+    'photo': 'Photo',
+    'takePhoto': 'Take a photo'
   },
   'fi': true
 });

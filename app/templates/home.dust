@@ -4,3 +4,5 @@
        disabled="disabled" value="{translations.leaderboard}">
 <input type="button" class="text-only-btn" data-nav="photopicker"
        disabled="disabled" value="{translations.choosePhoto}">
+<input type="button" class="text-only-btn" data-nav="photobooth"
+       disabled="disabled" value="{translations.takePhoto}">
