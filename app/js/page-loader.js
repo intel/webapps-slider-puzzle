@@ -66,11 +66,17 @@ define(['Q'], function (Q) {
 
         var elt = document.querySelector(selector);
 
-        page.init(elt).then(function (page) {
-          pages[pageName].object = page;
-          pages[pageName].isLoading = false;
-          done.resolve(page);
-        });
+        page.init(elt).then(
+          function (page) {
+            pages[pageName].object = page;
+            pages[pageName].isLoading = false;
+            done.resolve(page);
+          },
+          function (e) {
+            done.reject(e);
+          }
+        )
+        .done();
       });
     }
 
@@ -94,7 +100,7 @@ define(['Q'], function (Q) {
    * when the page is opened
    */
   var open = function (pageName, params) {
-    load(pageName).done(
+    load(pageName).then(
       function (page) {
         for (var k in pages) {
           if (k !== pageName && pages[k].object) {
@@ -106,7 +112,8 @@ define(['Q'], function (Q) {
       function (err) {
         console.error(err.stack);
       }
-    );
+    )
+    .done();
   };
 
   /**
@@ -116,14 +123,15 @@ define(['Q'], function (Q) {
    * pages; it's up to the popup to make itself modal, add an overlay etc.
    */
   var popup = function (popupName, params) {
-    load(popupName).done(
+    load(popupName).then(
       function (popup) {
         popup.show(params);
       },
       function (err) {
         console.error(err.stack);
       }
-    );
+    )
+    .done();
   };
 
   return {

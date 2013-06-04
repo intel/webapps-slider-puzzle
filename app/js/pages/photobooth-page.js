@@ -109,7 +109,9 @@ function (Q, $, render, Page, Camera, Filer, translations) {
         var canvas = self.elt.find('canvas');
         var canvasElt = canvas.get(0);
         var camera = new Camera(videoElt, canvasElt);
+
         var cameraReady = camera.init();
+        cameraReady.fail(dfd.reject);
 
         // elements holding the video, canvas and title
         self.webcam = self.elt.find('.photobooth-webcam');

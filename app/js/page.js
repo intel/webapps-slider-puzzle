@@ -43,9 +43,16 @@ define(['lodash', 'page-loader'], function (_, pageLoader) {
         popupOrOpen(data, navType);
       }
       else {
-        pageLoader.load(data.pagename).then(function () {
-          popupOrOpen(data, navType);
-        });
+        pageLoader.load(data.pagename)
+        .then(
+          function () {
+            popupOrOpen(data, navType);
+          },
+          function (e) {
+            console.error(e)
+          }
+        )
+        .done();
       }
     },
 
@@ -62,9 +69,16 @@ define(['lodash', 'page-loader'], function (_, pageLoader) {
           setupButton(btn, data);
         }
         else {
-          pageLoader.load(data.pagename).then(function () {
-            setupButton(btn, data);
-          });
+          pageLoader.load(data.pagename)
+          .then(
+            function () {
+              setupButton(btn, data);
+            },
+            function (e) {
+              console.error(e);
+            }
+          )
+          .done();
         }
       });
     }
