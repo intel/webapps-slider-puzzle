@@ -6,7 +6,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  */
-define(['Q'], function (Q) {
+define(['Q', 'lodash'], function (Q, _) {
   'use strict';
 
   var onTizen = (typeof tizen !== 'undefined');
@@ -103,8 +103,19 @@ define(['Q'], function (Q) {
     return dfd.promise;
   };
 
-  // save the content of the canvas to a file
-  Camera.prototype.save = function () {
+  // return the content of the canvas as a blob
+  Camera.prototype.getBlob = function () {
+    var mimeType = 'image/png';
+
+    var dataUri = this.canvasElt.toDataURL(mimeType, 0.5);
+    var bytes = atob(dataUri.split(',')[1]);
+
+    var byteArray = new Uint8Array(bytes.length);
+    for (var i = 0; i < bytes.length; i++) {
+      byteArray[i] = bytes.charCodeAt(i);
+    }
+
+    return new Blob([byteArray], {type: mimeType});
   };
 
   return Camera;

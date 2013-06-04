@@ -24,8 +24,8 @@
         <canvas></canvas>
         <div class="hbox-flex">
           <div class="box-panel hbox box-pack-center-align-center">
-            <button class="text-only-btn" data-photobooth-keep-snapshot="yes">{translations.yes}</button>
-            <button class="text-only-btn" data-photobooth-keep-snapshot="no">{translations.no}</button>
+            <button class="text-only-btn" data-photobooth-keep="yes">{translations.yes}</button>
+            <button class="text-only-btn" data-photobooth-keep="no">{translations.no}</button>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ function (Q, $, render, Page, Camera, translations) {
     title: null,
 
     showWebcam: function () {
-      if (this.webcam && this.snapshot) {
+      if (this.webcam && this.snapshot && this.title) {
         this.webcam.attr('data-photobooth-webcam-on', 'true');
         this.snapshot.attr('data-photobooth-snapshot-on', 'false');
 
@@ -36,7 +36,7 @@ function (Q, $, render, Page, Camera, translations) {
     },
 
     showSnapshot: function () {
-      if (this.webcam && this.snapshot) {
+      if (this.webcam && this.snapshot && this.title) {
         this.webcam.attr('data-photobooth-webcam-on', 'false');
         this.snapshot.attr('data-photobooth-snapshot-on', 'true');
 
@@ -95,7 +95,19 @@ function (Q, $, render, Page, Camera, translations) {
               );
             });
 
-            // canvas buttons: save or cancel
+            // keep photo buttons: yes/no
+            var yesBtn = self.elt.find('[data-photobooth-keep="yes"]');
+            yesBtn.on('click', function () {
+              var blob = camera.getBlob();
+              console.log(blob);
+
+              // TODO save blob
+
+              self.showWebcam();
+            });
+
+            var noBtn = self.elt.find('[data-photobooth-keep="no"]');
+            noBtn.on('click', self.showWebcam.bind(self));
 
             dfd.resolve(self);
           },
