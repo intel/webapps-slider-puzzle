@@ -1,4 +1,4 @@
-<div data-page="photobooth">
+<div data-page="photobooth" class="page-inactive">
 
   <div class="hbox-flex photobooth-header">
     <div class="box-panel hbox box-pack-start-align-center">
