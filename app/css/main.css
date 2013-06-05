@@ -321,6 +321,9 @@ label {
 
 /* slide menu for game page */
 .slide-menu {
+  display: flex;
+  display: -webkit-flex;
+
   position: absolute;
   bottom: 18%;
   width: 90%;
@@ -346,13 +349,13 @@ label {
   border-image-slice: 50% 33%;
 }
 
-.slide-menu[data-menu-side=left] {
+.slide-menu[data-menu-side="left"] {
   right: 95.5%;
   -webkit-box-pack: end;
   -moz-box-pack: end;
 }
 
-.slide-menu[data-menu-side=right] {
+.slide-menu[data-menu-side="right"] {
   left: 95.5%;
   -webkit-box-pack: start;
   -moz-box-pack: start;
@@ -411,6 +414,8 @@ label {
 .slide-menu-panel {
   margin: 0 1% 0 1%;
   overflow: hidden;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
 }
 
 .slide-menu-panel .game-info-line {

@@ -19,6 +19,7 @@ define(['rye', 'stapes'], function ($, Stapes) {
     // handler for clicks on the slide menu controls
     this.slide = function () {
       var menu = this.elt;
+      var menuRawElt = this.elt.get(0);
       var menuCtrl = this.menuCtrlElt;
       var otherMenu = this.otherMenuElt;
 
@@ -40,23 +41,34 @@ define(['rye', 'stapes'], function ($, Stapes) {
       // the action that the menu control will do next time it's clicked
       var nextAction = (endState === 'out' ? 'close' : 'open');
 
-      menu.on('webkitAnimationEnd', function () {
+      var animationEndListener = function () {
+        console.log('end of animation');
         menu.attr('data-menu-state', endState);
         menuCtrl.attr('data-menu-action', nextAction);
         self.emit(endState);
-        menu.removeListener('webkitAnimationEnd');
-      });
+        menuRawElt.removeEventListener('webkitAnimationEnd', animationEndListener);
+        menuRawElt.removeEventListener('animationend', animationEndListener);
+      };
+
+      menuRawElt.addEventListener('webkitAnimationEnd', animationEndListener);
+      menuRawElt.addEventListener('animationend', animationEndListener);
 
       self.emit('animating-' + endState);
       menu.attr('data-menu-state', 'animating');
-      menu.css('-webkit-animation-name', animationName);
+      menu.css({
+        '-webkit-animation-name': animationName,
+        'animation-name': animationName
+      });
     };
 
     // close without animation
     this.close = function () {
-      this.elt.removeListener('webkitAnimationEnd');
+      this.elt.removeListener('webkitAnimationEnd animationend');
       this.elt.attr('data-menu-state', 'in');
-      this.elt.css('-webkit-animation-name', '');
+      this.elt.css({
+        '-webkit-animation-name': '',
+        'animation-name': ''
+      });
       this.menuCtrlElt.attr('data-menu-action', 'open');
     };
 
