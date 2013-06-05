@@ -321,9 +321,6 @@ label {
 
 /* slide menu for game page */
 .slide-menu {
-  display: flex;
-  display: -webkit-flex;
-
   position: absolute;
   bottom: 18%;
   width: 90%;
