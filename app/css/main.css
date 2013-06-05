@@ -35,11 +35,15 @@ body * {
 
 /* page styling */
 .page-container {
+  display: none;
   width: 1024px;
   height: 600px;
   overflow: hidden;
   transform-origin: top left;
   -webkit-transform-origin: top left;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 
   /* NB this has to be 2px otherwise webkit makes a mess
    * and the slider menus on the game page render with a transparent
@@ -48,8 +52,6 @@ body * {
    */
   border-right: 2px solid #ccc;
   border-left: 2px solid #ccc;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
 }
 
 .page-inactive {

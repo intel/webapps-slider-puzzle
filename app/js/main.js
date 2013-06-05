@@ -52,7 +52,6 @@ require(['page-loader', 'fastclick', 'domReady!'], function (pageLoader, Fastcli
     containerStyle.transform = scaleTransform + ' ' +
                                   translateTransform;
     containerStyle.position = 'absolute';
-
   };
 
   Fastclick.attach(document.body);
@@ -61,6 +60,11 @@ require(['page-loader', 'fastclick', 'domReady!'], function (pageLoader, Fastcli
   window.addEventListener('orientationchange', scale);
 
   scale();
+
+  // apply borders to the page container once it has had its first resize
+  setTimeout(function () {
+    container.style.display = 'block';
+  }, 0);
 
   // lock orientation
   if (screen.lockOrientation) {
