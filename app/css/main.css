@@ -113,10 +113,8 @@ body * {
 
 /* containers */
 .hbox {
-  display: box;
   display: -webkit-box;
   display: -moz-box;
-  box-orient: horizontal;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
 }
@@ -124,17 +122,13 @@ body * {
 .hbox-flex {
   display: flex;
   display: -webkit-flex;
-  display: -moz-flex;
   flex-direction: row;
   -webkit-flex-direction: row;
-  -moz-flex-direction: row;
 }
 
 .vbox {
-  display: box;
   display: -webkit-box;
   display: -moz-box;
-  box-orient: vertical;
   -webkit-box-orient: vertical;
   -moz-box-orient: vertical;
 }
@@ -142,50 +136,39 @@ body * {
 .box-panel {
   flex-grow: 1;
   -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
 }
 
 .box-pack-end-align-center {
-  box-pack: end;
   -webkit-box-pack: end;
   -moz-box-pack: end;
-  box-align: center;
   -webkit-box-align: center;
   -moz-box-align: center;
 }
 
 .box-pack-center-align-center {
-  box-pack: center;
   -webkit-box-pack: center;
   -moz-box-pack: center;
-  box-align: center;
   -webkit-box-align: center;
   -moz-box-align: center;
 }
 
 .box-pack-center-align-start {
-  box-pack: center;
   -webkit-box-pack: center;
   -moz-box-pack: center;
-  box-align: start;
   -webkit-box-align: start;
   -moz-box-align: start;
 }
 
 .box-pack-start-align-center {
-  box-pack: start;
   -webkit-box-pack: start;
   -moz-box-pack: start;
-  box-align: center;
   -webkit-box-align: center;
   -moz-box-align: center;
 }
 
 .box-pack-start-align-start {
-  box-pack: start;
   -webkit-box-pack: start;
   -moz-box-pack: start;
-  box-align: start;
   -webkit-box-align: start;
   -moz-box-align: start;
 }
@@ -199,7 +182,6 @@ input[type=button], button {
   font-size: 220%;
   display: flex;
   display: -webkit-flex;
-  display: -moz-flex;
   background-color: rgba(0, 0, 0, 0.0);
   font-family: Graduate;
   text-transform: uppercase;
@@ -214,7 +196,7 @@ input[type=button], button {
 
 .text-entry {
   outline-color: #999;
-  font-size: 190%%;
+  font-size: 190%;
   border: thin solid #999;
 }
 
@@ -333,7 +315,6 @@ label {
 .game-image {
   display: flex;
   display: -webkit-flex;
-  display: -moz-flex;
   max-width: 95%;
   max-height: 95%;
 }
@@ -368,14 +349,12 @@ label {
 
 .slide-menu[data-menu-side=left] {
   right: 95.5%;
-  box-pack: end;
   -webkit-box-pack: end;
   -moz-box-pack: end;
 }
 
 .slide-menu[data-menu-side=right] {
   left: 95.5%;
-  box-pack: start;
   -webkit-box-pack: start;
   -moz-box-pack: start;
 }
@@ -586,29 +565,22 @@ label {
 .leaderboard-scores-for-difficulty {
   display: flex;
   display: -webkit-flex;
-  display: -moz-flex;
   flex-grow: 1;
   -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
   flex-basis: 0;
   -webkit-flex-basis: 0;
-  -moz-flex-basis: 0;
   flex-direction: column;
   -webkit-flex-direction: column;
-  -moz-flex-direction: column;
   height: 100%;
 }
 
 .leaderboard-scores-container {
   display: flex;
   display: -webkit-flex;
-  display: -moz-flex;
   flex-grow: 1;
   -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
   flex-direction: row;
   -webkit-flex-direction: row;
-  -moz-flex-direction: row;
   width: 90%;
   height: 15%;
 }
@@ -627,7 +599,6 @@ label {
 .leaderboard-thumb {
   flex-basis: 0;
   -webkit-flex-basis: 0;
-  -moz-flex-basis: 0;
   border: thin solid white;
   background-color: #e3f4fb;
   border-collapse: collapse;
@@ -642,19 +613,16 @@ label {
 .leaderboard-score-position {
   flex-grow: 1;
   -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
 }
 
 .leaderboard-score-details {
   flex-grow: 2;
   -webkit-flex-grow: 2;
-  -moz-flex-grow: 2;
 }
 
 .leaderboard-thumb {
   flex-grow: 3;
   -webkit-flex-grow: 3;
-  -moz-flex-grow: 3;
   padding: 0.1em;
 }
 
@@ -667,7 +635,6 @@ label {
 [data-leaderboard-filter-control] {
   flex-grow: 1;
   -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
 }
 
 [data-leaderboard-filter=time] [data-leaderboard-by=moves] {
@@ -742,16 +709,11 @@ label {
 .photopicker-gallery {
   display: flex;
   display: -webkit-flex;
-  display: -moz-flex;
   flex-direction: row;
   -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
   justify-content: center;
   -webkit-justify-content: center;
-  -moz-justify-content: center;
   overflow-y: scroll;
   height: 80%;
 }
@@ -813,7 +775,6 @@ label {
 }
 
 .puzzle-tile {
-  position: absolute;
   margin: 0;
   padding: 0;
   background-repeat: no-repeat;
