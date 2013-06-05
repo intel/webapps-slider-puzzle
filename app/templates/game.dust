@@ -1,8 +1,8 @@
 <div data-page="game" class="page-inactive">
-  <div class="game-image-container" data-widget="puzzle"></div>
+  <div class="game-image-container hbox box-pack-center-align-center" data-widget="puzzle"></div>
 
   <!-- left slide menu -->
-  <div class="slide-menu hbox" data-menu-side="left" data-menu-state="in">
+  <div class="slide-menu hbox box-pack-end-align-center" data-menu-side="left" data-menu-state="in">
     <div class="slide-menu-panel vbox box-pack-start-align-start" data-widget="game-info"></div>
     <div class="slide-menu-panel" data-widget="leaderboard-mini"></div>
 
@@ -15,7 +15,7 @@
   </div>
 
   <!-- right slide menu -->
-  <div class="slide-menu hbox" data-menu-side="right" data-menu-state="in">
+  <div class="slide-menu hbox box-pack-start-align-center" data-menu-side="right" data-menu-state="in">
     <div class="slide-menu-control vbox box-pack-center-align-center icon round-icon" data-menu-action="open"></div>
 
     <div class="slide-menu-panel" data-widget="game-level-select"></div>

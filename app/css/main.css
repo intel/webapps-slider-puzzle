@@ -113,13 +113,6 @@ body * {
 
 /* containers */
 .hbox {
-  display: -webkit-box;
-  display: -moz-box;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-}
-
-.hbox-flex {
   display: flex;
   display: -webkit-flex;
   flex-direction: row;
@@ -127,10 +120,10 @@ body * {
 }
 
 .vbox {
-  display: -webkit-box;
-  display: -moz-box;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
 }
 
 .box-panel {
@@ -139,38 +132,38 @@ body * {
 }
 
 .box-pack-end-align-center {
-  -webkit-box-pack: end;
-  -moz-box-pack: end;
-  -webkit-box-align: center;
-  -moz-box-align: center;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  align-items: center;
+  -webkit-align-items: center;
 }
 
 .box-pack-center-align-center {
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -webkit-box-align: center;
-  -moz-box-align: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
 }
 
 .box-pack-center-align-start {
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -webkit-box-align: start;
-  -moz-box-align: start;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
 }
 
 .box-pack-start-align-center {
-  -webkit-box-pack: start;
-  -moz-box-pack: start;
-  -webkit-box-align: center;
-  -moz-box-align: center;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  align-items: center;
+  -webkit-align-items: center;
 }
 
 .box-pack-start-align-start {
-  -webkit-box-pack: start;
-  -moz-box-pack: start;
-  -webkit-box-align: start;
-  -moz-box-align: start;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
 }
 
 /* form elements */
@@ -322,21 +315,19 @@ label {
 /* slide menu for game page */
 .slide-menu {
   position: absolute;
-  bottom: 18%;
+  bottom: 14%;
   width: 90%;
-  height: 18%;
+  height: 21%;
   z-index: 750;
 
   animation-duration: 0.5s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 
-  -webkit-box-align: center;
   -webkit-animation-duration: 0.5s;
   -webkit-animation-timing-function: ease-out;
   -webkit-animation-fill-mode: forwards;
 
-  -moz-box-align: center;
   -moz-animation-duration: 0.5s;
   -moz-animation-timing-function: ease-out;
   -moz-animation-fill-mode: forwards;
@@ -348,14 +339,10 @@ label {
 
 .slide-menu[data-menu-side="left"] {
   right: 95.5%;
-  -webkit-box-pack: end;
-  -moz-box-pack: end;
 }
 
 .slide-menu[data-menu-side="right"] {
   left: 95.5%;
-  -webkit-box-pack: start;
-  -moz-box-pack: start;
 }
 
 /* docked slide menu */
@@ -501,45 +488,8 @@ label {
   }
 }
 
-@-moz-keyframes slide-menu-left-out {
-  0% {
-    right: 95.5%;
-  }
-  100% {
-    right: 10%;
-  }
-}
-
-@-moz-keyframes slide-menu-left-in {
-  0% {
-    right: 10%;
-  }
-  100% {
-    right: 95.5%;
-  }
-}
-
-@-moz-keyframes slide-menu-right-out {
-  0% {
-    left: 95.5%;
-  }
-  100% {
-    left: 10%;
-  }
-}
-
-@-moz-keyframes slide-menu-right-in {
-  0% {
-    left: 10%;
-  }
-  100% {
-    left: 95.5%;
-  }
-}
-
 /* game information panel */
 [data-widget=game-info] {
-  max-width: 28%;
   margin-right: 3em;
 }
 
@@ -764,7 +714,6 @@ label {
   position: relative;
   height: 90%;
   width: 90%;
-  margin: 5%;
 }
 
 .puzzle-frame[data-puzzle-frame-state=hidden] {
@@ -791,8 +740,8 @@ label {
 
 .finish-ribbon {
   position: absolute;
-  height: 18%;
-  bottom: -25%;
+  height: 21%;
+  bottom: -28%;
   left: 0;
   width: 100%;
   z-index: 750;
@@ -841,27 +790,18 @@ label {
 
 @keyframes finish-ribbon-slide-up {
   0% {
-    bottom: -25%;
+    bottom: -28%;
   }
   100% {
-    bottom: 18%;
+    bottom: 14%;
   }
 }
 
 @-webkit-keyframes finish-ribbon-slide-up {
   0% {
-    bottom: -25%;
+    bottom: -28%;
   }
   100% {
-    bottom: 18%;
-  }
-}
-
-@-moz-keyframes finish-ribbon-slide-up {
-  0% {
-    bottom: -25%;
-  }
-  100% {
-    bottom: 18%;
+    bottom: 14%;
   }
 }
