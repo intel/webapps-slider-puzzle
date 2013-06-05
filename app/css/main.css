@@ -37,6 +37,8 @@ body * {
   width: 1024px;
   height: 600px;
   overflow: hidden;
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
 
   /* NB this has to be 2px otherwise webkit makes a mess
    * and the slider menus on the game page render with a transparent
@@ -658,10 +660,17 @@ label {
 
 /* photopicker gallery, frame, image */
 .photopicker-gallery {
-  display: flex;
+
+  /* Firefox doesn't support multi-line flex boxes,
+   * so it gets a single column instead for now;
+   * uncomment this when flex-wrap works
+   */
+  /* display: flex; */
+
   display: -webkit-flex;
   flex-direction: row;
   -webkit-flex-direction: row;
+  flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
   justify-content: center;
   -webkit-justify-content: center;

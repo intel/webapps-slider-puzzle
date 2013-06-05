@@ -40,22 +40,24 @@ require(['page-loader', 'fastclick', 'domReady!'], function (pageLoader, Fastcli
     var scaleTransform = 'scale(' + scaleBoth + ',' + scaleBoth + ')';
 
     var left = (availableWidth - (containerWidth * scaleBoth)) / 2;
-    left = left * (1 / scaleBoth);
+    left = parseInt(left * (1 / scaleBoth));
 
     var top = (availableHeight - (containerHeight * scaleBoth)) / 2;
-    top = top * (1 / scaleBoth);
+    top = parseInt(top * (1 / scaleBoth));
 
     var translateTransform = 'translate(' + left + 'px, ' + top + 'px)';
 
     containerStyle['-webkit-transform'] = scaleTransform + ' ' +
-                                           translateTransform;
-    containerStyle['-webkit-transform-origin'] = '0 0';
+                                          translateTransform;
+    containerStyle['transform'] = scaleTransform + ' ' +
+                                  translateTransform;
     containerStyle.position = 'absolute';
+
   };
 
   Fastclick.attach(document.body);
 
-  window.addEventListener('resize', scale);
+  window.onresize = scale;
   window.addEventListener('orientationchange', scale);
 
   scale();
