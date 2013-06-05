@@ -19,24 +19,20 @@ define(['sound'], function (Sound) {
     if (!this.sounds[name]) {
       this.sounds[name] = new Sound(this.files[name]);
     }
+    return this.sounds[name];
   };
 
   SoundBoard.prototype.play = function (name) {
-    var self = this;
+    var sound = this.load(name);
 
-    if (!this.sounds[name].ready) {
-      this.load(name);
-
-      this.sounds[name].on('ready', function () {
-        self.sounds[name].play();
+    if (!sound.ready) {
+      sound.on('ready', function () {
+        sound.play();
+        sound.off('ready');
       });
     }
     else {
-      if (this.sounds[name].isPlaying) {
-        this.sounds[name].stop();
-      }
-
-      this.sounds[name].play();
+      sound.play();
     }
   };
 

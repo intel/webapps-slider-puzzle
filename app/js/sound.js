@@ -15,13 +15,18 @@ define(['stapes'], function (Stapes) {
     this.ready = false;
     this.isPlaying = false;
 
-    this.audio = new Audio(file);
+    this.audio = new Audio();
     this.audio.autoplay = false;
     this.audio.buffer = true;
 
-    this.audio.addEventListener('canplay', function () {
+    this.audio.addEventListener('canplaythrough', function () {
+      var firstTime = !self.ready;
+
       self.ready = true;
-      self.emit('ready');
+
+      if (firstTime) {
+        self.emit('ready');
+      }
     });
 
     this.audio.addEventListener('pause', function () {
@@ -34,18 +39,24 @@ define(['stapes'], function (Stapes) {
     });
 
     Stapes.mixinEvents(this);
+
+    this.audio.src = file;
   };
 
   Sound.prototype.play = function () {
-    if (this.ready && !this.isPlaying) {
-      this.audio.play();
+    if (!this.ready) {
+      return;
     }
+
+    if (this.isPlaying) {
+      this.stop();
+    }
+
+    this.audio.play();
   };
 
   Sound.prototype.stop = function () {
-    if (this.ready && this.isPlaying) {
-      this.audio.pause();
-    }
+    this.audio.pause();
   };
 
   return Sound;
