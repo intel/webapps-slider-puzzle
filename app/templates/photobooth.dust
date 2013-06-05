@@ -1,6 +1,6 @@
 <div data-page="photobooth" class="page-inactive">
 
-  <div class="hbox-flex photobooth-header">
+  <div class="hbox photobooth-header">
     <div class="box-panel hbox box-pack-start-align-center">
       <h1 class="page-heading">
         <span data-photobooth-webcam-on="true">{translations.touchToTakePhoto}</span>
@@ -22,7 +22,7 @@
 
       <div class="photobooth-snapshot" data-photobooth-snapshot-on="false">
         <canvas></canvas>
-        <div class="hbox-flex">
+        <div class="hbox">
           <div class="box-panel hbox box-pack-center-align-center">
             <button class="text-only-btn" data-photobooth-keep="yes">{translations.yes}</button>
             <button class="text-only-btn" data-photobooth-keep="no">{translations.no}</button>

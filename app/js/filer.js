@@ -37,6 +37,17 @@ define(['Q'], function (Q) {
       );
     };
 
+    var rmdir = function (fs) {
+      fs.root.getDirectory(
+        self.dirName,
+        {},
+        function (dirEntry) {
+          dirEntry.removeRecursively(function () { mkdir(fs); }, errorHandler);
+        },
+        errorHandler
+      );
+    };
+
     navigator.webkitPersistentStorage.requestQuota(
       this.quotaDesired,
 
@@ -44,7 +55,7 @@ define(['Q'], function (Q) {
         webkitRequestFileSystem(
           PERSISTENT,
           grantedBytes,
-          mkdir,
+          rmdir,
           errorHandler
         );
       },
@@ -66,6 +77,7 @@ define(['Q'], function (Q) {
     // TODO make a filename for this file
     var filename = 'slider-puzzle-' + ((new Date()).getTime()) + '.png';
 
+    // TODO clean up this mess
     // make the file
     this.dir.getFile(
       filename,
@@ -75,8 +87,6 @@ define(['Q'], function (Q) {
         entry.createWriter(
           function (filewriter) {
             filewriter.onwriteend = function () {
-              console.log('blob written to ' + filename);
-
               entry.file(
                 function (file) {
                   var reader = new FileReader();
@@ -85,7 +95,7 @@ define(['Q'], function (Q) {
                     var data = this.result;
 
                     dfd.resolve({
-                      id: entry.fullPath,
+                      id: file.name,
                       full: data,
                       thumb: data,
                       creator: 'camera'

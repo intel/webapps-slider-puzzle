@@ -17,10 +17,6 @@ function ($, Q, render, Page, photoCollection, translations) {
       var self = this;
 
       this.templateName = 'photopicker';
-      this.data = {
-        photos: photoCollection.getAllAsArray(),
-        translations: translations
-      };
 
       this.parentElt = $(elt);
 
@@ -41,19 +37,21 @@ function ($, Q, render, Page, photoCollection, translations) {
     },
 
     show: function () {
-      if (this.elt) {
-        this.showElement();
-      }
-      else {
-        var self = this;
+      var self = this;
 
-        render(this.templateName, this.data).then(function (html) {
-          self.parentElt.append(html);
-          self.elt = self.parentElt.find('[data-page=photopicker]');
-          self.enableNavButtons();
-          self.showElement();
-        });
-      }
+      this.parentElt.find('[data-page=photopicker]').remove();
+
+      var data = {
+        photos: photoCollection.getAllAsArray(),
+        translations: translations
+      };
+
+      render(this.templateName, data).then(function (html) {
+        self.parentElt.append(html);
+        self.elt = self.parentElt.find('[data-page=photopicker]');
+        self.enableNavButtons();
+        self.showElement();
+      });
     },
 
     hide: function () {

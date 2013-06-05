@@ -13,7 +13,11 @@ function (Stapes, _, photosJson) {
 
   // a photo collection which includes photos from the game
   // as well as photos added from snapshots via the camera
-  var PhotoCollection = Stapes.subclass();
+  var PhotoCollection = Stapes.subclass({
+    addPhoto: function (photo) {
+      photoCollection.set(photo.id, photo);
+    }
+  });
 
   var photoCollection = new PhotoCollection();
 

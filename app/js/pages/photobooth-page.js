@@ -7,8 +7,8 @@
  *
  */
 define(
-['Q', 'rye', 'dust-render', 'page', 'camera', 'filer', 'i18n!../../nls/strings'],
-function (Q, $, render, Page, Camera, Filer, translations) {
+['Q', 'rye', 'dust-render', 'page', 'camera', 'filer', 'photo-collection', 'i18n!../../nls/strings'],
+function (Q, $, render, Page, Camera, Filer, photoCollection, translations) {
   'use strict';
 
   return Page({
@@ -74,7 +74,8 @@ function (Q, $, render, Page, Camera, Filer, translations) {
 
         // save blob to filesystem
         self.filer.saveBlob(blob).then(function (photo) {
-          console.log(JSON.stringify(photo));
+          // add to photo collection
+          photoCollection.addPhoto(photo);
         });
 
         self.showWebcam();
