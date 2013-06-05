@@ -19,7 +19,6 @@ define(['rye', 'stapes'], function ($, Stapes) {
     // handler for clicks on the slide menu controls
     this.slide = function () {
       var menu = this.elt;
-      var menuRawElt = this.elt.get(0);
       var menuCtrl = this.menuCtrlElt;
       var otherMenu = this.otherMenuElt;
 
@@ -42,16 +41,15 @@ define(['rye', 'stapes'], function ($, Stapes) {
       var nextAction = (endState === 'out' ? 'close' : 'open');
 
       var animationEndListener = function () {
-        console.log('end of animation');
         menu.attr('data-menu-state', endState);
         menuCtrl.attr('data-menu-action', nextAction);
         self.emit(endState);
-        menuRawElt.removeEventListener('webkitAnimationEnd', animationEndListener);
-        menuRawElt.removeEventListener('animationend', animationEndListener);
+        menu.removeListener('webkitAnimationEnd');
+        menu.removeListener('animationend');
       };
 
-      menuRawElt.addEventListener('webkitAnimationEnd', animationEndListener);
-      menuRawElt.addEventListener('animationend', animationEndListener);
+      menu.addListener('webkitAnimationEnd', animationEndListener);
+      menu.addListener('animationend', animationEndListener);
 
       self.emit('animating-' + endState);
       menu.attr('data-menu-state', 'animating');
@@ -63,7 +61,8 @@ define(['rye', 'stapes'], function ($, Stapes) {
 
     // close without animation
     this.close = function () {
-      this.elt.removeListener('webkitAnimationEnd animationend');
+      this.elt.removeListener('webkitAnimationEnd');
+      this.elt.removeListener('animationend');
       this.elt.attr('data-menu-state', 'in');
       this.elt.css({
         '-webkit-animation-name': '',
