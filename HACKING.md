@@ -15,7 +15,7 @@ You also need bower to install the client-side dependencies:
 
     npm install -g bower
 
-You should then install the client-side dependencies into lib/:
+You should then install the client-side dependencies into app/lib/:
 
     bower install
 
@@ -77,15 +77,12 @@ There are a few options for running the application:
     replacing them with references to a single minified script file
     and a single minified CSS file.
 
-    The expectation is that your application will only contain a single
-    HTML file which loads other content via Ajax. It may not work
-    well out of the box for applications composed of multiple
-    standalone HTML files, each with their own html element etc.
-
-*   Install an SDK-specific version of the app (no minification or
-    concatenation) with:
+*   Install a version of the app without minification or
+    concatenation with:
 
         grunt sdk-install
+
+    This can be useful for debugging on a device.
 
 *   Build the files for the Chrome extension with:
 
@@ -94,7 +91,7 @@ There are a few options for running the application:
     then load the build/crx directory as an unpacked extension in Chrome
     developer mode. (The build can't currently make full .crx packages.)
 
-    NOTE: any inline scripts in your index.html file will be stripped
+    NOTE: any inline scripts in the index.html file will be stripped
     out by this build, as they are not allowed in Chrome extensions.
 
 # RUNNING TESTS
@@ -152,12 +149,7 @@ CSS, and HTML) using:
 Note that in both cases, the files comprising the packages are
 first copied into the build/wgt and build/sdk directories respectively.
 
-# USING AND ADDING TO THE SKELETON
-
-To use the skeleton, make your own copy and then modify
-package.json, packages/wgt/config.xml and packages/crx/manifest.json,
-changing the application IDs, widget IDs, adding any privileges you need,
-etc.
+# USING AND ADDING TO THE APPLICATION
 
 The convention is to put files in the following locations:
 
@@ -265,7 +257,7 @@ app/js/newmodule.js, you'd do this:
       return NewModule;
     });
 
-# A NOTE ON BEST PRACTICES
+# "BEST" PRACTICE
 
 Some of the practices used in this application are not necessarily
 appropriate for applications served on the open web.
@@ -279,8 +271,8 @@ generic web applications:
     This is because we ran some performance tests which indicated that
     a single minified JS file loads faster in Tizen than multiple
     minified JS files, where the resources are already on the
-    filesystem. In the case for Tizen web apps and Chrome extensions,
-    all the resources are locally available.
+    filesystem. In the case of Tizen web apps and Chrome extensions,
+    all the resources are locally available, and loading is fast.
 
     It is possible to run the application without concatenation or
     minification, but the performance will suffer, especially on
@@ -315,10 +307,10 @@ generic web applications:
     via browsers, or across many form factors, a responsive design is
     likely to be more appropriate.
 
-*   We don't cater for old browsers, and we target only WebKit-based
-    browsers. It is heavily reliant on JavaScript and modern CSS
-    features, with no fallbacks or feature detection. Much of its
-    functionality will be broken in older or non-WebKit browsers.
+*   We only target recent Firefox and WebKit-based browsers. The
+    application is heavily reliant on JavaScript and modern CSS features,
+    with no fallbacks or feature detection. Much of its functionality
+    will be broken in older browsers.
 
     Again, this is not an appropriate approach for applications on
     the open web. Graceful degradation, progressive enhancement etc.
