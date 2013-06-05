@@ -49,7 +49,7 @@ define(['lodash', 'page-loader'], function (_, pageLoader) {
             popupOrOpen(data, navType);
           },
           function (e) {
-            console.error(e)
+            console.error(e);
           }
         )
         .done();

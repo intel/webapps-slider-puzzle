@@ -7,6 +7,70 @@
  *
  */
 define(['Q'], function (Q) {
+  'use strict';
+
+  var onTizen = (typeof tizen !== 'undefined');
+
+  var makeDirNonTizen = function (quotaDesired, dirName) {
+    var dfd = Q.defer();
+
+    var errorHandler = function (e) {
+      console.error(e);
+      dfd.reject(e);
+    };
+
+    var mkdir = function (fs) {
+      fs.root.getDirectory(
+        dirName,
+        { create: true },
+        dfd.resolve,
+        errorHandler
+      );
+    };
+
+    var rmdir = function (fs, dirEntry) {
+      if (dirEntry) {
+        dirEntry.removeRecursively(
+          function () {
+            mkdir(fs);
+          },
+          errorHandler
+        );
+      }
+      else {
+        mkdir(fs);
+      }
+    };
+
+    var getdir = function (fs) {
+      fs.root.getDirectory(
+        dirName,
+        {},
+        function (dirEntry) {
+          rmdir(fs, dirEntry);
+        },
+        errorHandler
+      );
+    };
+
+    navigator.webkitPersistentStorage.requestQuota(
+      quotaDesired,
+
+      function (grantedBytes) {
+        webkitRequestFileSystem(
+          PERSISTENT,
+          grantedBytes,
+          getdir,
+          errorHandler
+        );
+      },
+
+      errorHandler
+    );
+
+    return dfd.promise;
+  };
+
   // object to save blobs to local filesystem
   var Filer = function (storageMb, dirName) {
     this.quotaDesired = storageMb * 1024 * 1024;
@@ -18,50 +82,18 @@ define(['Q'], function (Q) {
     var self = this;
     var dfd = Q.defer();
 
-    var dirReady = function (directory) {
-      self.dir = directory;
-      dfd.resolve();
-    };
-
-    var errorHandler = function (e) {
-      console.error(e);
-      dfd.reject(e);
-    };
-
-    var mkdir = function (fs) {
-      fs.root.getDirectory(
-        self.dirName,
-        {create: true},
-        dirReady,
-        errorHandler
-      );
-    };
-
-    var rmdir = function (fs) {
-      fs.root.getDirectory(
-        self.dirName,
-        {},
-        function (dirEntry) {
-          dirEntry.removeRecursively(function () { mkdir(fs); }, errorHandler);
+    if (onTizen) {
+      // TODO
+    }
+    else {
+      makeDirNonTizen(this.quotaDesired, this.dirName).then(
+        function (directory) {
+          self.dir = directory;
+          dfd.resolve();
         },
-        errorHandler
+        dfd.reject
       );
-    };
-
-    navigator.webkitPersistentStorage.requestQuota(
-      this.quotaDesired,
-
-      function (grantedBytes) {
-        webkitRequestFileSystem(
-          PERSISTENT,
-          grantedBytes,
-          rmdir,
-          errorHandler
-        );
-      },
-
-      errorHandler
-    );
+    }
 
     return dfd.promise;
   };

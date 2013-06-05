@@ -6,7 +6,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  */
-define(['Q', 'lodash'], function (Q, _) {
+define(['Q'], function (Q) {
   'use strict';
 
   var onTizen = (typeof tizen !== 'undefined');

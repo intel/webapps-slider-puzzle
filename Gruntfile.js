@@ -48,7 +48,10 @@ module.exports = function (grunt) {
           require: false,
           define: true, // can be redefined for node integration
           module: false,
-          console: false // we allow some console logging in production
+          console: false, // we allow some console logging in production,
+          webkitRequestFileSystem: false,
+          PERSISTENT: false,
+          alert: false
         },
 
         unused: true,
