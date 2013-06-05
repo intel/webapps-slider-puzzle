@@ -1,10 +1,10 @@
 <div data-page="leaderboard" class="page-inactive" data-leaderboard-filter="time">
-  <div class="hbox-flex">
+  <div class="hbox">
     <div class="box-panel vbox box-pack-center-align-start">
       <h1 class="page-heading">{translations.leaderboard}</h1>
     </div>
 
-    <div class="box-panel hbox-flex">
+    <div class="box-panel hbox">
       <input type="button" class="text-only-btn choice-btn"
              data-leaderboard-filter-control="time"
              data-current="true" value="{translations.time}">
@@ -20,7 +20,7 @@
   </div>
 
 
-  <div class="leaderboard-scores hbox-flex" data-leaderboard-by="time">
+  <div class="leaderboard-scores hbox" data-leaderboard-by="time">
     {#sortedScores}
       <div class="leaderboard-scores-for-difficulty">
         <h2 class="leaderboard-difficulty-heading">{difficultyLevelName}</h2>
@@ -50,7 +50,7 @@
     {/sortedScores}
   </div>
 
-  <div class="leaderboard-scores hbox-flex" data-leaderboard-by="moves">
+  <div class="leaderboard-scores hbox" data-leaderboard-by="moves">
     {#sortedScores}
       <div class="leaderboard-scores-for-difficulty">
         <h2 class="leaderboard-difficulty-heading">{difficultyLevelName}</h2>

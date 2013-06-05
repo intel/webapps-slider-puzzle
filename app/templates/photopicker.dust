@@ -1,5 +1,5 @@
 <div data-page="photopicker" class="page-inactive">
-  <div class="hbox-flex">
+  <div class="hbox">
     <div class="box-panel vbox box-pack-center-align-start">
       <h1 class="page-heading">{translations.choosePhoto}</h1>
     </div>
