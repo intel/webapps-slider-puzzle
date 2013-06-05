@@ -25,7 +25,6 @@ define(['lodash', 'page-loader'], function (_, pageLoader) {
   // attach a page open/popup handler to a button
   var setupButton = function (btn, data) {
     btn.removeAttribute('disabled');
-    btn.removeEventListener('click');
     btn.addEventListener('click', function () {
       popupOrOpen(data, btn.getAttribute('data-nav-rel'));
     });
