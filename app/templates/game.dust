@@ -1,5 +1,5 @@
 <div data-page="game" class="page-inactive">
-  <div class="game-image-container hbox box-pack-center-align-center" data-widget="puzzle"></div>
+  <div class="game-image-container" data-widget="puzzle"></div>
 
   <!-- left slide menu -->
   <div class="slide-menu hbox" data-menu-side="left" data-menu-state="in">

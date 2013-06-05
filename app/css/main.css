@@ -327,7 +327,6 @@ label {
   height: 18%;
   z-index: 750;
 
-  box-align: center;
   animation-duration: 0.5s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
@@ -763,7 +762,7 @@ label {
   position: relative;
   height: 90%;
   width: 90%;
-  background-size: 100% 100%;
+  margin: 5%;
 }
 
 .puzzle-frame[data-puzzle-frame-state=hidden] {
