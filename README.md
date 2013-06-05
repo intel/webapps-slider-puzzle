@@ -1,6 +1,15 @@
 # INTRODUCTION
 
-This is a Tizen/Chrome slider puzzle app.
+This is a Tizen/Chrome/Firefox slider puzzle app.
+
+It has been tested on the following browsers/platforms:
+
+* Firefox 22.0b3 on Linux
+* Google Chrome 27.0.1453.12-dev on Linux
+* Tizen 2.1 web runtime
+
+It is unlikely to run properly on old browsers, as it makes extensive
+use of CSS3 features (flexible box model, animations, transitions etc.).
 
 See HACKING.md for more details about how to use and extend this project.
 
