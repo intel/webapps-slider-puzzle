@@ -55,3 +55,14 @@ the following fonts:
     Author: Aristeides Stathopoulos
     Licence: SIL (http://scripts.sil.org/OFL)
     Homepage: http://aristeides.com/
+
+# SOUNDS
+
+Credits for the sounds in app/audio are as follows:
+
+*   shuffle.ogg
+    Source: http://www.freesound.org/people/thereelfryboy/sounds/35022/
+    Licence: http://creativecommons.org/licenses/sampling+/1.0/
+*   win.ogg
+    Source: Intel Corporation Ltd.
+    Licence: CC-BY (http://creativecommons.org/licenses/by/3.0/us/)
