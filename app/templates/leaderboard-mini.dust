@@ -1,0 +1,28 @@
+<h1 class="mini-heading">{translations.highScores}</h1>
+
+<div class="leaderboard-mini-scores hbox box-pack-center-align-center">
+  <div class="leaderboard-mini-moves">
+    {#scores.scoresByMoves}
+      <p>
+        <span class="leaderboard-mini-position">{position}</span>&nbsp;&nbsp;
+        {?forCurrentGame}
+          <span class="leaderboard-current-game">{who} {moves}</span>
+        {:else}
+          {?who}{who} {moves}{:else}-----{/who}
+        {/forCurrentGame}
+      </p>
+    {/scores.scoresByMoves}
+  </div>
+  <div class="leaderboard-mini-times">
+    {#scores.scoresByTime}
+      <p>
+        <span class="leaderboard-mini-position">{position}</span>&nbsp;&nbsp;
+        {?forCurrentGame}
+          <span class="leaderboard-current-game">{who} {time|dateFilter}</span>
+        {:else}
+          {?who}{who} {time|dateFilter}{:else}-----{/who}
+        {/forCurrentGame}
+      </p>
+    {/scores.scoresByTime}
+  </div>
+</div>

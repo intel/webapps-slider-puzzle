@@ -1,0 +1,6 @@
+<input type="button" class="text-only-btn" data-nav="game"
+       disabled="disabled" value="{translations.quickStart}">
+<input type="button" class="text-only-btn" data-nav="leaderboard"
+       disabled="disabled" value="{translations.leaderboard}">
+<input type="button" class="text-only-btn" data-nav="photopicker"
+       disabled="disabled" value="{translations.choosePhoto}">

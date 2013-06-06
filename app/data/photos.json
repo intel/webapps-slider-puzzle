@@ -1,0 +1,122 @@
+[
+  {
+    "id": "pumpkinPatch",
+    "creator": "Mike McCune",
+    "full": "images/puzzle-photos/mccun934-pumpkin-patch.jpg",
+    "thumb": "images/puzzle-photos/mccun934-pumpkin-patch.thumb.jpg"
+  },
+  {
+    "id": "elephantMotherChild",
+    "creator": "Stuart Seeger",
+    "full": "images/puzzle-photos/StuSeeger-elephant-mother-child.jpg",
+    "thumb": "images/puzzle-photos/StuSeeger-elephant-mother-child.thumb.jpg"
+  },
+  {
+    "id": "waterlily",
+    "creator": "Kathleen Tyler Conklin",
+    "full":"images/puzzle-photos/ktylerconk-water-lily.jpg",
+    "thumb": "images/puzzle-photos/ktylerconk-water-lily.thumb.jpg"
+  },
+  {
+    "id": "lion",
+    "creator": "Ian Sane",
+    "full":"images/puzzle-photos/Ian_Sane-zoo-lion.jpg",
+    "thumb": "images/puzzle-photos/Ian_Sane-zoo-lion.thumb.jpg"
+  },
+  {
+    "id": "bridge",
+    "creator": "Ian Sane",
+    "full":"images/puzzle-photos/Ian_Sane-railroad-bridge.jpg",
+    "thumb": "images/puzzle-photos/Ian_Sane-railroad-bridge.thumb.jpg"
+  },
+  {
+    "id": "forestWaterfall",
+    "creator": "Ian Sane",
+    "full":"images/puzzle-photos/Ian_Sane-forest-waterfall.jpg",
+    "thumb": "images/puzzle-photos/Ian_Sane-forest-waterfall.thumb.jpg"
+  },
+  {
+    "id": "brickWall",
+    "creator": "Ian Sane",
+    "full":"images/puzzle-photos/Ian_Sane-brick-wall.jpg",
+    "thumb": "images/puzzle-photos/Ian_Sane-brick-wall.thumb.jpg"
+  },
+  {
+    "id": "leaf",
+    "creator": "Mike McCune",
+    "full":"images/puzzle-photos/mccun934-leaf-water.jpg",
+    "thumb": "images/puzzle-photos/mccun934-leaf-water.thumb.jpg"
+  },
+  {
+    "id": "redWall",
+    "creator": "Ian Sane",
+    "full":"images/puzzle-photos/Ian_Sane-red-wall.jpg",
+    "thumb": "images/puzzle-photos/Ian_Sane-red-wall.thumb.jpg"
+  },
+  {
+    "id": "rockyBeach",
+    "creator": "Kenny Louie",
+    "full":"images/puzzle-photos/kennymatic-rocky-beach.jpg",
+    "thumb": "images/puzzle-photos/kennymatic-rocky-beach.thumb.jpg"
+  },
+  {
+    "id": "trainStation",
+    "creator": "Ralphman",
+    "full":"images/puzzle-photos/Ralphman-train-station.jpg",
+    "thumb": "images/puzzle-photos/Ralphman-train-station.thumb.jpg"
+  },
+  {
+    "id": "dirtyTruck",
+    "creator": "Jonathan Mueller",
+    "full":"images/puzzle-photos/JonoMueller-dirty-truck.jpg",
+    "thumb": "images/puzzle-photos/JonoMueller-dirty-truck.thumb.jpg"
+  },
+  {
+    "id": "purpleCarrots",
+    "creator": "Mason Masteka",
+    "full":"images/puzzle-photos/Mason_Masteka-purple-carrots.jpg",
+    "thumb": "images/puzzle-photos/Mason_Masteka-purple-carrots.thumb.jpg"
+  },
+  {
+    "id": "fairRide",
+    "creator": "Stuart Seeger",
+    "full":"images/puzzle-photos/StuSeeger-fair-ride.jpg",
+    "thumb": "images/puzzle-photos/StuSeeger-fair-ride.thumb.jpg"
+  },
+  {
+    "id": "ferrisWheel",
+    "creator": "Jeff Muceus",
+    "full":"images/puzzle-photos/pdxjeff-ferris-wheel.jpg",
+    "thumb": "images/puzzle-photos/pdxjeff-ferris-wheel.thumb.jpg"
+  },
+  {
+    "id": "baldEagle",
+    "creator": "Chris Miller",
+    "full":"images/puzzle-photos/Sideonecincy-bald-eagle.jpg",
+    "thumb": "images/puzzle-photos/Sideonecincy-bald-eagle.thumb.jpg"
+  },
+  {
+    "id": "tiger",
+    "creator": "Tom Good",
+    "full":"images/puzzle-photos/Thomas_Good-zoo-tiger.jpg",
+    "thumb": "images/puzzle-photos/Thomas_Good-zoo-tiger.thumb.jpg"
+  },
+  {
+    "id": "daylightTrain",
+    "creator": "Sam Churchill",
+    "full":"images/puzzle-photos/sam_churchill-daylight-train.jpg",
+    "thumb": "images/puzzle-photos/sam_churchill-daylight-train.thumb.jpg"
+  },
+  {
+    "id": "puertoRico",
+    "creator": "Ricardo Mangual",
+    "full":"images/puzzle-photos/Puerto_Rico_Vega_Baja_by_Ricardo_Mangual.jpg",
+    "thumb": "images/puzzle-photos/Puerto_Rico_Vega_Baja_by_Ricardo_Mangual.thumb.jpg"
+  },
+  {
+    "id": "tsoMoriri",
+    "creator": "Prabhu B Doss",
+    "full":"images/puzzle-photos/Tso_Moriri_Lake_by_Probhu_B_Doss.jpg",
+    "thumb": "images/puzzle-photos/Tso_Moriri_Lake_by_Probhu_B_Doss.thumb.jpg"
+  }
+]

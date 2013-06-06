@@ -1,0 +1,25 @@
+<div data-page="help" class="page-inactive">
+  <div class="overlay overlay-opaque vbox box-pack-center-align-center"></div>
+
+  <div class="popup vbox box-pack-center-align-center">
+    <div class="popup-box vbox box-pack-start-align-center help-popup">
+      <div class="help-content-btn-bar hbox box-pack-end-align-center">
+        <button disabled="disabled" class="icon close-btn"
+                data-nav="home" data-icon="close">&nbsp;</button>
+      </div>
+
+      <div class="help-content-panel">
+        <p>The Slider Puzzle slices up a picture and jumbles the pieces. Reassemble the picture in the quickest time or fewest moves.</p>
+
+        <p>Select <em>Quick Start</em> or <em>Choose Photo</em> to start a game.</p>
+
+        <p>Once the puzzle appears, the clock starts ticking. Move pieces by sliding them. To pause the game and display the completed puzzle, use the <span class="icon" data-icon="pause"></span> button. To play again, or change the difficulty level, use the <span class="icon" data-icon="plus"></span> button.</p>
+
+        <p>After you finish a puzzle, your score may qualify for the Leader Board. If it does, enter your name (up to 3 characters), then select <em>Save</em> to record it. Selecting <em>Done</em> takes you back to the home screen.</p>
+
+        <p>Slider Puzzle is an Intel open source project, released under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2.0</a>. All images were released on Flickr under Creative Commons licences. Read more about the project <a href="https://01.org/html5webapps/">on the 01.org website</a>.</p>
+      </div>
+
+    </div>
+  </div>
+</div>

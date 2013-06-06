@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2013, Intel Corporation.
+ *
+ * This program is licensed under the terms and conditions of the
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ */
 module.exports = function (grunt) {
   var path = require('path');
   var fs = require('fs');
@@ -32,10 +40,11 @@ module.exports = function (grunt) {
     var cmd = sdbCmd + ' push ' + localFile + ' ' + remoteDir;
 
     exec(cmd, function (err, stdout, stderr) {
-      if (err) {
-        grunt.log.error('could not push file to device');
+      if (err ||
+          stderr.match('failed to copy') ||
+          stderr.match('cannot stat')) {
         grunt.log.error(stderr);
-        done(err);
+        grunt.fatal('could not push file to device');
       }
       else {
         grunt.log.ok('pushed local:' + localFile + ' to remote:' + remoteDir);
@@ -128,7 +137,7 @@ module.exports = function (grunt) {
     exec(cmd, function (err, stdout, stderr) {
       grunt.log.write(stdout);
 
-      if (err || stdout.match('installation has failed')) {
+      if (err || stdout.match('key[end] val[fail]')) {
         grunt.log.error('error installing package ' + wgtFilePath);
         grunt.log.error(stderr);
         done(new Error('installation failed'));
@@ -160,6 +169,41 @@ module.exports = function (grunt) {
     else {
       cb(new Error('could not read file ' + configXml));
     }
+  };
+
+  // call "sdb root on" to make future sdb commands run as root
+  // on the device
+  var rootOn = function (sdbCmd, cb) {
+    var cmd = sdbCmd + ' root on';
+
+    exec(cmd, function (err, stdout, stderr) {
+      grunt.log.write(stdout);
+
+      if (err) {
+        cb(err);
+      }
+      else {
+        grunt.log.warn('*** called "sdb root on"; commands now running as root ***');
+        cb();
+      }
+    });
+  };
+
+  var rootOff = function (sdbCmd, cb) {
+    var cmd = sdbCmd + ' root off';
+
+    exec(cmd, function (err, stdout, stderr) {
+      grunt.log.write(stdout);
+
+      if (err) {
+        cb(err);
+      }
+      else {
+        grunt.log.ok('*** called "sdb root off"; ' +
+                     'commands no longer running as root ***');
+        cb();
+      }
+    });
   };
 
   // ACTIONS
@@ -457,8 +501,8 @@ module.exports = function (grunt) {
         grunt.log.write(stdout);
 
         if (err || stdout.match('running')) {
-          grunt.log.error('could not start app with ID ' + id);
-          cb(new Error('app with id ' + id + ' could not be launched'));
+          grunt.log.error('could not ' + subcommand + ' app with ID ' + id);
+          cb(new Error('app with id ' + id + ' could not be ' + actionDone));
         }
         else {
           grunt.log.ok('app with id ' + id + ' ' + actionDone);
@@ -542,11 +586,17 @@ module.exports = function (grunt) {
    * Note that the wrt-launcher commands use the <widget> element's
    * id attribute to determine the ID of the app, by default derived from
    * the config.xml file in the root of the project.
+   *
+   * For tasks where asRoot=true, you will need a recent sdb. If you
+   * want to specify the version of sdb to use, set an SDB environment
+   * variable to your sdb path; alternatively, set an sdbCmd property
+   * on a task.
    */
   grunt.registerMultiTask('sdb', 'use Tizen sdb', function () {
-    this.data.sdbCmd = this.data.sdbCmd || 'sdb';
+    this.data.sdbCmd = this.data.sdbCmd || process.env.SDB || 'sdb';
     this.data.config = this.data.config || 'config.xml';
     var action = this.data.action;
+    var asRoot = this.data.asRoot || false;
 
     if (!action) {
       grunt.fatal('sdb task requires action argument');
@@ -554,21 +604,60 @@ module.exports = function (grunt) {
 
     var done = this.async();
 
+    // arguments we'll pass to cmd
+    var args = [this.data];
+
+    // determine which command to execute
+    var cmd = null;
+
     if (action === 'push') {
-      push(this.data, done);
+      cmd = push;
     }
     else if (action === 'install') {
-      install(this.data, done);
+      cmd = install;
     }
     else if (action === 'uninstall') {
-      uninstall(this.data, done);
+      cmd = uninstall;
     }
     else if (action === 'script') {
-      script(this.data, done);
+      cmd = script;
     }
-    // stop, start, debug
+    // stop, start, debug; we need an extra actions argument for this
     else {
-      launch(this.data, action, done);
+      cmd = launch;
+      args.push(action);
+    }
+
+    // if we're doing this as root, do "sdb root on" first, then
+    // execute the command, then "sdb root off"
+    if (asRoot) {
+      var sdbCmd = this.data.sdbCmd;
+
+      var cb = function () {
+        console.log('');
+
+        rootOff(sdbCmd, function (err) {
+          done(err);
+        });
+      };
+
+      args.push(cb);
+
+      rootOn(sdbCmd, function (err) {
+        if (err) {
+          done(err);
+        }
+        else {
+          cmd.apply(null, args);
+        }
+      });
+    }
+    else {
+      // the done() callback is the last argument
+      args.push(done);
+
+      // invoke our command with args
+      cmd.apply(null, args);
     }
   });
 };

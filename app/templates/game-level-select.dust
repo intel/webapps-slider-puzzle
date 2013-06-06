@@ -1,0 +1,10 @@
+<div class="level-select-container">
+  <h1 class="mini-heading level-select-mini-heading">{translations.chooseLevel}</h1>
+
+  <div class="level-select-btn-panel hbox box-pack-start-align-center">
+  {#difficulties}
+    <input type="button" class="text-only-btn level-select-btn choice-btn"
+           data-current="{current}" data-level="{level}" value="{name}">
+  {/difficulties}
+  </div>
+</div>
