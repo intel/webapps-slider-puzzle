@@ -13,6 +13,10 @@ use of CSS3 features (flexible box model, animations, transitions etc.).
 
 See HACKING.md for more details about how to use and extend this project.
 
+# AUTHORS
+
+Elliot Smith, Intel (https://github.com/townxelliot)
+
 # DEPENDENCIES
 
 Run-time dependencies (note that these are installed using bower and
