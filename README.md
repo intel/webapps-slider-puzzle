@@ -17,6 +17,8 @@ See HACKING.md for more details about how to use and extend this project.
 
 Elliot Smith, Intel (https://github.com/townxelliot)
 
+Original version by Sirisha Muppavarapu and Todd Brandt (Intel)
+
 # DEPENDENCIES
 
 Run-time dependencies (note that these are installed using bower and
