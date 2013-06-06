@@ -1,6 +1,6 @@
 {
   "name": "SliderPuzzleNG",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "Next generation Slider Puzzle",
   "main": "app/js/amd-config.js",
   "scripts": {
