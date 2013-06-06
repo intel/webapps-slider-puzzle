@@ -1,0 +1,10 @@
+{?qualifyingScore}
+<label for="name-entry">{translations.yourName}:</label>&nbsp;
+<input type="text" id="name-entry" name="name-entry"
+       class="text-entry" size="4" maxlength="3">
+<input type="button" class="text-only-btn finish-save-btn"
+       id="save-score" name="save-score" disabled="disabled"
+       value="{translations.save}">
+{:else}
+  <span class="finish-score-no-good">{translations.notQualifying}</span>
+{/qualifyingScore}

@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2013, Intel Corporation.
+ *
+ * This program is licensed under the terms and conditions of the
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ */
 module.exports = function (grunt) {
   var path = require('path');
   var fs = require('fs');
@@ -7,8 +15,7 @@ module.exports = function (grunt) {
   /**
   * Create a zip file with a customisable filename.
   *
-  * Deps: grunt-contrib (internally, this uses grunt-contrib's compress
-  *       task)
+  * Deps: node-native-zip, async
   *
   * Format of the output filename is:
   *
@@ -37,13 +44,15 @@ module.exports = function (grunt) {
   *
   * grunt.initConfig({
   *   package: {
-  *     appName: 'app',
-  *     suffix: 'wgt',
-  *     version: '0.1.0',
-  *     addGitCommitId: true,
-  *     files: 'build/dist/**',
-  *     stripPrefix: 'build/dist',
-  *     outDir: 'build'
+  *     wgt: {
+  *       appName: 'app',
+  *       suffix: 'wgt',
+  *       version: '0.1.0',
+  *       addGitCommitId: true,
+  *       files: 'build/dist/**',
+  *       stripPrefix: 'build/dist',
+  *       outDir: 'build'
+  *     }
   *   }
   * });
   *

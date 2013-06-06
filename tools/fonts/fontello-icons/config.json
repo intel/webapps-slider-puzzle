@@ -1,0 +1,47 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "glyphs": [
+    {
+      "search": [
+        "close",
+        "cancel",
+        "reject",
+        "remove"
+      ],
+      "code": 57422,
+      "uid": "499b745a2e2485bdd059c3a53d048e5f",
+      "css": "cancel",
+      "orig_css": "cancel",
+      "orig_code": 57422,
+      "src": "elusive",
+      "from": 57422
+    },
+    {
+      "search": [
+        "plus"
+      ],
+      "code": 57434,
+      "uid": "55e2ff85b1c459c383f46da6e96014b0",
+      "css": "plus",
+      "orig_css": "plus",
+      "orig_code": 57434,
+      "src": "elusive",
+      "from": 57434
+    },
+    {
+      "search": [
+        "pause",
+        "player"
+      ],
+      "code": 57450,
+      "uid": "4f805cf4ac0dd68ab439dc36859b85d3",
+      "css": "pause",
+      "orig_css": "pause",
+      "orig_code": 57450,
+      "src": "elusive",
+      "from": 57450
+    }
+  ]
+}

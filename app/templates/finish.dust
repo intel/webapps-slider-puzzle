@@ -1,0 +1,27 @@
+<div data-page="finish" class="page-inactive">
+  <div class="overlay vbox box-pack-center-align-center">
+    <h1 class="overlay-text">{translations.wellDone}</h1>
+  </div>
+
+  <div class="finish-ribbon finish-ribbon-out hbox box-pack-center-align-center">
+    <div class="finish-ribbon-panel">
+      <div class="hbox box-pack-start-align-center"
+           data-widget="game-info"></div>
+
+      <div class="hbox box-pack-start-align-center">
+        <div class="hbox box-pack-start-align-center"
+             data-widget="score-save"></div>
+        <input type="button" class="text-only-btn"
+               data-nav="home" value="{translations.done}" disabled="disabled">
+      </div>
+    </div>
+
+    <div class="finish-ribbon-panel" data-widget="leaderboard-mini"></div>
+  </div>
+
+  <div class="game-image-container hbox box-pack-center-align-center">
+    <div class="puzzle-frame puzzle-solved" data-puzzle-frame-state="visible"
+         style="background-image: url({#game.photo}{full}{/game.photo});">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+{
+  "name": "Slider Puzzle NG",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.5",
+    "requirejs-domready": "~2.0.1",
+    "requirejs-text": "~2.0.6",
+    "lodash": "~1.1.1",
+    "q": "~0.9.3",
+    "stapes": "~0.7.1",
+    "dustjs-linkedin": "~1.2.3",
+    "fastclick": "~0.6.5",
+    "graduate": "http://themes.googleusercontent.com/static/fonts/graduate/v1/3igPYHysOQSqw-Nqzu4SMvesZW2xOQ-xsNqO47m55DA.woff",
+    "rye": "git@github.com:townxelliot/rye.git#~0.1.0",
+    "hammerjs": "~1.0.5",
+    "requirejs-i18n": "~2.0.2"
+  }
+}

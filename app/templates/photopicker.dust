@@ -1,0 +1,22 @@
+<div data-page="photopicker" class="page-inactive">
+  <div class="hbox">
+    <div class="box-panel vbox box-pack-center-align-start">
+      <h1 class="page-heading">{translations.choosePhoto}</h1>
+    </div>
+
+    <div class="box-panel hbox box-pack-end-align-center">
+      <button disabled="disabled" class="icon close-btn"
+              data-nav="home" data-icon="close">&nbsp;</button>
+    </div>
+  </div>
+
+  <div class="photopicker-gallery" data-widget="gallery">
+    {#photos}
+      <div class="photopicker-frame vbox box-pack-center-align-center">
+        <img src="{thumb}" class="photopicker-image"
+             data-nav-rel="popup" data-nav="photopopup/photoId:{id}">
+      </div>
+    {/photos}
+  </div>
+
+</div>
