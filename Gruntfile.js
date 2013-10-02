@@ -235,13 +235,13 @@ module.exports = function (grunt) {
       wgtSpecific: {
         files: [
           { expand: true, cwd: 'platforms/wgt', src: ['**'], dest: 'build/dist/' },
-          { expand: true, cwd: 'platforms', src: ['icon.png'], dest: 'build/dist/' }
+          { expand: true, cwd: 'platforms', src: ['icon_128.png'], dest: 'build/dist/' }
         ]
       },
       crxSpecific: {
         files: [
           { expand: true, cwd: 'platforms/crx', src: ['**'], dest: 'build/dist/' },
-          { expand: true, cwd: 'platforms', src: ['icon.png'], dest: 'build/dist/' }
+          { expand: true, cwd: 'platforms', src: ['icon_128.png'], dest: 'build/dist/' }
         ]
       },
 

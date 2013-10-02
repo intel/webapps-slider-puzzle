@@ -21,7 +21,7 @@
     "grunt-contrib-htmlmin": "~0.1.1",
     "grunt-contrib-imagemin": "~0.1.2",
     "grunt-contrib-uglify": "~0.2.0",
-    "grunt-requirejs": "~0.3.5",
+    "grunt-requirejs": "~0.4.0",
     "async": "~0.2.6",
     "node-native-zip": "~1.1.0",
     "xml2js": "~0.2.6",
