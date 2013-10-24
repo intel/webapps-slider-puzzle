@@ -16,7 +16,7 @@
     "dustjs-linkedin": "~1.2.3",
     "fastclick": "~0.6.5",
     "graduate": "http://themes.googleusercontent.com/static/fonts/graduate/v1/3igPYHysOQSqw-Nqzu4SMvesZW2xOQ-xsNqO47m55DA.woff",
-    "rye": "git@github.com:townxelliot/rye.git#~0.1.0",
+    "rye": "https://github.com/townxelliot/rye.git#~0.1.0",
     "hammerjs": "~1.0.5",
     "requirejs-i18n": "~2.0.2"
   }
