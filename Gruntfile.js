@@ -10,6 +10,7 @@ module.exports = function (grunt) {
   var _ = require('lodash');
   var buildConfig = require('./tools/grunt-config-loader')('build.json');
 
+  grunt.loadNpmTasks('grunt-tizen');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -28,6 +29,19 @@ module.exports = function (grunt) {
     packageInfo: grunt.file.readJSON('package.json'),
 
     clean: ['build'],
+
+    tizen_configuration: {
+      // location on the device to install the tizen-app.sh script to
+      // (default: '/tmp')
+      tizenAppScriptDir: '/home/developer/',
+
+      // path to the config.xml file for the Tizen wgt file - post templating
+      // (default: 'config.xml')
+      configFile: 'build/wgt/config.xml',
+
+      // path to the sdb command (default: process.env.SDB or 'sdb')
+      sdbCmd: 'sdb'
+    },
 
     jshint: {
       all: ['app/js/**/*.js'],
@@ -164,6 +178,9 @@ module.exports = function (grunt) {
     inlineStrip: {
       crx: {
         htmlFile: 'build/dist/index.html'
+      },
+      xpk: {
+        htmlFile: 'build/dist/index.html'
       }
     },
 
@@ -234,15 +251,63 @@ module.exports = function (grunt) {
       },
       wgtSpecific: {
         files: [
-          { expand: true, cwd: 'platforms/wgt', src: ['**'], dest: 'build/dist/' },
           { expand: true, cwd: 'platforms', src: ['icon_128.png'], dest: 'build/dist/' }
         ]
       },
+
+      wgt_config: {
+        files: [
+          { expand: true, cwd: 'platforms/wgt/', src: ['config.xml'], dest: 'build/dist/' }
+        ],
+        options:
+        {
+          processContent: function(content, srcpath)
+          {
+            return grunt.template.process(content);
+          }
+        }
+      },
+
       crxSpecific: {
         files: [
-          { expand: true, cwd: 'platforms/crx', src: ['**'], dest: 'build/dist/' },
           { expand: true, cwd: 'platforms', src: ['icon_128.png'], dest: 'build/dist/' }
         ]
+      },
+
+      crx_manifest:
+      {
+        files: [
+          { expand: true, cwd: 'platforms/crx/', src: ['manifest.json'], dest: 'build/dist/' }
+        ],
+
+        options:
+        {
+          processContent: function(content, srcpath)
+          {
+            return grunt.template.process(content);
+          }
+        }
+      },
+
+      xpkSpecific: {
+        files: [
+          { expand: true, cwd: 'platforms', src: ['icon_128.png'], dest: 'build/dist/' }
+        ]
+      },
+
+      xpk_manifest:
+      {
+        files: [
+          { expand: true, cwd: 'platforms/xpk/', src: ['manifest.json'], dest: 'build/dist/' }
+        ],
+
+        options:
+        {
+          processContent: function(content, srcpath)
+          {
+            return grunt.template.process(content);
+          }
+        }
       },
 
       // these are conveniences to copy the build/dist directory to other
@@ -267,6 +332,11 @@ module.exports = function (grunt) {
       sdk: {
         files: [
           { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/sdk/' }
+        ]
+      },
+      xpk: {
+        files: [
+          { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/xpk/' }
         ]
       }
     },
@@ -294,72 +364,52 @@ module.exports = function (grunt) {
     },
 
     sdb: {
-      prepare: {
-        action: 'push',
-        localFiles: './tools/tizen-app.sh',
-        remoteDestDir: buildConfig.wgtRemoteDir + '/',
-        chmod: '+x',
-        overwrite: true
-      },
-
-      pushwgt: {
-        action: 'push',
-        localFiles: {
-          pattern: 'build/*.wgt',
-          filter: 'latest'
-        },
-        remoteDestDir: buildConfig.wgtRemoteDir + '/'
-      },
-
       pushdumpscript: {
         action: 'push',
         localFiles: './tools/dump-localStorage.sh',
         remoteDestDir: buildConfig.wgtRemoteDir + '/',
         chmod: '+x',
         overwrite: true
-      },
+      }
+    },
 
-      dumplocalstorage: {
-        action: 'script',
-        asRoot: true,
-        config: buildConfig.wgtConfig,
-        remoteScript: buildConfig.wgtRemoteDir + '/dump-localStorage.sh'
-      },
-
-      stop: {
-        action: 'stop',
-        config: buildConfig.wgtConfig,
-        remoteScript: buildConfig.wgtRemoteDir + '/tizen-app.sh'
-      },
-
-      uninstall: {
-        action: 'uninstall',
-        config: buildConfig.wgtConfig,
-        remoteScript: buildConfig.wgtRemoteDir + '/tizen-app.sh'
+    tizen: {
+      push: {
+        action: 'push',
+        localFiles: {
+          pattern: 'build/*.wgt',
+          filter: 'latest'
+        },
+        remoteDir: '/home/developer/'
       },
 
       install: {
         action: 'install',
-        config: buildConfig.wgtConfig,
         remoteFiles: {
-          pattern: buildConfig.wgtRemoteDir + '/*.wgt',
+          pattern: '/home/developer/<%= packageInfo.name %>*.wgt',
           filter: 'latest'
-        },
-        remoteScript: buildConfig.wgtRemoteDir + '/tizen-app.sh'
+        }
       },
 
-      debug: {
-        action: 'debug',
-        config: buildConfig.wgtConfig,
-        remoteScript: buildConfig.wgtRemoteDir + '/tizen-app.sh',
-        localPort: '8888',
-        openBrowser: 'google-chrome %URL%'
+      uninstall: {
+        action: 'uninstall'
       },
 
       start: {
         action: 'start',
-        config: buildConfig.wgtConfig,
-        remoteScript: buildConfig.wgtRemoteDir + '/tizen-app.sh'
+        stopOnFailure: true
+      },
+
+      stop: {
+        action: 'stop',
+        stopOnFailure: false
+      },
+
+      debug: {
+        action: 'debug',
+        browserCmd: 'google-chrome %URL%',
+        localPort: 9090,
+        stopOnFailure: true
       }
     },
 
@@ -411,7 +461,8 @@ module.exports = function (grunt) {
     'minify',
     'copy:minified',
     'copy:common',
-    'copy:wgtSpecific'
+    'copy:wgtSpecific',
+    'copy:wgt_config'
   ]);
 
   grunt.registerTask('crx-build', [
@@ -421,6 +472,7 @@ module.exports = function (grunt) {
     'copy:minified',
     'copy:common',
     'copy:crxSpecific',
+    'copy:crx_manifest',
     'inlineStrip:crx'
   ]);
 
@@ -429,7 +481,19 @@ module.exports = function (grunt) {
     'jshint',
     'copy:unminified',
     'copy:common',
-    'copy:wgtSpecific'
+    'copy:wgtSpecific',
+    'copy:wgt_config'
+  ]);
+
+  grunt.registerTask('xpk-build', [
+    'clean',
+    'jshint',
+    'minify',
+    'copy:minified',
+    'copy:common',
+    'copy:xpkSpecific',
+    'copy:xpk_manifest',
+    'inlineStrip:xpk'
   ]);
 
   // server tasks
@@ -439,19 +503,18 @@ module.exports = function (grunt) {
   grunt.registerTask('wgt', ['wgt-build', 'copy:wgt', 'package:wgt']);
   grunt.registerTask('crx', ['crx-build', 'copy:crx']);
   grunt.registerTask('sdk', ['sdk-build', 'copy:sdk', 'package:sdk']);
+  grunt.registerTask('xpk', ['xpk-build', 'copy:xpk']);
 
-  // sdb tasks
   grunt.registerTask('install', [
-    'sdb:prepare',
-    'sdb:pushwgt',
-    'sdb:stop',
-    'sdb:uninstall',
-    'sdb:install',
-    'sdb:start'
+    'tizen:push',
+    'tizen:stop',
+    'tizen:uninstall',
+    'tizen:install',
+    'tizen:start'
   ]);
 
   // restart the currently-installed version
-  grunt.registerTask('restart', ['sdb:stop', 'sdb:start']);
+  grunt.registerTask('restart', ['tizen:stop', 'tizen:start']);
 
   grunt.registerTask('wgt-install', ['wgt', 'install']);
   grunt.registerTask('sdk-install', ['sdk', 'install']);
@@ -474,11 +537,11 @@ module.exports = function (grunt) {
       'copy:' + buildType,
       'package:' + buildType,
       'install',
-      'sdb:stop'
+      'tizen:stop'
     ];
 
     for (var i = 0; i < 11; i++) {
-      tasks.push('sdb:start', 'wait:perf', 'sdb:stop');
+      tasks.push('tizen:start', 'wait:perf', 'tizen:stop');
     }
 
     tasks.push('sdb:dumplocalstorage')
