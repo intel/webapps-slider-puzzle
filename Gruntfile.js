@@ -22,6 +22,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-requirejs');
   grunt.loadNpmTasks('grunt-dustjs');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-release');
   grunt.loadTasks('tools/grunt-tasks');
 
   // configure tasks
@@ -29,6 +30,14 @@ module.exports = function (grunt) {
     packageInfo: grunt.file.readJSON('package.json'),
 
     clean: ['build'],
+
+    release: {
+      options: {
+        npm: false,
+        npmtag: false,
+        tagName: 'v<%= version %>'
+      }
+    },
 
     tizen_configuration: {
       // location on the device to install the tizen-app.sh script to
