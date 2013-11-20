@@ -13,7 +13,7 @@
     "lodash": "~1.1.1",
     "q": "~0.9.3",
     "stapes": "~0.7.1",
-    "dustjs-linkedin": "~1.2.3",
+    "dustjs-linkedin": "~2.2.0",
     "fastclick": "~0.6.5",
     "graduate": "http://themes.googleusercontent.com/static/fonts/graduate/v1/3igPYHysOQSqw-Nqzu4SMvesZW2xOQ-xsNqO47m55DA.woff",
     "rye": "https://github.com/townxelliot/rye.git#~0.1.0",
