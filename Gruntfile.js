@@ -343,6 +343,24 @@ module.exports = function (grunt) {
           { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/sdk/' }
         ]
       },
+
+      sdk_platform:
+      {
+        files: [
+          { expand: true, cwd: 'platforms/tizen-sdk/', src: ['.project'], dest: 'build/sdk/' },
+          { expand: true, cwd: 'platforms/wgt/', src: ['config.xml'], dest: 'build/sdk/' }
+        ],
+
+        options:
+        {
+          processContent: function(content, srcpath)
+          {
+            return grunt.template.process(content);
+          }
+        }
+
+      },
+
       xpk: {
         files: [
           { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/xpk/' }
@@ -367,7 +385,7 @@ module.exports = function (grunt) {
         files: 'build/sdk/**',
         stripPrefix: 'build/sdk/',
         outDir: 'build',
-        suffix: 'sdk.wgt',
+        suffix: '.zip',
         addGitCommitId: false
       }
     },
@@ -490,8 +508,8 @@ module.exports = function (grunt) {
     'jshint',
     'copy:unminified',
     'copy:common',
-    'copy:wgtSpecific',
-    'copy:wgt_config'
+    'copy:sdk',
+    'copy:sdk_platform'
   ]);
 
   grunt.registerTask('xpk-build', [
