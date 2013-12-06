@@ -15,7 +15,7 @@ use of CSS3 features (flexible box model, animations, transitions etc.).
 
 This application is distributed under [Apache2.0](http://www.apache.org/licenses/LICENSE-2.0.html) license.
 
-See [HACKING.md](https://github.com/01org/webapps-annex/blob/maxw-readme/HACKING.md) for more details about how to use and extend this project.
+See [HACKING.md](https://github.com/01org/webapps-slider-puzzle/blob/master/HACKING.md) for more details about how to use and extend this project.
 
 # AUTHORS
 * Author: Elliot Smith, Intel (https://github.com/townxelliot)
