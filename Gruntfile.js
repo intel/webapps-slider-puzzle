@@ -283,6 +283,12 @@ module.exports = function (grunt) {
         ]
       },
 
+      crx_unpacked: {
+        files: [
+          { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/crx/' }
+        ]
+      },
+
       crx_manifest:
       {
         files: [
@@ -296,6 +302,7 @@ module.exports = function (grunt) {
             return grunt.template.process(content);
           }
         }
+
       },
 
       xpkSpecific: {
@@ -328,16 +335,19 @@ module.exports = function (grunt) {
           { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/server/' }
         ]
       },
+
       wgt: {
         files: [
           { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/wgt/' }
         ]
       },
+
       crx: {
         files: [
           { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/crx/' }
         ]
       },
+
       sdk: {
         files: [
           { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/sdk/' }
@@ -376,7 +386,7 @@ module.exports = function (grunt) {
         files: 'build/wgt/**',
         stripPrefix: 'build/wgt/',
         outDir: 'build',
-        suffix: 'wgt',
+        suffix: '.wgt',
         addGitCommitId: false
       },
       sdk: {
@@ -385,8 +395,15 @@ module.exports = function (grunt) {
         files: 'build/sdk/**',
         stripPrefix: 'build/sdk/',
         outDir: 'build',
-        suffix: '.zip',
-        addGitCommitId: false
+        suffix: '.zip'
+      },
+      'crx_zip': {
+        appName: '<%= packageInfo.name %>-crx',
+        version: '<%= packageInfo.version %>',
+        files: 'build/crx/**',
+        stripPrefix: 'build/crx/',
+        outDir: 'build',
+        suffix: '.zip'
       }
     },
 
@@ -531,6 +548,16 @@ module.exports = function (grunt) {
   grunt.registerTask('crx', ['crx-build', 'copy:crx']);
   grunt.registerTask('sdk', ['sdk-build', 'copy:sdk', 'package:sdk']);
   grunt.registerTask('xpk', ['xpk-build', 'copy:xpk']);
+
+  // build and zip up as a unpacked chrome extension
+  grunt.registerTask('crx_unpacked', [
+    'clean',
+    'copy:unminified',
+    'copy:common',
+    'copy:crx_unpacked',
+    'copy:crx_manifest',
+    'package:crx_zip'
+  ]);
 
   grunt.registerTask('install', [
     'tizen:push',
