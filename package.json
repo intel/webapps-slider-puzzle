@@ -36,6 +36,9 @@
     "chai": "~1.6.0",
     "grunt-contrib-jshint": "~0.4.3",
     "grunt-tizen": "~0.1.2",
-    "grunt-release": "~0.6.0"
+    "grunt-release": "~0.6.0",
+    "crosswalk-apk-generator": "*",
+    "which": "~1.0.5",
+    "semver": "~2.2.1"
   }
 }
