@@ -260,7 +260,7 @@ module.exports = function (grunt) {
       },
       wgtSpecific: {
         files: [
-          { expand: true, cwd: 'platforms', src: ['icon_128.png'], dest: 'build/dist/' }
+          { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/dist/' }
         ]
       },
 
@@ -279,7 +279,7 @@ module.exports = function (grunt) {
 
       crxSpecific: {
         files: [
-          { expand: true, cwd: 'platforms', src: ['icon_128.png'], dest: 'build/dist/' }
+          { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/dist/' }
         ]
       },
 
@@ -307,7 +307,7 @@ module.exports = function (grunt) {
 
       xpkSpecific: {
         files: [
-          { expand: true, cwd: 'platforms', src: ['icon_128.png'], dest: 'build/dist/' }
+          { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/dist/' }
         ]
       },
 
