@@ -19,7 +19,7 @@ require.config({
     'dust-full': '../lib/dustjs-linkedin/dist/dust-full-2.2.0',
     'fastclick': '../lib/fastclick/lib/fastclick',
     'rye': '../lib/rye/dist/rye-base-0.1.0',
-    'hammer': '../lib/hammerjs/dist/hammer',
+    'hammer': '../lib/hammerjs/hammer',
     'i18n': '../lib/requirejs-i18n/i18n',
     'domReady': '../lib/requirejs-domready/domReady',
     'text': '../lib/requirejs-text/text'

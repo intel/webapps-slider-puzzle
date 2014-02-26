@@ -48,7 +48,7 @@
     { "cwd": "app", "src": ["lib/q/q.js"] },
     { "cwd": "app", "src": ["lib/stapes/stapes.js"] },
     { "cwd": "app", "src": ["lib/rye/dist/rye-base-0.1.0.js"] },
-    { "cwd": "app", "src": ["lib/hammerjs/dist/hammer.js"] },
+    { "cwd": "app", "src": ["lib/hammerjs/hammer.js"] },
     { "cwd": "app", "src": ["lib/dustjs-linkedin/dist/dust-core-1.2.2.js"] },
     { "cwd": "app", "src": ["lib/dustjs-linkedin/dist/dust-full-1.2.2.js"] },
     { "cwd": "app", "src": ["lib/fastclick/lib/fastclick.js"] }
