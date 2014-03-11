@@ -304,7 +304,7 @@ module.exports = function (grunt) {
 
       wgt_config: {
         files: [
-          { expand: true, cwd: 'platforms/wgt/', src: ['config.xml'], dest: 'build/dist/' }
+          { expand: true, cwd: 'platforms/tizen-wgt/', src: ['config.xml'], dest: 'build/dist/' }
         ],
         options:
         {
@@ -330,7 +330,7 @@ module.exports = function (grunt) {
       crx_manifest:
       {
         files: [
-          { expand: true, cwd: 'platforms/crx/', src: ['manifest.json'], dest: 'build/dist/' }
+          { expand: true, cwd: 'platforms/chrome-crx/', src: ['manifest.json'], dest: 'build/dist/' }
         ],
 
         options:
@@ -352,7 +352,7 @@ module.exports = function (grunt) {
       xpk_manifest:
       {
         files: [
-          { expand: true, cwd: 'platforms/xpk/', src: ['manifest.json'], dest: 'build/dist/' }
+          { expand: true, cwd: 'platforms/tizen-xpk/', src: ['manifest.json'], dest: 'build/dist/' }
         ],
 
         options:
@@ -396,7 +396,7 @@ module.exports = function (grunt) {
       {
         files: [
           { expand: true, cwd: 'platforms/tizen-sdk/', src: ['.project'], dest: 'build/sdk/' },
-          { expand: true, cwd: 'platforms/wgt/', src: ['config.xml'], dest: 'build/sdk/' }
+          { expand: true, cwd: 'platforms/tizen-wgt/', src: ['config.xml'], dest: 'build/sdk/' }
         ],
 
         options:
