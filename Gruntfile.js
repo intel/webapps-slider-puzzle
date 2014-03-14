@@ -29,6 +29,7 @@ module.exports = function (grunt) {
   // configure tasks
   var config = {
     packageInfo: grunt.file.readJSON('package.json'),
+    chromeInfo: grunt.file.readJSON('platforms/chrome-crx/manifest.json'),
 
     crosswalk: {
       shared: {
@@ -334,20 +335,22 @@ module.exports = function (grunt) {
 
       crxSpecific: {
         files: [
-          { expand: true, cwd: '.', src: ['icon_128.png'], dest: 'build/dist/' }
+          { expand: true, cwd: '.', src: ['icon*.png'], dest: 'build/crx/' }
         ]
       },
 
       crx_unpacked: {
         files: [
-          { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/crx/' }
+          { expand: true, cwd: 'app/lib', src: ['**'], dest: 'build/crx/lib/' },
+          { expand: true, cwd: 'build/dist', src: ['**'], dest: 'build/crx/' },
+          { expand: true, cwd: '.', src: ['icon*.png'], dest: 'build/crx/' }
         ]
       },
 
       crx_manifest:
       {
         files: [
-          { expand: true, cwd: 'platforms/chrome-crx/', src: ['manifest.json'], dest: 'build/dist/' }
+          { expand: true, cwd: 'platforms/chrome-crx/', src: ['manifest.json'], dest: 'build/crx/' }
         ],
 
         options:
@@ -600,7 +603,7 @@ module.exports = function (grunt) {
 
   // packaging tasks
   grunt.registerTask('wgt', ['wgt-build', 'copy:wgt', 'package:wgt']);
-  grunt.registerTask('crx', ['crx-build', 'copy:crx']);
+  grunt.registerTask('crx', ['crx-build', 'copy:crx', 'copy:crx_manifest']);
   grunt.registerTask('sdk', ['sdk-build', 'copy:sdk', 'package:sdk']);
   grunt.registerTask('xpk', ['xpk-build', 'copy:xpk']);
 
