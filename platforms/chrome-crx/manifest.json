@@ -1,16 +1,21 @@
 {
   "manifest_version": 2,
   "content_security_policy": "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'none';",
-  "name": "<%= packageInfo.name %>",
-  "description": "<%= packageInfo.description %>",
   "app": {
     "launch": {
+      "container": "panel",
+	    "width":1024,
+	    "height":600,
       "local_path": "index.html"
     }
   },
+  "description": "<%= packageInfo.description %>",
   "icons": {
     "128": "icon_128.png"
   },
+  "name": "<%= packageInfo.name %>",
+  "permissions": [  ],
   "version": "<%= packageInfo.version %>",
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "homepage_url" : "https://01.org/html5webapps/webapps/<%= packageInfo.name.toLowerCase() %>"
 }
